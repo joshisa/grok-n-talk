@@ -1,0 +1,471 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>Grok-N-Talk</title>
+    <style>
+        /** 
+        --------------------------------------------
+        Card Flip
+        --------------------------------------------
+        Setup a mixin for your flip so you can include it into any element that has this or similar structure
+        
+         <figure class="card"> <-- can be any class you need.
+          <div class="face front"></div> <- required classes
+          <div class="face back"> </div>  <- required classes
+         </figure>
+        
+        Supports arguments for Speed and Direction. 
+        The direction you can specify using "x" "y" or "z"
+        
+        Use it by putting "@include flip();" in the parent element you want to flip.
+        You can style the card however you want. Here are some examples. 
+        
+        */
+        	
+        	* {
+        		box-sizing: border-box;
+        	}
+        	
+        	html {
+        		margin: 0;
+        		padding: 0;
+        	}
+        	
+        	body {
+        		font-family: Arial, Sans-Serif;
+        		perspective: 1500px;
+        		perspective-origin: 50% 50%;
+        		background-color: #1a1a1a;
+        		text-align: center;
+        		margin: 0;
+        		padding: 0;
+        		width: auto;
+        		margin: 0 auto;
+        	}
+        	
+          /* unvisited link */
+          a:link {
+            color: #B3D0F5;
+          }
+        
+          /* visited link */
+          a:visited {
+            color: #B3D0F5;
+          }
+        
+          /* mouse over link */
+          a:hover {
+            color: #B3D0F5;
+          }
+        
+          /* selected link */
+          a:active {
+            color: #B3D0F5;
+          }
+        
+          .primarycolor {
+            color: #B3D0F5;
+          }
+        
+          .subcolor {
+            color: #FFFFFF;
+          }
+        
+          .emphasize {
+            font-weight: bold;
+            color: #FFC294;
+          }
+        
+        	.prodcards {
+        		max-width: 1200px;
+        		margin: 0 auto;
+        		display: grid;
+        		grid-gap: 1rem;
+        		position: absolute;
+            		left: 50%;
+            		transform: translate(-50%,0);
+        	}
+        	
+        	@media (min-width: 900px) {
+        		.prodcards {
+        			grid-template-columns: repeat(2, 1fr);
+        		}
+        	}
+        	
+        	@media (min-width: 1800px) {
+        		.prodcards {
+        			grid-template-columns: repeat(3, 1fr);
+        		}
+        	}
+        	
+        	.card {
+        		text-align: left;
+        		position: relative;
+        		transform-style: preserve-3d;
+        		transition: transform 0.5s;
+        		-webkit-user-select: none;
+        		-moz-user-select: none;
+        		-ms-user-select: none;
+        		user-select: none;
+        		cursor: pointer;
+        		font-family: Arial, Sans-Serif;
+        		width: 400px;
+        		height: 600px;
+        		color: white;
+        		display: inline-block;
+        		margin: 10px;
+        	}
+        	
+        	.card.flip {
+        		transform: rotateY(180deg);
+        		transition: transform 0.5s;
+        	}
+        	
+        	.card .face {
+        		position: absolute;
+        		top: 0px;
+        		left: 0px;
+        		bottom: 0px;
+        		right: 0px;
+        		-webkit-backface-visibility: hidden;
+        		backface-visibility: hidden;
+        		transform: translateZ(0.1px);
+        	}
+        	
+        	.card .back {
+        		transform: rotateY(180deg);
+        	}
+        	
+        	.card .face {
+        		border-radius: 10px;
+        	}
+        	
+        	.card .front {
+        		color: #ffffff;
+        		background-color: #101010;
+        	}
+        	
+        	.card .front .logo {
+        		width: 100px;
+        		padding: 10px;
+        	}
+        
+          .card .front .eco {
+            width: 100px;
+            float: right;
+            padding: 10px;
+          }
+        	
+        	.card .back {
+        		font-size: 18px;
+        		line-height: 1.3em;
+        		background: #333333;
+        		background-size: cover;
+        		color: #FFFFFF;
+        	}
+        	
+        	.card .back img {
+        		width: 100%;
+        		max-width: 100%;
+        		height: auto;
+        		border-top-left-radius: 10px;
+        		border-top-right-radius: 10px;
+        		border-bottom: 3px double #FFE81F;
+        	}
+        	
+        	.card .back .description {
+        		padding: 5px;
+        	}
+        	
+        	.card .back .logo {
+        		position: absolute;
+        		bottom: 10px;
+        		right: 10px;
+        		width: 100px;
+        		padding: 10px;
+        		border: none;
+        	}
+        	
+        	.card h2 {
+        		text-transform: uppercase;
+        		font-size: 48px;
+        		position: absolute;
+        		bottom: 70px;
+        		margin: 0;
+        		line-height: 0.75em;
+        		padding: 10px;
+        	}
+        	
+        	.card h2 small {
+        		font-size: 28px;
+        	}
+        	
+        	.card cite {
+        		position: absolute;
+        		left: 0px;
+        		bottom: 0px;
+        		font-size: 0.595vw;
+        		text-transform: uppercase;
+        		padding: 20px;
+        	}
+        	
+        	.card cite a {
+        		color: white;
+        	}
+        	
+        	.card cite a:visited {
+        		text-decoration: none;
+        		color: #aaaaaa;
+        	}
+        	
+        	.turbo h2 {
+        		font-size: 42px;
+        		line-height: 0.90em;
+        		bottom: 80px;
+        	}
+        	
+        	.turbo .front {
+        		background-image: url(images/turbonomic-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.turbo .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        	
+        	.instana .front {
+        		background-image: url(images/instana-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.instana .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        
+          .instana h2 {
+        		font-size: 42px;
+        		line-height: 0.9em;
+        		bottom: 80px;
+        	}
+        
+          .instana h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
+        
+          .cloudy .front {
+        		background-image: url(images/cloudability-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.cloudy .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        
+          .cloudy h2 {
+        		font-size: 42px;
+        		line-height: 0.9em;
+        		bottom: 80px;
+        	}
+        
+          .cloudy h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
+        
+        
+          .kubecost .front {
+        		background-image: url(images/kubecost-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.kubecost .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        
+          .kubecost h2 {
+        		font-size: 42px;
+        		line-height: 0.9em;
+        		bottom: 80px;
+        	}
+        
+          .kubecost h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
+        
+        
+          .apic .front {
+        		background-image: url(images/apic-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.apic .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        
+          .apic h2 {
+        		font-size: 42px;
+        		line-height: 0.9em;
+        		bottom: 80px;
+        	}
+        
+          .apic h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
+    </style>
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+</head>
+
+<body>
+    <!-- 
+
+  To setup your own card, start with a class stucture like this.
+
+<div class="card"> <-- can be any element and class you need.
+  <div class="face front"></div> <- required classes
+  <div class="face back"> </div>  <- required classes
+ </div>
+
+-->
+    <div class="prodcards">
+
+        <!-- IBM Turbonomic -->
+        <div class="card turbo">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>IBM</small><br/>Turbonomic</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Turbonomic" />
+                <div class="description">
+                    <ul>
+                        <li>Applications need resources to function. Stuff like compute, memory, storage, networking.</li>
+                        <li>Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste</li>
+                        <li>Changing resources automatically to the right amount, at the right time, to feed application needs will lower computer costs and waste </li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance steady and waste low</li>
+                        <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank">Gimme More &#63;'s</a></li>
+                    </ul>
+                </div> <img class="logo" src="images/turbonomic-front.png" /> </div>
+        </div>
+
+        <!-- IBM Instana -->
+        <div class="card instana">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>IBM</small><br/>Instana Observability</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Instana Observability" />
+                <div class="description">
+                    <ul>
+                        <li>Measuring things helps make decisions</li>
+                        <li>Customers are blind to app issues that happen fast and often, causing bad business outcomes</li>
+                        <li>Capturing measurements more often detects errors quicker, better and allows faster fixing</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
+                        <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank">Gimme More &#63;'s</a></li>
+                    </ul>
+                </div> <img class="logo" src="images/instana-front.png" /> </div>
+        </div>
+
+        <!-- Cloudability -->
+        <div class="card cloudy">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>IBM</small><br/>Cloudability</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Cloudability" />
+                <div class="description">
+                    <ul>
+                        <li>Cloud waste is expensive and common, but can be lowered</li>
+                        <li>Customers have few numbers and low awareness about cloud waste</li>
+                        <li>Knowing where cloud waste exists allows control and reduction</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities</li>
+                        <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank">Gimme More &#63;'s</a></li>
+                    </ul>
+                </div> <img class="logo" src="images/cloudability-front.png" /> </div>
+        </div>
+
+        <!-- Kubecost -->
+        <div class="card kubecost">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>IBM</small><br/>Kubecost</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
+                <div class="description">
+                    <ul>
+                        <li><a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank">Kubernetes</a> (container) waste is expensive and common, but can be lowered</li>
+                        <li>Customers have few numbers and low awareness about container spend</li>
+                        <li>Knowing where kubernetes waste exists allows control and reduction</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank">Kubecost</a> provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste</li>
+                        <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?</span></li>
+                    </ul>
+                </div> <img class="logo" src="images/kubecost-front.png" /> </div>
+        </div>
+
+        <!-- API Connect -->
+        <div class="card apic">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>IBM</small><br/>API Connect</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" alt="IBM API Connect" />
+                <div class="description">
+                    <ul>
+                        <li>Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management</li>
+                        <li>Companies grow, buy other ones or even get bought. More app software to handle in more places. Discovering, securing, testing, updating & observing APIs hard and risky</li>
+                        <li>API lifecycle management lowers risk, improves quality & allows ways to create new value</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live</li>
+                        <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank">Gimme More &#63;'s</a></li>
+                    </ul>
+
+                </div> <img class="logo" src="images/apic-front.png" /> </div>
+        </div>
+
+        <!-- Spectrum Symphony -->
+        <div class="card instana">
+            <div class="face front"> <img class="logo" src="images/logo.png" />
+                <h2><small>Spectrum</small><br/>Symphony</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img src="images/eli5-back.jpeg" />
+                <div class="description"> IBM is partnering with the leading data-in-motion solution provider, Confluent, to support a broad range of integration styles and use cases. Confluent Platform is an enterprise-ready distribution of Apache Kafka that unifies real-time and historical events, enabling organizations to build modern, data-in-motion applications. The solution includes IBM support for Confluent software.</div> <img class="logo" src="images/logo.png" /> </div>
+        </div>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+        <script id="rendered-js">
+            $(".card").click(function(e) {
+            		$(e.currentTarget).toggleClass("flip");
+            	});
+        </script>
+</body>
+
+</html>
