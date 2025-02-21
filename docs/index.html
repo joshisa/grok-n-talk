@@ -160,7 +160,7 @@
           }
         	
         	.card .back {
-        		font-size: 18px;
+        		font-size: 17px;
         		line-height: 1.3em;
         		background: #333333;
         		background-size: cover;
@@ -221,12 +221,6 @@
         		color: #aaaaaa;
         	}
         	
-          .grok h2 {
-        		font-size: 42px;
-        		line-height: 0.90em;
-        		bottom: 80px;
-        	}
-        	
         	.grok .front {
         		background-image: url(images/grok-n-talk-logo.png);
             background-repeat: no-repeat;
@@ -241,12 +235,18 @@
         		transition: background 0.5s;
         	}
 
-        	.turbo h2 {
+          .grok h2 {
         		font-size: 42px;
         		line-height: 0.90em;
         		bottom: 80px;
         	}
-        	
+
+          .grok h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
+
         	.turbo .front {
         		background-image: url(images/turbonomic-front.png);
             background-repeat: no-repeat;
@@ -259,6 +259,18 @@
         		background-size: 200%;
         		background-position: 20% 30%;
         		transition: background 0.5s;
+        	}
+
+          .turbo h2 {
+        		font-size: 42px;
+        		line-height: 0.90em;
+        		bottom: 80px;
+        	}
+
+          .turbo h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
         	}
         	
         	.instana .front {
@@ -366,6 +378,32 @@
         		line-height: 1.75em;
         		bottom: 80px;
         	}
+
+          .ns1 .front {
+        		background-image: url(images/ns1-front.png);
+            background-repeat: no-repeat;
+        		background-size: 100%;
+        		background-position: 50% 50%;
+        		transition: background 0.3s;
+        	}
+        	
+        	.ns1 .front:hover {
+        		background-size: 200%;
+        		background-position: 20% 30%;
+        		transition: background 0.5s;
+        	}
+        
+          .ns1 h2 {
+        		font-size: 42px;
+        		line-height: 0.9em;
+        		bottom: 80px;
+        	}
+        
+          .ns1 h2 small {
+        		font-size: 28px;
+        		line-height: 1.75em;
+        		bottom: 80px;
+        	}
     </style>
     <script>
         window.console = window.console || function(t) {};
@@ -396,8 +434,8 @@
                         <li>Applications need resources to function. Stuff like compute, memory, storage, networking.</li>
                         <li>Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste</li>
                         <li>Changing resources automatically to the right amount, at the right time, to feed application needs will lower computer costs and waste </li>
-                        <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance steady and waste low</li>
-                        <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank">Gimme More &#63;'s</a></li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance steady and waste low</li>
+                        <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
                 </div> <img class="logo" src="images/turbonomic-front.png" /> </div>
         </div>
@@ -413,8 +451,8 @@
                         <li>Measuring things helps make decisions</li>
                         <li>Customers are blind to app issues that happen fast and often, causing bad business outcomes</li>
                         <li>Capturing measurements more often detects errors quicker, better and allows faster fixing</li>
-                        <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
-                        <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank">Gimme More &#63;'s</a></li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
+                        <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
                 </div> <img class="logo" src="images/instana-front.png" /> </div>
         </div>
@@ -430,8 +468,8 @@
                         <li>Cloud waste is expensive and common, but can be lowered</li>
                         <li>Customers have few numbers and low awareness about cloud waste</li>
                         <li>Knowing where cloud waste exists allows control and reduction</li>
-                        <li><a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities</li>
-                        <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank">Gimme More &#63;'s</a></li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank" rel="noopener">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities</li>
+                        <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
                 </div> <img class="logo" src="images/cloudability-front.png" /> </div>
         </div>
@@ -444,10 +482,10 @@
             <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
                 <div class="description">
                     <ul>
-                        <li><a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank">Kubernetes</a> (container) waste is expensive and common, but can be lowered</li>
+                        <li><a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank" rel="noopener">Kubernetes</a> (container) waste is expensive and common, but can be lowered</li>
                         <li>Customers have few numbers and low awareness about container spend</li>
                         <li>Knowing where kubernetes waste exists allows control and reduction</li>
-                        <li><a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank">Kubecost</a> provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank" rel="noopener">Kubecost</a> provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste</li>
                         <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?</span></li>
                     </ul>
                 </div> <img class="logo" src="images/kubecost-front.png" /> </div>
@@ -461,14 +499,31 @@
             <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" alt="IBM API Connect" />
                 <div class="description">
                     <ul>
-                        <li>Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management</li>
+                        <li>Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank" rel="noopener">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management</li>
                         <li>Companies grow, buy other ones or even get bought. More app software to handle in more places. Makes discovering, securing, testing, updating & observing APIs hard and risky</li>
                         <li>API lifecycle management lowers risk, improves quality & allows ways to create new value</li>
-                        <li><a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live</li>
-                        <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank">Gimme More &#63;'s</a></li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank" rel="noopener">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live</li>
+                        <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
 
                 </div> <img class="logo" src="images/apic-front.png" /> </div>
+        </div>
+
+        <!-- IBM NS1 Connect -->
+        <div class="card ns1">
+            <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
+                <h2><small>IBM</small><br/>NS1 Connect</h2> <cite>
+    </cite> </div>
+            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
+                <div class="description"> 
+                    <ul>
+                        <li>Networking acts like a road for software apps. It gets filled with traffic, has potholes, speedbumps & restricted lanes or can be under construction with detours</li>
+                        <li>Good balancing of traffic needs automatic signals and traffic cops to help steer around sudden jams, answer for directions and suggest new routes to save time. Traffic problems need to be spotted fast since they are expensive to fix</li>
+                        <li>Apps with fast, reliable network responses & few interruptions across clouds give business value consistently & quickly at the best cost</li>
+                        <li><a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to provide apps with fast, reliable network responses with minimal downtime at global scale across many clouds</li>
+                        <li><span class="emphasize">Are you the team that’s responsible for authoritative (or external) DNS?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                    </ul> 
+                </div> <img class="logo" src="images/ns1-front.png" /> </div>
         </div>
 
         <!-- Grok-N-Talk -->
