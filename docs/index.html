@@ -65,6 +65,10 @@
           a:active {
             color: #B3D0F5;
           }
+
+          .gimme {
+            color: #B3D0F5;
+          }
         
           .primarycolor {
             color: #B3D0F5;
@@ -151,7 +155,7 @@
         	.card .front .logo {
         		width: 200px;
         		padding: 10px;
-        	}
+         	}
         
           .card .front .eco {
             width: 100px;
@@ -173,19 +177,66 @@
         		height: auto;
         		border-top-left-radius: 10px;
         		border-top-right-radius: 10px;
-        		border-bottom: 3px double #FFE81F;
+        		border-bottom: 3px double #000000;
         	}
         	
         	.card .back .description {
         		padding: 5px;
         	}
+
+          .card .back .competitors {
+        		padding: 5px;
+            display: none;
+        	}
+
+          .card .back .x-sell {
+        		padding: 5px;
+            display: none;
+        	}
+
+          .card .back .upsell {
+        		padding: 5px;
+            display: none;
+        	}
+
+          .card .back .questions {
+        		padding: 5px;
+            display: none;
+        	}
+
+          .card .back .summary-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 5px;
+          }
+
+          .card .back .compete-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 55px;
+          }
+
+          .card .back .x-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 105px;
+          }
+
+          .card .back .upsell-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 160px;
+          }
+
+          .card .back .toggle {
+            height: 40px;
+          }
         	
         	.card .back .logo {
         		position: absolute;
-        		bottom: 10px;
-        		right: 10px;
+        		bottom: 0px;
+        		right: 5px;
         		width: 100px;
-        		padding: 10px;
         		border: none;
         	}
         	
@@ -428,16 +479,45 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>Turbonomic</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Turbonomic" />
+            <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Turbonomic" />
+                <div class="competitors" id="turbo-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="turbo-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="turbo-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
+                <div class="questions emphasize" id="turbo-questions">
+                  <ul>
+                    <li>Question 1</li>
+                    <li>Question 2</li>
+                    <li><a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Seismic 1-Pager</a></li>
+                  </ul>
+                </div>
                 <div class="description">
                     <ul>
                         <li>Applications need resources to function. Stuff like compute, memory, storage, networking.</li>
                         <li>Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste</li>
                         <li>Changing resources automatically to the right amount, at the right time, to feed application needs will lower computer costs and waste </li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance steady and waste low</li>
-                        <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                        <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?<br/> &#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
-                </div> <img class="logo" src="images/turbonomic-front.png" /> </div>
+                </div> 
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete-turbo">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell-turbo">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell-turbo">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/turbonomic-front.png" /> </div>
         </div>
 
         <!-- IBM Instana -->
@@ -445,7 +525,16 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>Instana Observability</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Instana Observability" />
+            <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Instana Observability" />
+                <div class="competitors" id="instana-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="instana-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="instana-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description">
                     <ul>
                         <li>Measuring things helps make decisions</li>
@@ -454,7 +543,20 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
                         <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
-                </div> <img class="logo" src="images/instana-front.png" /> </div>
+                </div> 
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/instana-front.png" /> </div>
         </div>
 
         <!-- Cloudability -->
@@ -462,7 +564,16 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>Cloudability</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style="height:20%" src="images/eli5-back.jpeg" alt="IBM Cloudability" />
+            <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Cloudability" />
+                <div class="competitors" id="cloudy-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="cloudy-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="cloudy-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description">
                     <ul>
                         <li>Cloud waste is expensive and common, but can be lowered</li>
@@ -471,7 +582,20 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank" rel="noopener">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities</li>
                         <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
-                </div> <img class="logo" src="images/cloudability-front.png" /> </div>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/cloudability-front.png" /> </div>
         </div>
 
         <!-- Kubecost -->
@@ -479,7 +603,16 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>Kubecost</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
+            <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
+                <div class="competitors" id="kubecost-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="kubecost-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="kubecost-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description">
                     <ul>
                         <li><a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank" rel="noopener">Kubernetes</a> (container) waste is expensive and common, but can be lowered</li>
@@ -488,7 +621,20 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank" rel="noopener">Kubecost</a> provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste</li>
                         <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?</span></li>
                     </ul>
-                </div> <img class="logo" src="images/kubecost-front.png" /> </div>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/kubecost-front.png" /> </div>
         </div>
 
         <!-- API Connect -->
@@ -496,7 +642,16 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>API Connect</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" alt="IBM API Connect" />
+            <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" alt="IBM API Connect" />
+                <div class="competitors" id="apic-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="apic-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="apic-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description">
                     <ul>
                         <li>Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank" rel="noopener">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management</li>
@@ -505,8 +660,20 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank" rel="noopener">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live</li>
                         <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
-
-                </div> <img class="logo" src="images/apic-front.png" /> </div>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/apic-front.png" /> </div>
         </div>
 
         <!-- IBM NS1 Connect -->
@@ -514,7 +681,16 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>IBM</small><br/>NS1 Connect</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
+            <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
+                <div class="competitors" id="ns1-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="ns1-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="ns1-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description"> 
                     <ul>
                         <li>Networking acts like a road for software apps. It gets filled with traffic, has potholes, speedbumps & restricted lanes or can be under construction with detours</li>
@@ -523,7 +699,20 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to provide apps with fast, reliable network responses with minimal downtime at global scale across many clouds</li>
                         <li><span class="emphasize">Are you the team that’s responsible for authoritative (or external) DNS?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul> 
-                </div> <img class="logo" src="images/ns1-front.png" /> </div>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/ns1-front.png" /> </div>
         </div>
 
         <!-- Grok-N-Talk -->
@@ -531,16 +720,98 @@
             <div class="face front"> <img class="logo" src="images/grok-n-talk-logo.png" />
                 <h2><small>Placeholder</small><br/>Grok-N-Talk</h2> <cite>
     </cite> </div>
-            <div class="face back"> <img style=" height: 20%" src="images/eli5-back.jpeg" />
+            <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
+                <div class="competitors" id="placeholder-competitors">
+                  <ul><li>foo bar</li></ul>
+                </div>
+                <div class="x-sell" id="placeholder-xsell">
+                  <ul><li>bar foo</li></ul>
+                </div>
+                <div class="upsell" id="placeholder-upsell">
+                  <ul><li>granola bar</li></ul>
+                </div>
                 <div class="description"> 
                 <span>Lorem Ipsum</span>
-                </div> <img class="logo" src="images/grok-n-talk-logo.png" /> </div>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
+                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="compete-toggle" id="compete">
+                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                </div>
+                <div class="x-toggle" id="x-sell">
+                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                </div>
+                <div class="upsell-toggle" id="upsell">
+                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <img class="logo" src="images/grok-n-talk-logo.png" /> </div>
         </div>
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
         <script id="rendered-js">
             $(".card").click(function(e) {
             		$(e.currentTarget).toggleClass("flip");
+            	});
+            $(".summary-toggle").click(function(e) {
+            		$(e.currentTarget).siblings(".competitors").hide();
+                $(e.currentTarget).siblings(".x-sell").hide();
+                $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".description").show();
+                $(e.currentTarget).siblings(".questions").hide();
+                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                return false;
+            	});
+            $(".compete-toggle").click(function(e) {
+            		$(e.currentTarget).siblings(".competitors").show();
+                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".x-sell").hide();
+                $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".description").hide();
+                $(e.currentTarget).siblings(".questions").hide();
+                return false;
+            	});
+            $(".x-toggle").click(function(e) {
+            		$(e.currentTarget).siblings(".competitors").hide();
+                $(e.currentTarget).siblings(".x-sell").show();
+                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".description").hide();
+                $(e.currentTarget).siblings(".questions").hide();
+                return false;
+            	});
+            $(".upsell-toggle").click(function(e) {
+            		$(e.currentTarget).siblings(".competitors").hide();
+                $(e.currentTarget).siblings(".x-sell").hide();
+                $(e.currentTarget).siblings(".upsell").show();
+                $(e.currentTarget).siblings(".questions").hide();
+                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".description").hide();
+                return false;
+            	});
+            $(".emphasize a").click(function(e) {
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".questions").show();
+            		$(e.currentTarget).parent().parent().parent().parent().siblings(".competitors").hide();
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".x-sell").hide();
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".upsell").hide();
+                $(e.currentTarget).parent().parent().parent().parent().hide();
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".compete-toggle").css('background-color', '');
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".x-toggle").css('background-color', '');
+                $(e.currentTarget).parent().parent().parent().parent().siblings(".upsell-toggle").css('background-color', '');
+                return false;
             	});
         </script>
 </body>
