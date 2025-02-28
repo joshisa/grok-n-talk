@@ -66,10 +66,6 @@
             color: #B3D0F5;
           }
 
-          .gimme {
-            color: #B3D0F5;
-          }
-        
           .primarycolor {
             color: #B3D0F5;
           }
@@ -81,6 +77,10 @@
           .emphasize {
             font-weight: bold;
             color: #FFC294;
+          }
+
+          .center {
+            text-align: center;
           }
         
         	.prodcards {
@@ -166,7 +166,7 @@
         	.card .back {
         		font-size: 17px;
         		line-height: 1.3em;
-        		background: #333333;
+        		background: #003566;
         		background-size: cover;
         		color: #FFFFFF;
         	}
@@ -199,6 +199,11 @@
             display: none;
         	}
 
+          .card .back .story {
+        		padding: 5px;
+            display: none;
+        	}
+
           .card .back .questions {
         		padding: 5px;
             display: none;
@@ -226,6 +231,12 @@
             position: fixed;
             bottom: 15px;
             left: 160px;
+          }
+
+          .card .back .story-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 215px;
           }
 
           .card .back .toggle {
@@ -482,20 +493,31 @@
     </cite> </div>
             <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Turbonomic" />
                 <div class="competitors" id="turbo-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="turbo-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="turbo-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
                 </div>
-                <div class="questions emphasize" id="turbo-questions">
-                  <ul>
-                    <li>Question 1</li>
-                    <li>Question 2</li>
-                    <li><a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Seismic 1-Pager</a></li>
-                  </ul>
+                <div class="questions" id="turbo-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
+                <div class="story" id="turbo-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
                 </div>
                 <div class="description">
                     <ul>
@@ -505,18 +527,21 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance steady and waste low</li>
                         <li><span class="emphasize">How are you currently using technology to be better with resource efficiency and waste in your environments?<br/> &#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
-                </div> 
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete-turbo">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell-turbo">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell-turbo">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story-turbo">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/turbonomic-front.png" /> </div>
         </div>
@@ -528,13 +553,24 @@
     </cite> </div>
             <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Instana Observability" />
                 <div class="competitors" id="instana-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="instana-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="instana-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
+                </div>
+                <div class="story" id="instana-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
                 </div>
                 <div class="description">
                     <ul>
@@ -544,18 +580,21 @@
                         <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
                         <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
-                </div> 
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/instana-front.png" /> </div>
         </div>
@@ -567,13 +606,24 @@
     </cite> </div>
             <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Cloudability" />
                 <div class="competitors" id="cloudy-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="cloudy-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="cloudy-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
+                </div>
+                <div class="story" id="cloudy-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
                 </div>
                 <div class="description">
                     <ul>
@@ -584,17 +634,20 @@
                         <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
                 </div>
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/cloudability-front.png" /> </div>
         </div>
@@ -606,13 +659,24 @@
     </cite> </div>
             <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
                 <div class="competitors" id="kubecost-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="kubecost-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="kubecost-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
+                </div>
+                <div class="story" id="kubecost-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
                 </div>
                 <div class="description">
                     <ul>
@@ -623,17 +687,20 @@
                         <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?</span></li>
                     </ul>
                 </div>
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/kubecost-front.png" /> </div>
         </div>
@@ -645,13 +712,24 @@
     </cite> </div>
             <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" alt="IBM API Connect" />
                 <div class="competitors" id="apic-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="apic-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="apic-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
+                </div>
+                <div class="story" id="apic-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
                 </div>
                 <div class="description">
                     <ul>
@@ -662,17 +740,20 @@
                         <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
                     </ul>
                 </div>
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/apic-front.png" /> </div>
         </div>
@@ -684,34 +765,48 @@
     </cite> </div>
             <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
                 <div class="competitors" id="ns1-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="ns1-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="ns1-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
                 </div>
-                <div class="description"> 
+                <div class="story" id="ns1-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact</ul>
+                </div>
+                <div class="description">
                     <ul>
                         <li>Networking acts like a road for software apps. It gets filled with traffic, has potholes, speedbumps & restricted lanes or can be under construction with detours</li>
                         <li>Good balancing of traffic needs automatic signals and traffic cops to help steer around sudden jams, answer for directions and suggest new routes to save time. Traffic problems need to be spotted fast since they are expensive to fix</li>
                         <li>Apps with fast, reliable network responses & few interruptions across clouds give business value consistently & quickly at the best cost</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to provide apps with fast, reliable network responses with minimal downtime at global scale across many clouds</li>
                         <li><span class="emphasize">Are you the team that’s responsible for authoritative (or external) DNS?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
-                    </ul> 
+                    </ul>
                 </div>
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/ns1-front.png" /> </div>
         </div>
@@ -723,28 +818,42 @@
     </cite> </div>
             <div class="face back"> <img style=" height: 10%" src="images/grok-n-talk-banner.png" />
                 <div class="competitors" id="placeholder-competitors">
-                  <ul><li>foo bar</li></ul>
+                    <ul>
+                        <li>foo bar</li>
+                    </ul>
                 </div>
                 <div class="x-sell" id="placeholder-xsell">
-                  <ul><li>bar foo</li></ul>
+                    <ul>
+                        <li>bar foo</li>
+                    </ul>
                 </div>
                 <div class="upsell" id="placeholder-upsell">
-                  <ul><li>granola bar</li></ul>
+                    <ul>
+                        <li>granola bar</li>
+                    </ul>
                 </div>
-                <div class="description"> 
-                <span>Lorem Ipsum</span>
+                <div class="story" id="placeholder-story">
+                    <ul>
+                        <li>Good: Happy Story</li>
+                        <li>Cautionary: Bad Impact Example</ul>
                 </div>
-                <div class="summary-toggle" id="summary" style="background-color: #4C2F0A;">
-                 <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
+                <div class="description">
+                    <span>Lorem Ipsum</span>
+                </div>
+                <div class="summary-toggle" id="summary" style="background-color: #000814;">
+                    <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
                 </div>
                 <div class="compete-toggle" id="compete">
-                  <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
+                    <a href="#"><img class="toggle" src="images/list-compete.png" alt="Show Competitors" title="Show Competitors" /></a>
                 </div>
                 <div class="x-toggle" id="x-sell">
-                  <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-cross-sell.png" alt="Show X-Sell Flows" title="Show X-Sell Flows" /></a>
                 </div>
                 <div class="upsell-toggle" id="upsell">
-                  <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                    <a href="#"><img class="toggle" src="images/list-upsell.png" alt="Show Upsell Flows" title="Show Upsell Flows" /></a>
+                </div>
+                <div class="story-toggle" id="story">
+                    <a href="#"><img class="toggle" src="images/list-story.png" alt="Show Positive and Cautionary Stories" title="Show Stories" /></a>
                 </div>
                 <img class="logo" src="images/grok-n-talk-logo.png" /> </div>
         </div>
@@ -758,22 +867,26 @@
             		$(e.currentTarget).siblings(".competitors").hide();
                 $(e.currentTarget).siblings(".x-sell").hide();
                 $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".story").hide();
                 $(e.currentTarget).siblings(".description").show();
                 $(e.currentTarget).siblings(".questions").hide();
-                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).css('background-color', '#000814');
                 $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
                 return false;
             	});
             $(".compete-toggle").click(function(e) {
             		$(e.currentTarget).siblings(".competitors").show();
-                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).css('background-color', '#000814');
                 $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".x-sell").hide();
                 $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".story").hide();
                 $(e.currentTarget).siblings(".description").hide();
                 $(e.currentTarget).siblings(".questions").hide();
                 return false;
@@ -781,11 +894,13 @@
             $(".x-toggle").click(function(e) {
             		$(e.currentTarget).siblings(".competitors").hide();
                 $(e.currentTarget).siblings(".x-sell").show();
-                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).css('background-color', '#000814');
                 $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".story").hide();
                 $(e.currentTarget).siblings(".description").hide();
                 $(e.currentTarget).siblings(".questions").hide();
                 return false;
@@ -794,11 +909,27 @@
             		$(e.currentTarget).siblings(".competitors").hide();
                 $(e.currentTarget).siblings(".x-sell").hide();
                 $(e.currentTarget).siblings(".upsell").show();
+                $(e.currentTarget).siblings(".story").hide();
                 $(e.currentTarget).siblings(".questions").hide();
-                $(e.currentTarget).css('background-color', '#4C2F0A');
+                $(e.currentTarget).css('background-color', '#000814');
                 $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".description").hide();
+                return false;
+            	});
+            $(".story-toggle").click(function(e) {
+            		$(e.currentTarget).siblings(".competitors").hide();
+                $(e.currentTarget).siblings(".x-sell").hide();
+                $(e.currentTarget).siblings(".upsell").hide();
+                $(e.currentTarget).siblings(".story").show();
+                $(e.currentTarget).siblings(".questions").hide();
+                $(e.currentTarget).css('background-color', '#000814');
+                $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".summary-toggle").css('background-color', '');
+                $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
                 $(e.currentTarget).siblings(".description").hide();
                 return false;
             	});
