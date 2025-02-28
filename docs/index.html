@@ -45,7 +45,15 @@
         		width: auto;
         		margin: 0 auto;
         	}
-        	
+          
+          li {
+            margin-top: 10px;
+          }
+
+          .nospace {
+            margin-top: 0px;
+          }
+
           /* unvisited link */
           a:link {
             color: #B3D0F5;
@@ -164,11 +172,12 @@
           }
         	
         	.card .back {
-        		font-size: 17px;
+        		font-size: 16px;
         		line-height: 1.3em;
         		background: #003566;
         		background-size: cover;
         		color: #FFFFFF;
+            padding: 5px;
         	}
         	
         	.card .back img {
@@ -493,8 +502,22 @@
     </cite> </div>
             <div class="face back"> <img style="height:10%" src="images/grok-n-talk-banner.png" alt="IBM Turbonomic" />
                 <div class="competitors" id="turbo-competitors">
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DCCmhM8Ggj6QXGFM4m87HMB2gBPB" target="_blank" ref="noopener">WATCH OUT -- LISTEN FOR</a></div>
                     <ul>
-                        <li>foo bar</li>
+                        <li class="nospace"><span class="emphasize">Dynatrace</span> - <small>Observability platform</small></li>
+                        <li class="nospace"><span class="emphasize">Datadog</span> - <small>Cloud monitoring & observability platform</small></li>
+                        <li class="nospace"><span class="emphasize">VMware Aria</span> - <small>Cloud management platform</small></li>
+                        <li class="nospace"><span class="emphasize">New Relic</span> - <small>Full stack observability</small></li>
+                        <li class="nospace"><span class="emphasize">AppDynamics</span> - <small>Full stack Application Performance Monitoring</small></li>
+                        <li class="nospace"><span class="emphasize">Densify</span> - <small>Hybrid cloud & container resource management platform</small></li>
+                        <li class="nospace"><span class="emphasize">Intel Granulate</span> - <small>Kubernetes/Container resource management platform</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Advisor</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Cost Analysis</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Budgets</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Cost Explorer</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Cost Optimization Hub</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Azure Optimizer</span> - <small>Cloud Tool</small></li>
+                        <li class="nospace"><span class="emphasize">Google Cloud Recommender</span> - <small>Cloud Tool</small></li>
                     </ul>
                 </div>
                 <div class="x-sell" id="turbo-xsell">
@@ -509,8 +532,12 @@
                 </div>
                 <div class="questions" id="turbo-questions">
                     <ul class="emphasize">
-                        <li>Question 1</li>
-                        <li>Question 2</li>
+                        <li>How important is it to continuously assure the performance of your applications? How do you do this today? When do you use these tools?</li>
+                        <li>Do you sometimes buy a little extra? Pad your infrastructure, double the size of your cloud instances, over-allocate?</li>
+                        <li>What if software could watch everything in real-time and make decisions and take actions to assure all apps get the resources they need when they need them?</li>
+                        <li>When a user calls down and says, “my application is slow” what happens next?</li>
+                        <li>What would it mean to you if your org could prevent these issues in the first place?</li>
+                        <li>How many alerts do you/your team ignore on a daily/monthly basis?</li>
                     </ul>
                     <div class="center"><a href="https://ibm.seismic.com/Link/Content/DC36j9jVj2MDd87JfJGWCD3QT93G" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
                 </div>
@@ -567,6 +594,13 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="instana-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="instana-story">
                     <ul>
                         <li>Good: Happy Story</li>
@@ -578,7 +612,7 @@
                         <li>Customers are blind to app issues that happen fast and often, causing bad business outcomes</li>
                         <li>Capturing measurements more often detects errors quicker, better and allows faster fixing</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy</li>
-                        <li><span class="emphasize">Can you tell me about your current monitoring strategy?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCTJGVPhVHg8W8WJ4Xq2CgmRB68j" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                        <li><span class="emphasize">Can you tell me about your current monitoring strategy?<br/> &#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
@@ -620,6 +654,13 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="cloudy-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="cloudy-story">
                     <ul>
                         <li>Good: Happy Story</li>
@@ -631,7 +672,7 @@
                         <li>Customers have few numbers and low awareness about cloud waste</li>
                         <li>Knowing where cloud waste exists allows control and reduction</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank" rel="noopener">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities</li>
-                        <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?</span><br/> &#8594; <a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                        <li><span class="emphasize">How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?<br/> &#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
@@ -673,6 +714,13 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="kubecost-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="#" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="kubecost-story">
                     <ul>
                         <li>Good: Happy Story</li>
@@ -684,7 +732,7 @@
                         <li>Customers have few numbers and low awareness about container spend</li>
                         <li>Knowing where kubernetes waste exists allows control and reduction</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank" rel="noopener">Kubecost</a> provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste</li>
-                        <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?</span></li>
+                        <li><span class="emphasize">Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?<br/> &#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
@@ -726,6 +774,13 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="apic-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="apic-story">
                     <ul>
                         <li>Good: Happy Story</li>
@@ -737,7 +792,7 @@
                         <li>Companies grow, buy other ones or even get bought. More app software to handle in more places. Makes discovering, securing, testing, updating & observing APIs hard and risky</li>
                         <li>API lifecycle management lowers risk, improves quality & allows ways to create new value</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank" rel="noopener">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live</li>
-                        <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                        <li><span class="emphasize">How do you manage application integrations today? How do you discover & manage APIs today?<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
@@ -779,6 +834,13 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="apic-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="ns1-story">
                     <ul>
                         <li>Good: Happy Story</li>
@@ -790,7 +852,7 @@
                         <li>Good balancing of traffic needs automatic signals and traffic cops to help steer around sudden jams, answer for directions and suggest new routes to save time. Traffic problems need to be spotted fast since they are expensive to fix</li>
                         <li>Apps with fast, reliable network responses & few interruptions across clouds give business value consistently & quickly at the best cost</li>
                         <li><a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to provide apps with fast, reliable network responses with minimal downtime at global scale across many clouds</li>
-                        <li><span class="emphasize">Are you the team that’s responsible for authoritative (or external) DNS?</span><br/>&#8594; <a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Gimme More &#63;'s</a></li>
+                        <li><span class="emphasize">Are you the team that’s responsible for authoritative (or external) DNS?<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>
                     </ul>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
@@ -832,13 +894,25 @@
                         <li>granola bar</li>
                     </ul>
                 </div>
+                <div class="questions" id="apic-questions">
+                    <ul class="emphasize">
+                        <li>Question 1</li>
+                        <li>Question 2</li>
+                    </ul>
+                    <div class="center"><a href="#" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+                </div>
                 <div class="story" id="placeholder-story">
                     <ul>
                         <li>Good: Happy Story</li>
                         <li>Cautionary: Bad Impact Example</ul>
                 </div>
                 <div class="description">
-                    <span>Lorem Ipsum</span>
+                    <ul>
+                        <li>
+                            <span class="emphasize">What do you think of these cards?<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span>
+                        </li>
+                    </ul>
+                    <div class="center">Made with &#10084; because Automation is in Demand!</div>
                 </div>
                 <div class="summary-toggle" id="summary" style="background-color: #000814;">
                     <a href="#"><img class="toggle" src="images/list-eli5.png" alt="Show Summary" title="Show Summary" /></a>
