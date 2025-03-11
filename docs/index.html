@@ -296,6 +296,11 @@
             display: none;
         	}
 
+          .card .back .tv {
+        		padding: 5px;
+            display: none;
+        	}
+
           .card .back .x-sell {
         		padding: 5px;
             display: none;
@@ -685,6 +690,9 @@
                         <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" ref="noopener">committed spend money</a></li>
                     </ol>
                 </div>
+                <div class="tv" id="turbo-tv">
+                <iframe  width="100%" height="100%" allowfullscreen webkitallowfullscreen frameborder="0"	style="position:absolute; top:0; left: 0" src="https://video.ibm.com/embed/recorded/134197810?html5ui=1&showtitle=false&playsinline=1&site-embed=1" /> </iframe>
+                </div>
                 <div class="description">
                     <ul>
                         <li>Applications need resources to function. Stuff like compute, memory, storage, networking.</li>
@@ -712,7 +720,10 @@
                 <div class="call-toggle" id="love-turbo">
                     <a href="#"><img class="toggle" src="images/list-love.png" alt="Show Love Reasons" title="Show Love Reasons" /></a>
                 </div>
-                <img class="logo" src="images/turbonomic-front.png" /> </div>
+                <div class="watch-toggle" id="tv-turbo"> 
+                    <a href="#"><img class="logo" src="images/turbo-tv.png" alt="Watch Explainer" title="Watch Explainer" /></a>
+                </div>
+            </div>
         </div>
 
         <!-- IBM Instana -->
@@ -1161,7 +1172,8 @@
                     <h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE
                     </h3>
                     <ul>
-                        <li>bar foo</li>
+                        <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Aspera</span><br/>Why? &#8594; Media and Entertainment customers care a great deal about their content. Robust DELIVERY & ACCESS of customer content makes NS1 attractive. Fast, efficient, secure MOVEMENT & TRANSFER of this same cherished customer content is what makes Aspera a great follow-on conversation</li>
+                        <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Foo</span><br/>Why? &#8594; Bar</li>
                     </ul>
                 </div>
                 <div class="upsell" id="ns1-upsell">
@@ -1431,6 +1443,7 @@
                         $(e.currentTarget).siblings(".description").show();
                         $(e.currentTarget).siblings(".questions").hide();
                         $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         $(e.currentTarget).css('background-color', '#000814');
                         $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
@@ -1453,6 +1466,7 @@
                         $(e.currentTarget).siblings(".description").hide();
                         $(e.currentTarget).siblings(".questions").hide();
                         $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         return false;
                     	});
                     $(".x-toggle").click(function(e) {
@@ -1469,6 +1483,7 @@
                         $(e.currentTarget).siblings(".description").hide();
                         $(e.currentTarget).siblings(".questions").hide();
                         $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         return false;
                     	});
                     $(".upsell-toggle").click(function(e) {
@@ -1478,6 +1493,7 @@
                         $(e.currentTarget).siblings(".story").hide();
                         $(e.currentTarget).siblings(".questions").hide();
                         $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         $(e.currentTarget).css('background-color', '#000814');
                         $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
@@ -1494,6 +1510,7 @@
                         $(e.currentTarget).siblings(".story").show();
                         $(e.currentTarget).siblings(".questions").hide();
                         $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         $(e.currentTarget).css('background-color', '#000814');
                         $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
@@ -1510,6 +1527,7 @@
                         $(e.currentTarget).siblings(".story").hide();
                         $(e.currentTarget).siblings(".talk").show();
                         $(e.currentTarget).siblings(".questions").hide();
+                        $(e.currentTarget).siblings(".tv").hide();
                         $(e.currentTarget).css('background-color', '#000814');
                         $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
@@ -1517,6 +1535,23 @@
                         $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
                         $(e.currentTarget).siblings(".description").hide();
+                        return false;
+                    	});
+                    $(".watch-toggle").click(function(e) {
+                    		$(e.currentTarget).siblings(".competitors").hide();
+                        $(e.currentTarget).siblings(".x-sell").hide();
+                        $(e.currentTarget).siblings(".upsell").hide();
+                        $(e.currentTarget).siblings(".story").hide();
+                        $(e.currentTarget).siblings(".description").hide();
+                        $(e.currentTarget).siblings(".questions").hide();
+                        $(e.currentTarget).siblings(".talk").hide();
+                        $(e.currentTarget).siblings(".tv").show();
+                        $(e.currentTarget).css('background-color', '#000814');
+                        $(e.currentTarget).siblings(".compete-toggle").css('background-color', '');
+                        $(e.currentTarget).siblings(".x-toggle").css('background-color', '');
+                        $(e.currentTarget).siblings(".upsell-toggle").css('background-color', '');
+                        $(e.currentTarget).siblings(".call-toggle").css('background-color', '');
+                        $(e.currentTarget).siblings(".story-toggle").css('background-color', '');
                         return false;
                     	});
                     $(".emphasize a").click(function(e) {
