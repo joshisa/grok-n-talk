@@ -6,6 +6,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta http-equiv='Referrer-Policy' content='no-referrer-when-downgrade'>
+    <meta name="viewport" content="initial-scale=1.0">
     <title>Grok-N-Talk</title>
     <style>
         /** 
@@ -79,6 +80,11 @@
           dd {overflow: hidden; padding-left: 14px; position: relative;}
           
           dd:before {content: "-"; position: absolute; top: 0; left: 4px;}
+
+          video {
+            max-width: 100%;
+            background: #000000;
+          }
 
           /* unvisited link */
           a:link {
@@ -1250,8 +1256,9 @@
                 <div class="talk" id="ns1-love">
                     <h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
                 </div>
-                <div class="tv" id="ns1-tv">
-                    <iframe width="100%" height="50%" src="media/ns1-overview.m4v" title="NS1 Explain" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="tv" id="ns1-tv" width="100%" height="25%">
+                    <!--<iframe width="100%" height="50%" src="media/ns1-overview.m4v#t=0.1" preload="metadata" type="video/mp4" title="NS1 Explain" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                    <video id="ns1-video" width="100%" height="50%" src="media/ns1-overview.m4v#t=0.1" type="video/mp4" title="NS1 Explain" controls="controls" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" preload="metadata" allowfullscreen></video>
                 </div>
                 <div class="description">
                     <ul>
@@ -1471,9 +1478,12 @@
                 //alert("OFFLINE!");
                 $("a[href^='http']").addClass("offline");
               }
-                $(".card").click(function(e) {
-                    		$(e.currentTarget).toggleClass("flip");
-                    	});
+                    $("#ns1-video").click(function(e) {
+                        return false;
+                      });
+                    $(".card").click(function(e) {
+                            $(e.currentTarget).toggleClass("flip");
+                      });
                     $(".summary-toggle").click(function(e) {
                     		$(e.currentTarget).siblings(".competitors").hide();
                         $(e.currentTarget).siblings(".x-sell").hide();
