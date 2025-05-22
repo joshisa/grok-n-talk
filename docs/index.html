@@ -1755,7 +1755,12 @@
                         $(e.currentTarget).parent().parent().parent().parent().siblings(".upsell-toggle").css('background-color', '');
                         return false;
                     	});
+                    //Keep the card unflipped when external links have been clicked
+                    $("a[href^='http']").click(function(event) {
+                      event.stopPropagation();
+                    });
                     $(".card").click(function(e) {
+                        //alert(e.currentTarget.innerHTML);
                         $(e.currentTarget).toggleClass("flip");
                       });
                     //Clarity Metric Integration
