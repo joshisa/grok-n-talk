@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>IBM Automation SaaS Trials &amp; Self-Service Demo Catalog</title>
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --card: #121823;
+        --text: #e8eef5;
+        --muted: #9fb3c8;
+        --accent: #3ba0ff;
+        --yes: #2ecc71;
+        --no: #ff6b6b;
+        --border: #223041;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+          'Apple Color Emoji', 'Segoe UI Emoji';
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+
+      .table-wrap {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        #overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      thead th {
+        background: linear-gradient(180deg, rgba(59, 160, 255, 1.0), rgba(59, 160, 255, .05));
+        color: var(--text);
+        text-align: left;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      tbody td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      tbody tr:hover {
+        background: rgba(59, 160, 255, 0.36);
+      }
+
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .yes {
+        background: rgba(46, 204, 113, 0.15);
+        color: var(--yes);
+        border: 1px solid rgba(46, 204, 113, 0.35);
+      }
+
+      .no {
+        background: rgba(255, 107, 107, 0.15);
+        color: var(--no);
+        border: 1px solid rgba(255, 107, 107, 0.35);
+      }
+
+      .trial {
+        color: var(--yes);
+      }
+
+      .finops {
+        color: orange;
+      }
+
+      .sustain {
+        color: #99ff99;
+      }
+
+      .integrate {
+        color: #00ccff;
+      }
+
+      .iot {
+        color: yellow;
+      }
+
+      .mobile {
+        color: white;
+      }
+
+      .dev {
+        color: #e6b3ff;
+      }
+
+      .security {
+        color: red;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .notes {
+        color: var(--muted);
+      }
+
+      .footer {
+        color: var(--muted);
+        margin-top: 16px;
+        font-size: 12px;
+      }
+
+      @media (max-width: 800px) {
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead {
+          display: none;
+        }
+
+        tbody tr {
+          border-bottom: 1px solid var(--border);
+        }
+
+        tbody td {
+          border: none;
+          padding: 8px 14px;
+        }
+
+        tbody td::before {
+          content: attr(data-label);
+          display: block;
+          font-weight: 700;
+          color: var(--muted);
+          margin-bottom: 4px;
+        }
+      }
+    </style>
+    <script>
+      function moddate() {
+        document.getElementById("mod").innerHTML = document.lastModified;
+      }
+    </script>
+  </head>
+  <body onload="moddate()">
+    <h1>IBM Automation SaaS Trials &amp; Self-Service Demo Catalog</h1>
+    <div class="subtitle">Curated list of SaaS trials, self-service demos, and legal reference quick links.</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Offer</th>
+            <th>Available</th>
+            <th style="width: 200px;">Duration</th>
+            <th style="width: 300px;">Links</th>
+            <th style="width: 200px;">Legal</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud-native observability platform designed for monitoring dynamic, containerized, microservices-based applications, providing high-resolution metric data and complete visibility.">Instana</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-tbam5h35sumqg" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-52345" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/nzL1roGjDzVoumFMJ0fX3p-7EAaPxzeWxZGeeFA3bwM" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-8959&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=E7505A603A3611EBA94E77C5BC708D24" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud-native observability platform designed for monitoring dynamic, containerized, microservices-based applications, providing high-resolution metric data and complete visibility.">Instana</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://play-with.instana.io/#/home" rel="noopener noreferrer" target="_blank">Play with Instana</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="An AI-driven resource orchestration platform that automates and optimizes cloud and hybrid infrastructure, ensuring application performance and cost efficiency.">Turbonomic</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Sandbox
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-5r3k3snu4ttnm" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-51901" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/Qw7OCvg8u7cY5vq0xHHcJ23JpJZgaMPGNrNWbwaZVRk" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-9386" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=908399A6938347E9892E586A24E4923E" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=B9ACF8A0517F11ECB7241FF603469C11" rel="noopener noreferrer" target="_blank">Google Cloud Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="An AI-driven resource orchestration platform that automates and optimizes cloud and hybrid infrastructure, ensuring application performance and cost efficiency.">Turbonomic</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/turbonomic" rel="noopener noreferrer" target="_blank">Turbonomic Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cost management platform for Kubernetes, providing real-time cost allocation, forecasting, and optimization for cloud-native environments.">Kubecost</strong>
+            </td>
+            <td data-label="Offer">Free Self-Host</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-asiz4x22pm2n2" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.apptio.com/products/kubecost/?src=kc-com#kub-install" rel="noopener noreferrer" target="_blank">Kubecost Install</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/4FvNvTHwvSE1Qwj8JRSg_gPoRKFxe1qd0qDOOhBMem0" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes">Free plan includes essential features for monitoring Kubernetes costs. Limitations: 15-day metric retention; suitable for clusters up to 250 cores.</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cost management platform for Kubernetes, providing real-time cost allocation, forecasting, and optimization for cloud-native environments.">Kubecost</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://demo.kubecost.io/overview" rel="noopener noreferrer" target="_blank">Kubecost Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="An AI-driven automation platform for IT operations, enabling FinOps and IT automation to optimize resource utilization and costs.">Concert</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-gpoizomwsxlkg" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-53025" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/z52uqHIvKLOEH0myHgu2vPK7o42pz4ZYdx34UEJRXqA" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-9828&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=66D5E192289B467AAD3CA6B8769AB1EB" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="An AI-driven automation platform for IT operations, enabling FinOps and IT automation to optimize resource utilization and costs.">Concert</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A powerful platform designed for infrastructure automation and full-stack orchestration, seamlessly integrating with IT infrastructure, AI technologies, and existing automation through a user-friendly, low-code interface.">Rapid Infrastructure Automation</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-3smqnmjyghaty" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/signup?formid=urx-53025" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/dKdog4f5Qi9aNBXryAkyw6iuDstuNgbuC_Gf_8tPpZU" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9800&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=898AEDCC369C40D789D37F298E4843DD" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes">IBM Concert Workflows</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A powerful platform designed for infrastructure automation and full-stack orchestration, seamlessly integrating with IT infrastructure, AI technologies, and existing automation through a user-friendly, low-code interface.">Rapid Infrastructure Automation</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud cost management platform that offers visibility, optimization, and governance for multi-cloud environments.">Cloudability</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 Days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-h77jedsmpzs4k" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.apptio.com/cloudability-free-trial-request/" rel="noopener noreferrer" target="_blank">IBM Cloudability Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/E5S_Jr9aXCz7igdR1Q1UGueTQ-IUVPbasor3HOFXyhM" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9702&lc=en#detail-document" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=B971FA3CF2004468A6B6425AB9EBB4F5" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud cost management platform that offers visibility, optimization, and governance for multi-cloud environments.">Cloudability</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud financial management platform that enables organizations to optimize, manage, and communicate cloud spending and IT investments.">Apptio</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-iz5xngcas4dtc" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/oD7qj14m7xSLBxa3EfeDouAKOuhBDd8mPXBY5trXJYM" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9700&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=1E951ECEF0264E86AB2907C2DFDFCB81" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A cloud financial management platform that enables organizations to optimize, manage, and communicate cloud spending and IT investments.">Apptio</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A visual management platform for Agile and DevOps teams, providing customizable workflows, dashboards, and reporting for better project visibility.">TargetProcess</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-j3dktajl67scs" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ibm-usa-ny-armonk-hq-6275750-ibmcloud-asperia.ibm-targetprocess?tab=overview" rel="noopener noreferrer" target="_blank">Azure Marketplace Entry&nbsp; <img style="height:auto;width:60px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/199024/IBM%2BMicrosoft_Banner.png" />
+              </a>
+              <br />
+              <a href="https://www.apptio.com/products/targetprocess/targetprocess-free-trial-request/" rel="noopener noreferrer" target="_blank">IBM TargetProcess Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/QTAPMI5a80ALxv-kbGYlssTkqXKuMdroK6ZH44GGUMw" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9701&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=67685A3A3E3D48B08478E214BC7A1109" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
+                </li>
+                <li>
+                  <a href="https://catalogartifact.azureedge.net/publicartifacts/ibm-usa-ny-armonk-hq-6275750-ibmcloud-asperia.ibm-targetprocess-378d431d-aa0d-4507-93be-58e5c5412e71/Artifacts/Documents/TermsOfUse.txt" rel="noopener noreferrer" target="_blank">Azure Cloud EULA</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A visual management platform for Agile and DevOps teams, providing customizable workflows, dashboards, and reporting for better project visibility.">TargetProcess</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A unified technology management platform that combines IT asset management, software license optimization, and cloud observability">Flexera One with IBM Observability</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td></td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="finops" title="A unified technology management platform that combines IT asset management, software license optimization, and cloud observability.">Flexera One with IBM Observability</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td></td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="An integrated set of industry-leading solutions for asset and service management, enabling digital transformation and operational efficiency.">Maximo Application Suite</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-7btuflpmzu6vs" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/aR4QtJgKuJJWzaxXGKfB695iWom67BHujfOPks3LXJs" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9424" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=A4E6AD20074D11ECADF816E2FD273C71" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="An integrated set of industry-leading solutions for asset and service management, enabling digital transformation and operational efficiency.">Maximo Application Suite</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A proven compliance-ready solution for corporate and supply chain sustainability data including greenhouse gas (GHG) emissions. It combines powerful analytics, reporting and planning tools to support strategic decision making, decarbonization efforts and regulatory disclosures.">Envizi</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-4udtpnwf5g4cq" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-51938" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/FZriUNyxldb5NiLzVv0X3pyrz0XKZzAHt1zaKJz8opo" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9385" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=5DF45EE07ADD11EC8F143999C7A19C3A" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A proven compliance-ready solution for corporate and supply chain sustainability data including greenhouse gas (GHG) emissions. It combines powerful analytics, reporting and planning tools to support strategic decision making, decarbonization efforts and regulatory disclosures.">Envizi</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/envizi-esg-suite" rel="noopener noreferrer" target="_blank">Envizi Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A cloud-based integration platform that enables seamless connectivity and data exchange between applications and services.">webMethods SaaS (Gen 1)</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-53958" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A cloud-based integration platform that enables seamless connectivity and data exchange between applications and services.">webMethods SaaS (Gen 1)</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A modern integration platform (iPaaS) that combines the best of SaaS and on-premises deployment for hybrid integration needs.">webMethods Hybrid Integration SaaS (Gen 2)</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-oernbaadf2yyo" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-53925" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/NMSWzHR0u61xJi1AERDps1glYh1YsJhzV5jZr_8YNLo" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9947&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=78622B695AFF41F18E94AA86225A6263" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A modern integration platform (iPaaS) that combines the best of SaaS and on-premises deployment for hybrid integration needs.">webMethods Hybrid Integration SaaS (Gen 2)</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/products/webmethods-hybrid-integration#product-tour" rel="noopener noreferrer" target="_blank">IWHI Product Tour</a>
+              <br />
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/event-automation" rel="noopener noreferrer" target="_blank">Event Automation Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A fully-managed API management platform that simplifies the design, development, and security of APIs for modern application development.">API Connect</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-b3u5z3pv4wccg" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-52410" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/OScq8bv--R2JEngxjl7DTpvgUPkhwryRv5G1rA-QvPo" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-9422" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=099D3F00A53611ECAB2681C6B89D4420" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A fully-managed API management platform that simplifies the design, development, and security of APIs for modern application development.">API Connect</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/api-connect" rel="noopener noreferrer" target="_blank">API Connect Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-hiimjobsi6rnm" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/signup?formid=urx-52542" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://codesandbox.io/p/sandbox/stepzen-codesandbox-demo-bqgmd" rel="noopener noreferrer" target="_blank">StepZen CodeSandbox Example</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM)</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM)</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://ibmapi.nonamesec.com/login" rel="noopener noreferrer" target="_blank">IBM Noname Demo Instance</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">Contact Steven Cawn for IBM Seller access</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="An integration platform that enables rapid connectivity between cloud and on-premises applications, SaaS, and databases.">App Connect</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-awa36aiuyrlrk" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-51734" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/eUd3EZX0vBfEjI3k7l4RfKVEqla216QsKK0Hi2DMY-Y" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-9531" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=29EA84502A0D11EDA3332A6D53EBF5BE" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="An integration platform that enables rapid connectivity between cloud and on-premises applications, SaaS, and databases.">App Connect</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A messaging middleware platform that enables secure and reliable communication between applications, systems, and devices.">MQ</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://cloud.ibm.com/registration?cm_mmca1=000032EK&amp;S_PKG=ov64640&amp;target=/catalog/services/mq" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A messaging middleware platform that enables secure and reliable communication between applications, systems, and devices.">MQ</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A high-speed data transfer solution that enables secure, reliable, and accelerated file transfers over the web, cloud, or on-premises.">Aspera</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-oe5jmqs4lrbzm" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/products/aspera#trial" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/QJa96VHq33JMG0ISNs9pB-7ocgV5IxfesOt5iDBdgi0" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-8034" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=0818A74023E011E895B382FBC780E8BA" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A high-speed data transfer solution that enables secure, reliable, and accelerated file transfers over the web, cloud, or on-premises.">Aspera</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/products/aspera/demo" rel="noopener noreferrer" target="_blank">Aspera Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A comprehensive solution for managing and automating B2B transactions, enabling seamless integration and collaboration with trading partners.">Sterling B2B Integration</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/us-en/signup?formid=urx-49657" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A comprehensive solution for managing and automating B2B transactions, enabling seamless integration and collaboration with trading partners.">Sterling B2B Integration</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/sterling-b2bi-saas" rel="noopener noreferrer" target="_blank">Sterling B2B Integration Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A comprehensive solution for managing order fulfillment, enabling organizations to streamline processes, improve customer satisfaction, and reduce costs.">Sterling Order Management System</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-mzw6cv4ppfa2c" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-7659&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=87F6D800DCED11E6BD99EA2F360A757F" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="integrate" title="A comprehensive solution for managing order fulfillment, enabling organizations to streamline processes, improve customer satisfaction, and reduce costs.">Sterling Order Management System</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A platform that integrates environmental data with business intelligence, enabling organizations to make data-driven decisions for sustainability and compliance.">Environmental Intelligence Suite</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-52096" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A platform that integrates environmental data with business intelligence, enabling organizations to make data-driven decisions for sustainability and compliance.">Environmental Intelligence Suite</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A comprehensive solution for managing real estate and facilities, enabling organizations to optimize space, reduce costs, and improve operational efficiency.">Maximo Real Estate and Facilities (MREF)</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 Days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/signup?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">MAS Suite Trial</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A comprehensive solution for managing real estate and facilities, enabling organizations to optimize space, reduce costs, and improve operational efficiency.">Maximo Real Estate and Facilities (MREF)</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/products/maximo/real-estate-facility-management#real-estate-and-facilities-demo" rel="noopener noreferrer" target="_blank">MREF Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A unified solution for managing real estate, facilities, and workplace operations, providing visibility, control, and optimization across the entire portfolio.">Facilities and Real Estate Management (TRIRIGA)</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td></td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A unified solution for managing real estate, facilities, and workplace operations, providing visibility, control, and optimization across the entire portfolio.">Facilities and Real Estate Management (TRIRIGA)</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/tririga" rel="noopener noreferrer" target="_blank">TRIRIGA Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A solution for managing renewable energy assets, enabling organizations to optimize performance, reduce costs, and ensure compliance.">Maximo Renewables</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">14 Days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/signup?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">MAS Suite Trial</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="sustain" title="A solution for managing renewable energy assets, enabling organizations to optimize performance, reduce costs, and ensure compliance.">Maximo Renewables</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/mas-renewables-demo" rel="noopener noreferrer" target="_blank">Maximo Renewables Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="network" title="A cloud-based DNS and traffic management platform that provides intelligent, automated traffic routing and optimization for hybrid and multi-cloud environments.">NS1 Connect</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Developer Account
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-mbjt4bsdjr5gg" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-53291" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/LZwZm2hWhAc9KIP9K94ouhK83Sx7TAGmfjXJsKkQEwQ" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=i126-9706" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=38102B57828949749B2D555C0892E31A" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="network" title="A cloud-based DNS and traffic management platform that provides intelligent, automated traffic routing and optimization for hybrid and multi-cloud environments.">NS1 Connect</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/products/ns1-connect/demo" rel="noopener noreferrer" target="_blank">NS1 Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A cloud-based fraud prevention platform that protects businesses and their customers from online fraud and cyber threats.">Trusteer Fraud Protection</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-j7y6nu2xnimtm" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/fgFplaIdemua759nOk5HjlKTQPJ3Ksi13B_lDQB9n3M" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-8987&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=3D3DA0C0E5F711E5A3808DA17FABE9B1&lc=en" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A cloud-based fraud prevention platform that protects businesses and their customers from online fraud and cyber threats.">Trusteer Fraud Protection</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A digital identity and access management solution that provides secure, seamless, and compliant user authentication and access control.">Verify</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-iiszdvskbakmo" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-30041" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+              <br />
+              <a href="https://ibm.github.io/verify-jam-in-a-box/chapter1/" rel="noopener noreferrer" target="_blank">Verify Jam-In-A-Box</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/KMAe-xkZ_LcCSYRGS1eQaE5uAVjqUSqzhO6tmaRTFyA" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-7765&lc=en#detail-document" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=735E5650E26711E69CCD7F0385C6524D" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A digital identity and access management solution that provides secure, seamless, and compliant user authentication and access control.">Verify</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A security platform that provides secrets management, data encryption, and identity-based access control for protecting sensitive data and applications.">Vault</strong>
+              <br />IBM HashiCorp Security Lifecycle Management
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-evinatdczq7ye" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.hashicorp.com/en/lp/vault-p" rel="noopener noreferrer" target="_blank">Vault Start for Free</a>
+              <br />
+              <a href="https://www.ibm.com/products/hashicorp/pricing" rel="noopener noreferrer" target="_blank">HCP USD 500 trial credit</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/Y9i103rVAQTpqXAGGj9WJtEL-DQt1iZy3uvWtjxZXt0" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9898&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=C3056CB099E841EFBE057E15BEFAF3A2" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes">
+              <a href="https://developer.hashicorp.com/hcp/docs/vault-secrets/get-started/plan-implementation/tiers-features" rel="noopener noreferrer" target="_blank">Free Tier Limitations</a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A security platform that provides secrets management, data encryption, and identity-based access control for protecting sensitive data and applications.">Vault</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://developer.hashicorp.com/vault/tutorials/sandbox/sandbox" rel="noopener noreferrer" target="_blank">Vault Sandbox</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A security solution that provides real-time monitoring, alerting, and analytics for HashiCorp Vault, helping organizations maintain a secure environment.">Vault Radar</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://www.hashicorp.com/en/pricing?tab=vault" rel="noopener noreferrer" target="_blank">Vault Start for Free</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/Y9i103rVAQTpqXAGGj9WJtEL-DQt1iZy3uvWtjxZXt0" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9898&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=8E7CAB5368A945A4A76C4158DB695ADF" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes">
+              <a href="https://developer.hashicorp.com/hcp/docs/vault-radar/get-started/product-tiers" rel="noopener noreferrer" target="_blank">Free Tier Limitations</a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="security" title="A security solution that provides real-time monitoring, alerting, and analytics for HashiCorp Vault, helping organizations maintain a secure environment.">Vault Radar</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A fully-managed, cloud-based platform for deploying, managing, and scaling Java applications, simplifying the development and operations process.">Enterprise Application Service for Java</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 days</td>
+            <td data-label="Links">
+              <a href="#" rel="noopener noreferrer">TBD</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">URL not defined until upcoming AWS Launch</td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A fully-managed, cloud-based platform for deploying, managing, and scaling Java applications, simplifying the development and operations process.">Enterprise Application Service for Java</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/easej-demo" rel="noopener noreferrer" target="_blank">EASeJ Demo</a>
+              <br />
+              <a href="https://ibm.biz/easej-deeper-persona" rel="noopener noreferrer" target="_blank">EASeJ Advanced Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A collaborative infrastructure as code platform that enables teams to manage and deploy infrastructure securely and efficiently.">IBM Terraform Cloud</strong>
+              <br />IBM HashiCorp Infrastructure Lifecycle Management
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-2yorhts277xmk" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/products/hashicorp/pricing" rel="noopener noreferrer" target="_blank">HCP USD 500 trial credit</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/8PCSbhAHFNn9A5FpkNA8bGExdLyVxYC0DVJze4rcWN4" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-9899&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/terms/?id=F4391729F4494F7DBEFE6B4B43C0C131" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A collaborative infrastructure as code platform that enables teams to manage and deploy infrastructure securely and efficiently.">IBM Terraform Cloud</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://developer.hashicorp.com/terraform/tutorials/sandbox/sandbox" rel="noopener noreferrer" target="_blank">Terraform Sandbox</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">
+              <a href="https://developer.hashicorp.com/terraform/cloud-docs/overview" rel="noopener noreferrer" target="_blank">Free Tier Limitations</a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A tool for creating identical machine and container images for multiple platforms from a single source configuration, ensuring consistency and reproducibility.">Packer</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/products/hashicorp/pricing" rel="noopener noreferrer" target="_blank">HCP USD 500 trial credit</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="A tool for creating identical machine and container images for multiple platforms from a single source configuration, ensuring consistency and reproducibility.">Packer</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="An AI-powered coding assistant that helps developers write, edit, and understand code more efficiently, improving productivity and reducing errors.">watsonx Code Assistant</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://dataplatform.cloud.ibm.com/registration/stepone?context=wca&amp;amp;apps=wca,cos&amp;amp;regions=u%5b%85%5d903313c90" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="dev" title="An AI-powered coding assistant that helps developers write, edit, and understand code more efficiently, improving productivity and reducing errors.">watsonx Code Assistant</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/resources/digital-innovation/demos/ibm-watsonx-code-assistant-interactive-demo" rel="noopener noreferrer" target="_blank">watsonx Code Assistant Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="mobile" title="A mobile-centric security platform that provides comprehensive mobile device, content, and application management for secure and compliant mobile environments.">MaaS360 Mobile Application Security</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-5p7shpo6zhvwu" rel="noopener noreferrer" target="_blank">AWS Marketplace Entry&nbsp; <img style="height:auto;width:40px;border-radius: 50px;" src="https://filecache.mediaroom.com/mr5mr_ibmnewsroom/196323/AWS_Social.jpg" />
+              </a>
+              <br />
+              <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-30629" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal">
+              <ul>
+                <li>
+                  <a href="https://d7umqicpi7263.cloudfront.net/eula/oz5nqF70ChV3yWEd3IAkGK8AuH3feyF0Hptqbl8CvtE" rel="noopener noreferrer" target="_blank">EULA</a>
+                </li>
+                <li>
+                  <a href="http://www.ibm.com/terms/?id=z126-6304" rel="noopener noreferrer" target="_blank">IBM CSA</a>
+                </li>
+                <li>
+                  <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-6741&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
+                </li>
+              </ul>
+            </td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="mobile" title="A mobile-centric security platform that provides comprehensive mobile device, content, and application management for secure and compliant mobile environments.">MaaS360 Mobile Application Security</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="iot" title="A platform that collects, analyzes, and visualizes connected vehicle data to improve vehicle performance, safety, and customer experience.">Connected Vehicle Insights</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/docs/en/icvi/cd?topic=features-iot-connected-vehicle-insights-development-edition" rel="noopener noreferrer" target="_blank">IoT Connected Vehicle Insights Dev Edition</a>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes">Dev Edition</td>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="iot" title="A platform that collects, analyzes, and visualizes connected vehicle data to improve vehicle performance, safety, and customer experience.">Connected Vehicle Insights</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge no">No</span>
+            </td>
+            <td></td>
+            <td data-label="Duration"></td>
+            <td data-label="Links"></td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="unknown">Video Streaming</strong>
+            </td>
+            <td data-label="Offer" class="trial">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Free Trial" width="14px" height="14px" viewBox="0 0 14 14" version="1.1" data-semantic="badge-variant-FREE_TRIAL">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -3.000000)" fill="#18865F">
+                      <g transform="translate(0.000000, 3.000000)">
+                        <path d="M5.87079991,0 C6.23238673,0 6.59310644,0.135486668 6.81920659,0.406460004 L6.81920659,0.406460004 L13.59354,7.18079341 C14.1354867,7.6778669 14.1354867,8.58053328 13.59354,9.07760676 L13.59354,9.07760676 L9.07760676,13.59354 C8.80663343,13.8645133 8.44504661,14 8.12920009,14 C7.81335357,14 7.45176675,13.8645133 7.18079341,13.59354 L7.18079341,13.59354 L0.406460004,6.81920659 C0.135486668,6.59310644 0,6.23238673 0,5.87079991 L0,5.87079991 L0,1.35486668 C0,0.586819857 0.586819857,0 1.35486668,0 L1.35486668,0 Z M3.25,2 C2.56232006,2 2,2.56232006 2,3.25 C2,3.93767994 2.56232006,4.5 3.25,4.5 C3.93767994,4.5 4.5,3.93767994 4.5,3.25 C4.5,2.56232006 3.93767994,2 3.25,2 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>&nbsp;Free Trial
+            </td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration">30 Days</td>
+            <td data-label="Links">
+              <a href="https://www.ibm.com/account/reg/us-en/signup?formid=urx-50329" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+          <tr>
+            <td data-label="Product">
+              <strong class="unknown">Video Streaming</strong>
+            </td>
+            <td data-label="Offer">Self-Service Product Demo</td>
+            <td data-label="Available">
+              <span class="badge yes">Yes</span>
+            </td>
+            <td data-label="Duration"></td>
+            <td data-label="Links">
+              <a href="https://video.ibm.com/recorded/132935304" rel="noopener noreferrer" target="_blank">Video Streaming Demo</a>
+            </td>
+            <td data-label="Legal"></td>
+            <td class="notes" data-label="Notes"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align:center">Made with ❤ BaFa <br>By Automation For Automation because we all deserve nice things! <br>Automation is in Demand! </div>
+    <div class="footer">Last updated:<div id="mod"></div></div>
+  </body>
+</html>
