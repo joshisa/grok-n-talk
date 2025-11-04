@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Ensure this meta tag is in your <head> so mobile widths are respected -->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>IBM Automation SaaS Trials &amp; Self-Service Demo Cockpit</title>
     <style>
@@ -30,7 +31,7 @@
       }
 
       h1 {
-        margin: 280px 0 8px 0;
+        margin: 40px 0 8px 0;
         text-align: center;
         font-size: 28px;
       }
@@ -83,18 +84,16 @@
       }
 
       .banner {
-        Width: 100%;
-        Height: 500px;
-        border: solid;
-        border-color: rgb(108 179 246);
-        ;
-        border-radius: 5rem;
-        border-width: 5px;
-        margin-bottom: 20px;
-        background-color: rgba(59, 160, 255, 0.36);
-        ;
-        float: left;
-        overflow: auto;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       padding:40px;
+       gap:30px;
+       flex-direction:row;            /* desktop: text to right */
+       box-sizing:border-box;         /* include padding in width */
+       width:100%;                    /* constrain to viewport width */
+       max-width:100%;
+       overflow-x:hidden;             /* safety against accidental overflow */
       }
 
       .badge {
@@ -205,27 +204,23 @@
         }
 
         .banner {
-          flex-direction: column;
-          /* stack vertically */
-          text-align: center;
-          /* center text for nicer mobile layout */
+          flex-direction: column !important;   /* stack image above text */
+          text-align: center !important;       /* nicer mobile look */
+          gap: 20px !important;                /* spacing between image and text */
         }
-
         .banner img {
-          height: auto;
-          /* let the image scale down naturally */
-          max-width: 100%;
-          /* responsive width */
+          height: auto !important;             /* scale proportionally */
+          max-width: 100% !important;          /* never overflow the viewport */
         }
-
+        .banner .text {
+          max-width: 100% !important;          /* prevent overflow */
+          min-width: 0 !important;             /* allow flex child to shrink */
+          text-align: left !important;         /* keep bullets left-aligned */
+          overflow-wrap: anywhere !important;  /* break long tokens if needed */
+        }
         .banner .text blockquote {
-          margin-left: auto;
-          /* center the blockquote */
-          margin-right: auto;
-          text-align: left;
-          /* keep bullets left-aligned for readability */
-          max-width: 800px;
-          /* optional: limit measure */
+          margin: 0 0 0 0 !important;          /* remove wide default margins */
+          padding: 0 !important;
         }
       }
     </style>
@@ -237,8 +232,8 @@
   </head>
   <body onload="moddate()">
     <div class="banner" style="display:flex; align-items:center; padding:40px;">
-      <img src="images/revmodel.png" style="height:400px; border-radius:5rem; margin-right:30px;" />
-      <div style="display:flex; flex-direction:column; justify-content:center;">
+      <img src="images/revmodel.png" style="height:400px;border-radius:5rem;flex-shrink:0;display:block;" />
+      <div class="text" style="display:flex;flex-direction:column;justify-content:center;max-width:900px;min-width:0;padding:40px;">
         <h3 style="color:orange; font-size:18px; margin:0 0 0px 0;"> As you trace the arc clockwise, the risk shifts from the buyer (ownership) to the seller (consumption) </h3>
         <span style="color:white; font-size:18px;">
           <blockquote>
