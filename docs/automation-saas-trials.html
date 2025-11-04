@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>IBM Automation SaaS Trials &amp; Self-Service Demo Catalog</title>
+    <title>IBM Automation SaaS Trials &amp; Self-Service Demo Cockpit</title>
     <style>
       :root {
         --bg: #0b0f14;
@@ -30,13 +30,15 @@
       }
 
       h1 {
-        margin: 0 0 8px;
+        margin: 280px 0 8px 0;
+        text-align: center;
         font-size: 28px;
       }
 
       .subtitle {
         color: var(--muted);
         margin-bottom: 20px;
+        text-align: center;
       }
 
       .table-wrap {
@@ -78,6 +80,19 @@
       li {
         margin: 0;
         padding: 0;
+      }
+
+      .banner {
+        Width:100%;
+        Height:500px;
+        border:solid;
+        border-color: rgb(108 179 246);;
+        border-radius: 5rem;
+        border-width: 5px;
+        margin-bottom:20px;
+        background-color: rgba(59, 160, 255, 0.36);;
+        float: left;
+        overflow: auto;
       }
 
       .badge {
@@ -195,8 +210,25 @@
     </script>
   </head>
   <body onload="moddate()">
-    <h1>IBM Automation SaaS Trials &amp; Self-Service Demo Catalog</h1>
-    <div class="subtitle">Curated list of SaaS trials, self-service demos, and legal reference quick links.</div>
+    <div class="banner" style="display:flex; align-items:center; padding:40px;">
+      <img src="images/revmodel.png" style="height:400px; border-radius:5rem; margin-right:30px;" />
+      <div style="display:flex; flex-direction:column; justify-content:center;">
+        <h3 style="color:orange; font-size:18px; margin:0 0 0px 0;">
+          As you trace the arc clockwise, the risk shifts from the buyer (ownership) to the seller (consumption)
+        </h3>
+        <span style="color:white; font-size:18px;">
+            <blockquote>
+              <ul>
+              <li>In ownership models, the <span style="font-weight:bold;color:rgb(99, 251, 173);">buyer</span> has to amortize the risk of the purchase, often over a period of 3 to 5 years. [CAPEX]</li><br/>
+              <li>In consumption models, the <span style="font-weight:bold;color:rgb(99, 251, 173);">seller</span> has to amortize the acquisition costs (Sales & Marketing) and the infrastructure commitment (Cost of Goods Sold - COGS)</li><br/>
+              <li>Moving clockwise along the arc, prices per product tend to decrease (<span style="font-weight:bold;color:rgb(99, 251, 173);">&#8595;</span>) and sales cycles shorten (<span style="font-weight:bold;color:rgb(99, 251, 173);">&rarr; &larr;</span>) </li>
+              </ul>
+            </blockquote>
+        </span>
+      </div>
+    </div>
+    <h1>IBM Automation SaaS Trials &amp; Self-Service Demo Cockpit</h1>
+    <div class="subtitle">Curated list of SaaS trials, self-service demos, compliance and legal reference quick links.</div>
     <div class="table-wrap">
       <table>
         <thead>
@@ -207,13 +239,14 @@
             <th style="width: 100px;">Duration</th>
             <th style="width: 300px;">Links</th>
             <th style="width: 400px;">Legal</th>
+            <th>Compliance</th>
             <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td data-label="Product">
-              <strong class="finops" title="A cloud-native observability platform designed for monitoring dynamic, containerized, microservices-based applications, providing high-resolution metric data and complete visibility.">Instana</strong>
+              <strong class="finops" title="A cloud-native observability platform designed for monitoring dynamic, containerized, microservices-based applications, providing high-resolution metric data and complete visibility."><a style="color:orange" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">Instana</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -240,6 +273,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-instana/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.instana.io/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -256,6 +291,12 @@
                   <a href="https://www.ibm.com/terms/?id=E7505A603A3611EBA94E77C5BC708D24" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -276,7 +317,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="finops" title="An AI-driven resource orchestration platform that automates and optimizes cloud and hybrid infrastructure, ensuring application performance and cost efficiency.">Turbonomic</strong>
+              <strong class="finops" title="An AI-driven resource orchestration platform that automates and optimizes cloud and hybrid infrastructure, ensuring application performance and cost efficiency."><a style="color:orange" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">Turbonomic</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -303,6 +344,9 @@
               <br />
               <a href="https://www.g2.com/products/ibm-turbonomic/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
+              
             </td>
             <td data-label="Legal">
               <ul>
@@ -323,6 +367,12 @@
                 </li>
               </ul>
             </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -342,7 +392,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="finops" title="A cost management platform for Kubernetes, providing real-time cost allocation, forecasting, and optimization for cloud-native environments.">Kubecost</strong>
+              <strong class="finops" title="A cost management platform for Kubernetes, providing real-time cost allocation, forecasting, and optimization for cloud-native environments."><a style="color:orange" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">Kubecost</a></strong>
             </td>
             <td data-label="Offer">Free Self-Host</td>
             <td data-label="Available">
@@ -357,6 +407,8 @@
               <br />
               <a href="https://www.g2.com/products/kubecost-an-ibm-company/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.kubecost.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -408,6 +460,8 @@
               </a>
               <br />
               <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-53025" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+              <br />
+              <a href="https://status.kubecost.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -424,6 +478,12 @@
                   <a href="https://www.ibm.com/terms/?id=66D5E192289B467AAD3CA6B8769AB1EB" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -469,6 +529,8 @@
               <br />
               <a href="https://www.g2.com/products/pliant/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 (Pliant) Reviews </a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service (Concert) Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -485,6 +547,12 @@
                   <a href="https://www.ibm.com/terms/?id=898AEDCC369C40D789D37F298E4843DD" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes">IBM Concert Workflows</td>
           </tr>
@@ -503,7 +571,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="finops" title="A cloud cost management platform that offers visibility, optimization, and governance for multi-cloud environments.">Cloudability</strong>
+              <strong class="finops" title="A cloud cost management platform that offers visibility, optimization, and governance for multi-cloud environments."><a style="color:orange" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">Cloudability</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -530,6 +598,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-cloudability/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.cloudability.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -546,6 +616,12 @@
                   <a href="https://www.ibm.com/terms/?id=B971FA3CF2004468A6B6425AB9EBB4F5" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -589,6 +665,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-apptio/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.apptio.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -605,6 +683,12 @@
                   <a href="https://www.ibm.com/terms/?id=1E951ECEF0264E86AB2907C2DFDFCB81" rel="noopener noreferrer" target="_blank">AWS Cloud Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -653,6 +737,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-targetprocess/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.targetprocess.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -672,6 +758,12 @@
                   <a href="https://catalogartifact.azureedge.net/publicartifacts/ibm-usa-ny-armonk-hq-6275750-ibmcloud-asperia.ibm-targetprocess-378d431d-aa0d-4507-93be-58e5c5412e71/Artifacts/Documents/TermsOfUse.txt" rel="noopener noreferrer" target="_blank">Azure Cloud EULA</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -708,9 +800,10 @@
             <td data-label="Available">
               <span class="badge no">No</span>
             </td>
-            <td></td>
             <td data-label="Duration"></td>
-            <td data-label="Links"></td>
+            <td data-label="Links">
+              <a href="https://status.flexera.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
+            </td>
             <td data-label="Legal"></td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -757,6 +850,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-ibm-webmethods-hybrid-integration/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.webmethods.io/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -795,7 +890,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A fully-managed API management platform that simplifies the design, development, and security of APIs for modern application development.">API Connect</strong>
+              <strong class="integrate" title="A fully-managed API management platform that simplifies the design, development, and security of APIs for modern application development."><a style="color:#00CCFF" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">API Connect</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -822,6 +917,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-api-connect/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -838,6 +935,12 @@
                   <a href="https://www.ibm.com/terms/?id=099D3F00A53611ECAB2681C6B89D4420" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -858,7 +961,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL</strong>
+              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL (APIC Essentials, StepZen)</strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -882,13 +985,21 @@
               </a>
               <br />
               <a href="https://www.ibm.com/account/reg/signup?formid=urx-52542" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL</strong>
+              <strong class="integrate" title="A GraphQL server and a command-line interface for creating, testing, and deploying GraphQL APIs.">API Connect for GraphQL (APIC Essentials, StepZen)</strong>
             </td>
             <td data-label="Offer">Self-Service Product Demo</td>
             <td data-label="Available">
@@ -903,7 +1014,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM)</strong>
+              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM) [Akamai]</strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -922,13 +1033,15 @@
               <span class="badge no">No</span>
             </td>
             <td data-label="Duration"></td>
-            <td data-label="Links"></td>
+            <td data-label="Links">
+              <a href="https://www.akamaistatus.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
+            </td>
             <td data-label="Legal"></td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM)</strong>
+              <strong class="integrate" title="A security solution for APIs, providing protection against various threats and vulnerabilities, ensuring secure and reliable API interactions.">NoName API Security (OEM) [Akamai]</strong>
             </td>
             <td data-label="Offer">Sales Led Demo</td>
             <td data-label="Available">
@@ -939,6 +1052,7 @@
               <a href="https://ibmapi.nonamesec.com/login" rel="noopener noreferrer" target="_blank">IBM Noname Demo Instance</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance"></td>
             <td class="notes" data-label="Notes">Contact Steven Cawn for IBM Seller access</td>
           </tr>
           <tr>
@@ -970,6 +1084,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-app-connect/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -986,6 +1102,12 @@
                   <a href="http://www.ibm.com/terms/?id=29EA84502A0D11EDA3332A6D53EBF5BE" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1025,8 +1147,16 @@
             <td data-label="Duration"></td>
             <td data-label="Links">
               <a href="https://cloud.ibm.com/registration?cm_mmca1=000032EK&amp;S_PKG=ov64640&amp;target=/catalog/services/mq" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1044,7 +1174,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="integrate" title="A high-speed data transfer solution that enables secure, reliable, and accelerated file transfers over the web, cloud, or on-premises.">Aspera on Cloud</strong>
+              <strong class="integrate" title="A high-speed data transfer solution that enables secure, reliable, and accelerated file transfers over the web, cloud, or on-premises."><a style="color:#00CCFF" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">Aspera on Cloud</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -1071,6 +1201,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-aspera-on-cloud/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.ai-apps-comms.ibm.com/asperaoncloud" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1087,6 +1219,12 @@
                   <a href="http://www.ibm.com/terms/?id=0818A74023E011E895B382FBC780E8BA" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1131,8 +1269,16 @@
               <br />
               <a href="https://www.g2.com/products/ibm-sterling-data-exchange-formerly-ibm-sterling-b2b-collaboration/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://watsonsupplychain.ideas.ibm.com/ideas/OMSST-I-6" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp;</a> (No Service Status Page)
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1177,6 +1323,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-sterling-order-management/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://watsonsupplychain.ideas.ibm.com/ideas/OMSST-I-6" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp;</a>(No Service Status Page) 
             </td>
             <td data-label="Legal">
               <ul>
@@ -1234,6 +1382,8 @@
               <a href="https://www.ibm.com/account/reg/us-en/subscribe?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
               <br />
               <a href="https://www.g2.com/products/ibm-maximo-application-suite/reviews" rel="noopener noreferrer" target="_blank">G2 Reviews</a>
+              <br />
+              <a href="https://cloud.ibm.com/status/?query=maximo" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1250,6 +1400,12 @@
                   <a href="https://www.ibm.com/terms/?id=A4E6AD20074D11ECADF816E2FD273C71" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1312,6 +1468,12 @@
                 </li>
               </ul>
             </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1357,6 +1519,12 @@
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1397,6 +1565,7 @@
               <a href="https://www.ibm.com/account/reg/signup?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance"></td>
             <td class="notes" data-label="Notes">MAS Suite Trial</td>
           </tr>
           <tr>
@@ -1440,6 +1609,12 @@
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1482,6 +1657,7 @@
               <a href="https://www.ibm.com/account/reg/signup?formid=urx-52271" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance"></td>
             <td class="notes" data-label="Notes">MAS Suite Trial</td>
           </tr>
           <tr>
@@ -1501,7 +1677,7 @@
           </tr>
           <tr>
             <td data-label="Product">
-              <strong class="network" title="A cloud-based DNS and traffic management platform that provides intelligent, automated traffic routing and optimization for hybrid and multi-cloud environments.">NS1 Connect</strong>
+              <strong class="network" title="A cloud-based DNS and traffic management platform that provides intelligent, automated traffic routing and optimization for hybrid and multi-cloud environments."><a style="color:#FFFFFF" href="https://joshisa.github.io/grok-n-talk/index.html" rel="noopener noreferrer" target="_blank">NS1 Connect</a></strong>
             </td>
             <td data-label="Offer" class="trial">
               <span>
@@ -1528,6 +1704,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-ns1-connect/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.ai-apps-comms.ibm.com/ns1connect" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1545,7 +1723,12 @@
                 </li>
               </ul>
             </td>
-            <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1607,6 +1790,12 @@
                 </li>
               </ul>
             </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1653,6 +1842,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-ibm-verify/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://statuspage.ibmcloudsecurity.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1669,6 +1860,12 @@
                   <a href="http://www.ibm.com/terms/?id=735E5650E26711E69CCD7F0385C6524D" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1717,6 +1914,8 @@
               <br />
               <a href="https://www.g2.com/products/hashicorp-vault/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1733,6 +1932,11 @@
                   <a href="https://www.ibm.com/terms/?id=C3056CB099E841EFBE057E15BEFAF3A2" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.hashicorp.com/en/trust/compliance" rel="noopener noreferrer" target="_blank">Hashicorp Compliance Program</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes">
               <a href="https://developer.hashicorp.com/hcp/docs/vault-secrets/get-started/plan-implementation/tiers-features" rel="noopener noreferrer" target="_blank">Free Tier Limitations</a>
@@ -1776,6 +1980,8 @@
             <td data-label="Duration">30 Days</td>
             <td data-label="Links">
               <a href="https://www.hashicorp.com/en/pricing?tab=vault" rel="noopener noreferrer" target="_blank">Vault Start for Free</a>
+              <br />
+              <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1792,6 +1998,11 @@
                   <a href="https://www.ibm.com/terms/?id=8E7CAB5368A945A4A76C4158DB695ADF" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.hashicorp.com/en/trust/compliance" rel="noopener noreferrer" target="_blank">Hashicorp Compliance Program</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes">
               <a href="https://developer.hashicorp.com/hcp/docs/vault-radar/get-started/product-tiers" rel="noopener noreferrer" target="_blank">Free Tier Limitations</a>
@@ -1833,8 +2044,16 @@
             <td data-label="Duration">30 days</td>
             <td data-label="Links">
               <a href="#" rel="noopener noreferrer">TBD</a>
+              <br />
+              <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes">URL not defined until upcoming AWS Launch</td>
           </tr>
           <tr>
@@ -1884,6 +2103,8 @@
               <br />
               <a href="https://www.g2.com/products/hashicorp-terraform/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1900,6 +2121,11 @@
                   <a href="https://www.ibm.com/terms/?id=F4391729F4494F7DBEFE6B4B43C0C131" rel="noopener noreferrer" target="_blank">Data Processing and Protection Sheet</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.hashicorp.com/en/trust/compliance" rel="noopener noreferrer" target="_blank">Hashicorp Compliance Program</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1945,6 +2171,11 @@
               <a href="https://www.ibm.com/products/hashicorp/pricing" rel="noopener noreferrer" target="_blank">HCP USD 500 trial credit</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.hashicorp.com/en/trust/compliance" rel="noopener noreferrer" target="_blank">Hashicorp Compliance Program</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -1956,7 +2187,9 @@
               <span class="badge no">No</span>
             </td>
             <td data-label="Duration"></td>
-            <td data-label="Links"></td>
+            <td data-label="Links">
+              <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
+            </td>
             <td data-label="Legal"></td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -1986,8 +2219,16 @@
               <br />
               <a href="https://www.g2.com/products/ibm-watsonx-code-assistant/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://cloud.ibm.com/status/?query=IBM+watsonx+Code+Assistant" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
@@ -2034,6 +2275,8 @@
               <br />
               <a href="https://www.g2.com/products/ibm-maas360/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://status.maas360.com/" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2047,6 +2290,12 @@
                   <a href="https://www.ibm.com/support/customer/csol/terms/?id=i126-6741&lc=en" rel="noopener noreferrer" target="_blank">Service Description (SD)</a>
                 </li>
               </ul>
+            </td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
             </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
@@ -2086,7 +2335,14 @@
             <td data-label="Duration"></td>
             <td data-label="Links">
               <a href="https://www.ibm.com/docs/en/icvi/cd?topic=features-iot-connected-vehicle-insights-development-edition" rel="noopener noreferrer" target="_blank">IoT Connected Vehicle Insights Dev Edition</a>
+            </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes">Dev Edition</td>
             </td>
           </tr>
@@ -2127,8 +2383,16 @@
             <td data-label="Duration">30 Days</td>
             <td data-label="Links">
               <a href="https://www.ibm.com/account/reg/us-en/signup?formid=urx-50329" rel="noopener noreferrer" target="_blank">IBM Trial Link</a>
+              <br />
+              <a href="https://status.ai-apps-comms.ibm.com/ibmvideostreaming" rel="noopener noreferrer" target="_blank"><img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page</a>
             </td>
             <td data-label="Legal"></td>
+            <td data-label="Compliance">
+                <a href="https://www.ibm.com/products/cloud/compliance#container-63a3178e7e" rel="noopener noreferrer" target="_blank">Compliance Global Programs</a>
+                <a href="https://www.ibm.com/support/pages/system/files/inline-files/IBM-ISO%2020243.pdf" rel="noopener noreferrer" target="_blank">ISO 20243</a><a href="https://www.ibm.com/downloads/documents/us-en/10c31775a2d40429" rel="noopener noreferrer" target="_blank">ISO 27001 / 27017 / 27018 / 27701<br/>IBM CISO Certified Product Listing</a>
+                <a href="http://ibm.biz/IBMTermsDSP" rel="noopener noreferrer" target="_blank">IBM Data Security and Privacy Principles</a>
+                <a href="https://www.ibm.com/docs/en/cpod?topic=guide-privacy-terms-companion-introduction-purpose" rel="noopener noreferrer" target="_blank">IBM Privacy Terms Companion Guide</a>
+            </td>
             <td class="notes" data-label="Notes"></td>
           </tr>
           <tr>
