@@ -83,17 +83,38 @@
         padding: 0;
       }
 
+      div#announce {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #DDEEEE;
+        width: 100%;
+      }
+
+      div#announce-content {
+        width: 500px;
+        margin: 0 auto;
+        padding: 10px;
+        border: 0px solid #000;
+        color: black;
+        text-align: center;
+      }
+
       .banner {
-       display:flex;
-       align-items:center;
-       justify-content:center;
-       padding:40px;
-       gap:30px;
-       flex-direction:row;            /* desktop: text to right */
-       box-sizing:border-box;         /* include padding in width */
-       width:100%;                    /* constrain to viewport width */
-       max-width:100%;
-       overflow-x:hidden;             /* safety against accidental overflow */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        gap: 30px;
+        flex-direction: row;
+        /* desktop: text to right */
+        box-sizing: border-box;
+        /* include padding in width */
+        width: 100%;
+        /* constrain to viewport width */
+        max-width: 100%;
+        overflow-x: hidden;
+        /* safety against accidental overflow */
       }
 
       .badge {
@@ -204,22 +225,35 @@
         }
 
         .banner {
-          flex-direction: column !important;   /* stack image above text */
-          text-align: center !important;       /* nicer mobile look */
-          gap: 20px !important;                /* spacing between image and text */
+          flex-direction: column !important;
+          /* stack image above text */
+          text-align: center !important;
+          /* nicer mobile look */
+          gap: 20px !important;
+          /* spacing between image and text */
         }
+
         .banner img {
-          height: auto !important;             /* scale proportionally */
-          max-width: 100% !important;          /* never overflow the viewport */
+          height: auto !important;
+          /* scale proportionally */
+          max-width: 100% !important;
+          /* never overflow the viewport */
         }
+
         .banner .text {
-          max-width: 100% !important;          /* prevent overflow */
-          min-width: 0 !important;             /* allow flex child to shrink */
-          text-align: left !important;         /* keep bullets left-aligned */
-          overflow-wrap: anywhere !important;  /* break long tokens if needed */
+          max-width: 100% !important;
+          /* prevent overflow */
+          min-width: 0 !important;
+          /* allow flex child to shrink */
+          text-align: left !important;
+          /* keep bullets left-aligned */
+          overflow-wrap: anywhere !important;
+          /* break long tokens if needed */
         }
+
         .banner .text blockquote {
-          margin: 0 0 0 0 !important;          /* remove wide default margins */
+          margin: 0 0 0 0 !important;
+          /* remove wide default margins */
           padding: 0 !important;
         }
       }
@@ -231,6 +265,11 @@
     </script>
   </head>
   <body onload="moddate()">
+    <div id="announce">
+      <div id="announce-content">
+        <img style="vertical-align: middle;height:auto;width:20px;" src="https://www.pngrepo.com/png/5177/180/new.png" />&nbsp;Added Service Status, Editions & Features Matrix Links
+      </div>
+    </div>
     <div class="banner" style="display:flex; align-items:center; padding:40px;">
       <img src="images/revmodel.png" style="height:400px;border-radius:5rem;flex-shrink:0;display:block;" />
       <div class="text" style="display:flex;flex-direction:column;justify-content:center;max-width:900px;min-width:0;padding:40px;">
@@ -299,6 +338,9 @@
               <br />
               <a href="https://status.instana.io/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/instana/pricing#container-1856a78546" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -375,6 +417,9 @@
               <br />
               <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/turbonomic/pricing#:~:text=Request%20a%20quote-,Product%20options,-If%20accessing%20on" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -442,6 +487,9 @@
               <br />
               <a href="https://status.kubecost.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.apptio.com/products/kubecost/#plus-pricing-table:~:text=Purpose-built%20for%20teams%20running%20Kubernetes" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -644,6 +692,9 @@
               <br />
               <a href="https://status.cloudability.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/docs/en/cloudability-commercial" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -941,6 +992,9 @@
               <a href="https://www.ibm.com/products/webmethods-hybrid-integration#product-tour" rel="noopener noreferrer" target="_blank">IWHI Product Tour</a>
               <br />
               <a href="https://www.ibm.com/resources/digital-innovation/demos/event-automation" rel="noopener noreferrer" target="_blank">Event Automation Demo</a>
+              <br />
+              <a href="https://www.ibm.com/products/webmethods-hybrid-integration/pricing#pricing:~:text=Platform%20capabilities" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance"></td>
@@ -980,6 +1034,9 @@
               <br />
               <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://welcome.apiconnect.automation.ibm.com/comparison/" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1155,6 +1212,9 @@
               <br />
               <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/app-connect/pricing#Pricing+options" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1221,6 +1281,9 @@
               <br />
               <a href="https://status.platform.saas.ibm.com/status/overview" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/mq/pricing#:~:text=Offering%20pricing%20options" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance">
@@ -1280,6 +1343,9 @@
               <br />
               <a href="https://status.ai-apps-comms.ibm.com/asperaoncloud" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/docs/en/aspera-on-cloud?topic=billing-feature-usage-tiers#feature_and_usage_tiers__table_znp_nrm_52c" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1350,7 +1416,10 @@
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
               <br />
               <a href="https://watsonsupplychain.ideas.ibm.com/ideas/OMSST-I-6" rel="noopener noreferrer" target="_blank">
-                <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp; </a> (No Service Status Page)
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp; </a> (No Service Status Page) <br />
+              <br />
+              <a href="https://www.ibm.com/products/b2b-integration-saas/pricing#:~:text=Premium%20edition-,Includes,-IBM%20Sterling%20B2B" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance">
@@ -1407,7 +1476,10 @@
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
               <br />
               <a href="https://watsonsupplychain.ideas.ibm.com/ideas/OMSST-I-6" rel="noopener noreferrer" target="_blank">
-                <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp; </a>(No Service Status Page)
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;IDEA Vote Submission&nbsp; </a>(No Service Status Page) <br />
+              <br />
+              <a href="https://www.ibm.com/products/order-management/pricing#Pricing+table" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1470,6 +1542,9 @@
               <br />
               <a href="https://cloud.ibm.com/status/?query=maximo" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/maximo/pricing#MASSaaSGrid" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1539,6 +1614,9 @@
               <br />
               <a href="https://www.g2.com/products/ibm-envizi-esg-suite/reviews" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:15px;" src="https://cdn3.iconfinder.com/data/icons/logos-brands-in-colors/512/g2-2-1024.png" />&nbsp;G2 Reviews </a>
+              <br />
+              <a href="https://www.ibm.com/products/envizi/pricing#Pricing" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1805,6 +1883,9 @@
               <br />
               <a href="https://status.ai-apps-comms.ibm.com/ns1connect" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/ns1-connect#choose-the-right-plan" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -1948,6 +2029,9 @@
               <br />
               <a href="https://statuspage.ibmcloudsecurity.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/docs/en/security-verify?topic=verify-subscription" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2023,6 +2107,9 @@
               <br />
               <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.hashicorp.com/en/pricing?tab=vault" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2091,6 +2178,9 @@
               <br />
               <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.hashicorp.com/en/pricing?tab=vault" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2219,6 +2309,9 @@
               <br />
               <a href="https://status.hashicorp.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.hashicorp.com/en/pricing?tab=terraform" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2284,6 +2377,9 @@
             <td data-label="Duration"></td>
             <td data-label="Links">
               <a href="https://www.ibm.com/products/hashicorp/pricing" rel="noopener noreferrer" target="_blank">HCP USD 500 trial credit</a>
+              <br />
+              <a href="https://www.hashicorp.com/en/pricing?tab=packer" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance">
@@ -2339,6 +2435,9 @@
               <br />
               <a href="https://cloud.ibm.com/status/?query=IBM+watsonx+Code+Assistant" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/watsonx-code-assistant/pricing#pricingplans" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance">
@@ -2398,6 +2497,9 @@
               <br />
               <a href="https://status.maas360.com/" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/maas360#pricing" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal">
               <ul>
@@ -2511,6 +2613,9 @@
               <br />
               <a href="https://status.ai-apps-comms.ibm.com/ibmvideostreaming" rel="noopener noreferrer" target="_blank">
                 <img style="vertical-align: middle;height:auto;width:20px;" src="https://cdn-icons-png.freepik.com/256/4727/4727553.png" />&nbsp;Service Status Page </a>
+              <br />
+              <a href="https://www.ibm.com/products/video-streaming/pricing#pricing-plans" rel="noopener noreferrer" target="_blank">
+                <img style="vertical-align: middle;height:auto;width:20px;" src="https://img.freepik.com/premium-psd/green-background-with-black-diamond-green-square_1142283-279288.jpg" />&nbsp;Editions & Features Matrix </a>
             </td>
             <td data-label="Legal"></td>
             <td data-label="Compliance">
