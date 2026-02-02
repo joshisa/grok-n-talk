@@ -1662,8 +1662,10 @@ ${finalDescription}
             // Video URL
             document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/SWWbjv5QXUk?si=83KundRgMMyVO6rB';
             
-            // Sync CodeMirror editors with textarea values
-            syncEditorsFromTextareas();
+            // Sync CodeMirror editors with textarea values (with small delay to ensure editors are ready)
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
             
             updatePreview();
         }
@@ -1944,7 +1946,10 @@ ${finalDescription}
                 const editor = getEditor(id);
                 const textarea = document.getElementById(id);
                 if (editor && textarea) {
+                    console.log(`Syncing ${id}: ${textarea.value.substring(0, 50)}...`);
                     editor.setValue(textarea.value);
+                } else {
+                    console.warn(`Cannot sync ${id}: editor=${!!editor}, textarea=${!!textarea}`);
                 }
             });
         }
