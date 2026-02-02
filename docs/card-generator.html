@@ -655,7 +655,6 @@
                 
                 <!-- Action Buttons -->
                 <div class="button-group" style="margin-bottom: 20px;">
-                    <button onclick="generateHTML()">🔨 Generate HTML</button>
                     <button class="button-secondary" onclick="loadExampleCard()">📋 Load Example (Turbonomic)</button>
                     <button class="button-secondary" onclick="resetForm()">🔄 Reset</button>
                 </div>
@@ -958,11 +957,21 @@
         <!-- Output Panel -->
         <div class="output-panel">
             <h2>📋 Generated HTML</h2>
-            <div class="button-group">
+            <p style="font-size: 14px; color: #9fb3c8; margin-top: 0;">Auto-generated from your configuration. Edit below to make final tweaks before copying.</p>
+            
+            <!-- Edit HTML Toolbar -->
+            <div class="editor-toolbar" style="margin-bottom: 10px;">
+                <button type="button" onclick="formatGeneratedHTML()" title="Format HTML">🎨 Format</button>
+                <button type="button" onclick="validateGeneratedHTML()" title="Validate HTML">✓ Validate</button>
+                <div class="separator"></div>
                 <button onclick="copyToClipboard()">📄 Copy to Clipboard</button>
             </div>
+            
+            <div class="validation-message" id="validation-htmlOutput"></div>
             <div id="successMessage" class="success-message">✓ Copied to clipboard!</div>
-            <textarea id="htmlOutput" readonly></textarea>
+            
+            <!-- CodeMirror will replace this textarea -->
+            <textarea id="htmlOutput"></textarea>
         </div>
     </div>
 
@@ -991,10 +1000,13 @@
         // Track active toggle view to preserve it during updates
         let activeToggleView = null;
 
-        // Update preview on input changes
+        // Update preview AND generate HTML on input changes
         const inputs = document.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
-            input.addEventListener('input', updatePreview);
+            input.addEventListener('input', () => {
+                updatePreview();
+                generateHTML();
+            });
         });
 
         function updatePreview() {
@@ -1597,32 +1609,116 @@ ${finalDescription}
     </div>
 </div>`;
 
+            // Update the textarea
             document.getElementById('htmlOutput').value = html;
+            
+            // Update CodeMirror editor if it exists
+            if (window.htmlOutputEditor) {
+                window.htmlOutputEditor.setValue(html);
+            }
         }
 
         function copyToClipboard() {
-            const output = document.getElementById('htmlOutput');
+            // Get value from CodeMirror editor if it exists, otherwise from textarea
+            let htmlContent;
+            if (window.htmlOutputEditor) {
+                htmlContent = window.htmlOutputEditor.getValue();
+            } else {
+                htmlContent = document.getElementById('htmlOutput').value;
+            }
             
-            if (!output.value) {
-                alert('⚠️ Please generate HTML first!');
+            if (!htmlContent) {
+                alert('⚠️ No HTML to copy!');
                 return;
             }
-
-            output.select();
             
+            // Validate HTML before copying
+            const validation = validateHTMLContent(htmlContent);
+            if (!validation.isValid) {
+                const proceed = confirm(`⚠️ HTML validation found issues:\n\n${validation.errors.join('\n')}\n\nCopy anyway?`);
+                if (!proceed) {
+                    return;
+                }
+            }
+
             // Try modern clipboard API first, fallback to execCommand
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(output.value).then(() => {
+                navigator.clipboard.writeText(htmlContent).then(() => {
                     showSuccessMessage();
                 }).catch(() => {
-                    // Fallback to execCommand
+                    // Fallback: create temporary textarea
+                    const temp = document.createElement('textarea');
+                    temp.value = htmlContent;
+                    document.body.appendChild(temp);
+                    temp.select();
                     document.execCommand('copy');
+                    document.body.removeChild(temp);
                     showSuccessMessage();
                 });
             } else {
+                // Fallback: create temporary textarea
+                const temp = document.createElement('textarea');
+                temp.value = htmlContent;
+                document.body.appendChild(temp);
+                temp.select();
                 document.execCommand('copy');
+                document.body.removeChild(temp);
                 showSuccessMessage();
             }
+        }
+        
+        function formatGeneratedHTML() {
+            if (!window.htmlOutputEditor) return;
+            
+            const currentValue = window.htmlOutputEditor.getValue();
+            try {
+                const formatted = html_beautify(currentValue, {
+                    indent_size: 4,
+                    indent_char: ' ',
+                    max_preserve_newlines: 2,
+                    preserve_newlines: true,
+                    indent_inner_html: true,
+                    wrap_line_length: 0,
+                    unformatted: ['code', 'pre', 'em', 'strong', 'span'],
+                    content_unformatted: ['pre', 'textarea']
+                });
+                window.htmlOutputEditor.setValue(formatted);
+                
+                // Show success message
+                const validationDiv = document.getElementById('validation-htmlOutput');
+                validationDiv.textContent = '✓ HTML formatted successfully';
+                validationDiv.className = 'validation-message success';
+                validationDiv.style.display = 'block';
+                setTimeout(() => {
+                    validationDiv.style.display = 'none';
+                }, 3000);
+            } catch (e) {
+                const validationDiv = document.getElementById('validation-htmlOutput');
+                validationDiv.textContent = '✗ Error formatting HTML: ' + e.message;
+                validationDiv.className = 'validation-message error';
+                validationDiv.style.display = 'block';
+            }
+        }
+        
+        function validateGeneratedHTML() {
+            if (!window.htmlOutputEditor) return;
+            
+            const htmlContent = window.htmlOutputEditor.getValue();
+            const validation = validateHTMLContent(htmlContent);
+            
+            const validationDiv = document.getElementById('validation-htmlOutput');
+            if (validation.isValid) {
+                validationDiv.textContent = '✓ HTML is valid';
+                validationDiv.className = 'validation-message success';
+            } else {
+                validationDiv.textContent = '✗ ' + validation.errors.join(', ');
+                validationDiv.className = 'validation-message error';
+            }
+            validationDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                validationDiv.style.display = 'none';
+            }, 5000);
         }
 
         function showSuccessMessage() {
@@ -1675,7 +1771,13 @@ ${finalDescription}
             // Sync CodeMirror editors with cleared textarea values
             syncEditorsFromTextareas();
             
+            // Clear and regenerate HTML output
+            if (window.htmlOutputEditor) {
+                window.htmlOutputEditor.setValue('');
+            }
+            
             updatePreview();
+            generateHTML();
         }
 
         function loadExampleCard() {
@@ -1790,6 +1892,7 @@ ${finalDescription}
             }, 200);
             
             updatePreview();
+            generateHTML();
         }
 
         // Setup preview card flip handler
@@ -1990,14 +2093,12 @@ ${finalDescription}
             }
         }
         
-        // Validate HTML
-        function validateHTML(textareaId) {
-            const editor = getEditor(textareaId);
-            const html = editor ? editor.getValue() : document.getElementById(textareaId).value;
+        // Validate HTML content (returns validation object)
+        function validateHTMLContent(html) {
+            const errors = [];
             
-            if (!html.trim()) {
-                showValidationMessage(textareaId, 'No content to validate', 'error');
-                return;
+            if (!html || !html.trim()) {
+                return { isValid: false, errors: ['No content to validate'] };
             }
             
             try {
@@ -2006,16 +2107,8 @@ ${finalDescription}
                 const parserErrors = doc.querySelectorAll('parsererror');
                 
                 if (parserErrors.length > 0) {
-                    showValidationMessage(textareaId, 'HTML has syntax errors', 'error');
-                    return;
+                    errors.push('HTML has syntax errors');
                 }
-                
-                // Check for common issues
-                const errors = [];
-                
-                // Check for unclosed tags (basic check)
-                const openTags = html.match(/<(\w+)[^>]*>/g) || [];
-                const closeTags = html.match(/<\/(\w+)>/g) || [];
                 
                 // Check for required attributes
                 const links = doc.querySelectorAll('a');
@@ -2025,13 +2118,53 @@ ${finalDescription}
                     }
                 });
                 
-                if (errors.length > 0) {
-                    showValidationMessage(textareaId, errors.join('; '), 'error');
-                } else {
-                    showValidationMessage(textareaId, '✓ HTML is valid!', 'success');
+                // Check for unclosed tags (basic check)
+                const tagPattern = /<(\w+)[^>]*>/g;
+                const closePattern = /<\/(\w+)>/g;
+                const openTags = [];
+                let match;
+                
+                while ((match = tagPattern.exec(html)) !== null) {
+                    const tag = match[1].toLowerCase();
+                    // Skip self-closing tags
+                    if (!['img', 'br', 'hr', 'input', 'meta', 'link'].includes(tag)) {
+                        openTags.push(tag);
+                    }
                 }
+                
+                const closeTags = [];
+                while ((match = closePattern.exec(html)) !== null) {
+                    closeTags.push(match[1].toLowerCase());
+                }
+                
+                // Simple check: count should match for most tags
+                if (openTags.length !== closeTags.length) {
+                    errors.push('Possible unclosed tags detected');
+                }
+                
+                return {
+                    isValid: errors.length === 0,
+                    errors: errors
+                };
             } catch (e) {
-                showValidationMessage(textareaId, 'Validation error: ' + e.message, 'error');
+                return {
+                    isValid: false,
+                    errors: ['Validation error: ' + e.message]
+                };
+            }
+        }
+        
+        // Validate HTML (UI wrapper)
+        function validateHTML(textareaId) {
+            const editor = getEditor(textareaId);
+            const html = editor ? editor.getValue() : document.getElementById(textareaId).value;
+            
+            const validation = validateHTMLContent(html);
+            
+            if (validation.isValid) {
+                showValidationMessage(textareaId, '✓ HTML is valid!', 'success');
+            } else {
+                showValidationMessage(textareaId, validation.errors.join('; '), 'error');
             }
         }
         
@@ -2078,7 +2211,32 @@ ${finalDescription}
         // Initialize editors when page loads
         window.addEventListener('load', () => {
             // Small delay to ensure CodeMirror is fully loaded
-            setTimeout(initializeEditors, 100);
+            setTimeout(() => {
+                initializeEditors();
+                
+                // Initialize CodeMirror for HTML output
+                const htmlOutputTextarea = document.getElementById('htmlOutput');
+                if (htmlOutputTextarea) {
+                    window.htmlOutputEditor = CodeMirror.fromTextArea(htmlOutputTextarea, {
+                        mode: 'htmlmixed',
+                        lineNumbers: true,
+                        lineWrapping: true,
+                        theme: 'default',
+                        indentUnit: 4,
+                        tabSize: 4,
+                        indentWithTabs: false,
+                        readOnly: false  // Allow editing
+                    });
+                    
+                    // Sync changes back to textarea
+                    window.htmlOutputEditor.on('change', () => {
+                        htmlOutputTextarea.value = window.htmlOutputEditor.getValue();
+                    });
+                }
+                
+                // Generate initial HTML
+                generateHTML();
+            }, 100);
         });
 
         // Initialize preview on page load
