@@ -654,9 +654,24 @@
                 <h2>⚙️ Card Configuration</h2>
                 
                 <!-- Action Buttons -->
-                <div class="button-group" style="margin-bottom: 20px;">
-                    <button class="button-secondary" onclick="loadExampleCard()">📋 Load Example (Turbonomic)</button>
-                    <button class="button-secondary" onclick="resetForm()">🔄 Reset</button>
+                <div style="margin-bottom: 20px;">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="exampleSelector">Load Production Card Example</label>
+                        <select id="exampleSelector" style="width: 100%; padding: 8px; background: #0b0f14; border: 1px solid #223041; border-radius: 6px; color: #e8eef5; font-size: 14px;">
+                            <option value="">-- Select a card to load --</option>
+                            <option value="turbonomic">IBM Turbonomic</option>
+                            <option value="instana">IBM Instana</option>
+                            <option value="cloudability">Cloudability</option>
+                            <option value="kubecost">Kubecost</option>
+                            <option value="apic">IBM API Connect</option>
+                            <option value="ns1">IBM NS1 Connect</option>
+                            <option value="aspera">IBM Aspera</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button class="button-secondary" onclick="loadSelectedExample()">📋 Load Example</button>
+                        <button class="button-secondary" onclick="resetForm()">🔄 Reset to Defaults</button>
+                    </div>
                 </div>
                 
                 <!-- Basic Settings -->
@@ -1783,7 +1798,44 @@ ${finalDescription}
             generateHTML();
         }
 
-        function loadExampleCard() {
+        function loadSelectedExample() {
+            const selector = document.getElementById('exampleSelector');
+            const selectedCard = selector.value;
+            
+            if (!selectedCard) {
+                alert('⚠️ Please select a card from the dropdown first.');
+                return;
+            }
+            
+            // Route to the appropriate loader function
+            switch(selectedCard) {
+                case 'turbonomic':
+                    loadTurbonomicExample();
+                    break;
+                case 'instana':
+                    loadInstanaExample();
+                    break;
+                case 'cloudability':
+                    loadCloudabilityExample();
+                    break;
+                case 'kubecost':
+                    loadKubecostExample();
+                    break;
+                case 'apic':
+                    loadApicExample();
+                    break;
+                case 'ns1':
+                    loadNS1Example();
+                    break;
+                case 'aspera':
+                    loadAsperaExample();
+                    break;
+                default:
+                    alert('⚠️ Unknown card selected.');
+            }
+        }
+        
+        function loadTurbonomicExample() {
             // Load Turbonomic card data as example
             document.getElementById('cardClass').value = 'turbo';
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
@@ -1887,6 +1939,31 @@ ${finalDescription}
             
             updatePreview();
             generateHTML();
+        }
+
+        // Placeholder functions for other card examples
+        function loadInstanaExample() {
+            alert('🚧 Instana card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+        }
+
+        function loadCloudabilityExample() {
+            alert('🚧 Cloudability card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+        }
+
+        function loadKubecostExample() {
+            alert('🚧 Kubecost card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+        }
+
+        function loadApicExample() {
+            alert('🚧 API Connect card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+        }
+
+        function loadNS1Example() {
+            alert('🚧 NS1 Connect card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+        }
+
+        function loadAsperaExample() {
+            alert('🚧 Aspera card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
         }
 
         // Setup preview card flip handler
