@@ -1247,22 +1247,17 @@
             }
             
             // Update content sections in preview
-            // Build summary content from 4 ELI5 fields + CTA
-            const eli5Assertion = document.getElementById('eli5Assertion').value.trim();
-            const eli5PainPoint = document.getElementById('eli5PainPoint').value.trim();
-            const eli5Value = document.getElementById('eli5Value').value.trim();
-            const eli5Punchline = document.getElementById('eli5Punchline').value.trim();
-            
+            // Build summary content from ELI5 (already declared above)
             let summaryContent = '';
-            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline || callToAction) {
+            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline || eli5Question) {
                 summaryContent = '<ul>\n';
                 if (eli5Assertion) summaryContent += `    <li>${eli5Assertion}</li>\n`;
                 if (eli5PainPoint) summaryContent += `    <li>${eli5PainPoint}</li>\n`;
                 if (eli5Value) summaryContent += `    <li>${eli5Value}</li>\n`;
                 if (eli5Punchline) summaryContent += `    <li>${eli5Punchline}</li>\n`;
-                // Add CTA as 5th bullet in summary if it exists
-                if (callToAction) {
-                    summaryContent += `    <li><span class="emphasize">${callToAction}<br/> &#8594; <a href="#" class="summaryGimmeMoreLink">Gimme More &#63;'s</a></span></li>\n`;
+                // 5th bullet is always emphasized with "Gimme More ?'s" link
+                if (eli5Question) {
+                    summaryContent += `    <li><span class="emphasize">${eli5Question}<br/> &#8594; <a href="#" class="summaryGimmeMoreLink">Gimme More &#63;'s</a></span></li>\n`;
                 }
                 summaryContent += '</ul>';
             }
