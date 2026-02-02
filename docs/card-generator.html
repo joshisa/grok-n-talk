@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grok-N-Talk Card Generator</title>
+    
+    <!-- CodeMirror 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/material.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/matchtags.min.js"></script>
+    
+    <!-- JS Beautify for HTML formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.11/beautify-html.min.js"></script>
+    
     <style>
         * {
             box-sizing: border-box;
@@ -122,6 +137,116 @@
         textarea {
             min-height: 80px;
             resize: vertical;
+        }
+
+        /* CodeMirror Customization */
+        .CodeMirror {
+            height: auto;
+            min-height: 120px;
+            max-height: 400px;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            background: #0b0f14;
+            font-size: 13px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+        }
+
+        .CodeMirror-scroll {
+            min-height: 120px;
+            max-height: 400px;
+        }
+
+        .CodeMirror-gutters {
+            background: #0b0f14;
+            border-right: 1px solid #223041;
+        }
+
+        .CodeMirror-linenumber {
+            color: #5a6b7d;
+        }
+
+        .CodeMirror-cursor {
+            border-left: 2px solid #3ba0ff;
+        }
+
+        .CodeMirror-selected {
+            background: #223041 !important;
+        }
+
+        .CodeMirror-focused .CodeMirror-selected {
+            background: #2d3d52 !important;
+        }
+
+        /* HTML Editor Toolbar */
+        .editor-toolbar {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px 6px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-toolbar button {
+            padding: 6px 10px;
+            font-size: 12px;
+            background: #223041;
+            color: #9fb3c8;
+            border: 1px solid #2d3d52;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .editor-toolbar button:hover {
+            background: #2d3d52;
+            color: #e8eef5;
+            border-color: #3ba0ff;
+        }
+
+        .editor-toolbar button:active {
+            transform: scale(0.95);
+        }
+
+        .editor-toolbar .separator {
+            width: 1px;
+            background: #223041;
+            margin: 0 4px;
+        }
+
+        .editor-container {
+            position: relative;
+        }
+
+        .editor-container .CodeMirror {
+            border-radius: 0 0 6px 6px;
+            border-top: none;
+        }
+
+        /* Validation Messages */
+        .validation-message {
+            margin-top: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .validation-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: block;
+        }
+
+        .validation-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            display: block;
         }
 
         input[type="checkbox"] {
@@ -556,32 +681,116 @@
                     
                     <div class="form-group">
                         <label for="competitorsContent">Competitors Content</label>
-                        <textarea id="competitorsContent" placeholder="List competitors and their key differentiators..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-competitorsContent">
+                            <button type="button" onclick='insertTag("competitorsContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("competitorsContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("competitorsContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("competitorsContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("competitorsContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="competitorsContent" placeholder="List competitors and their key differentiators..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-competitorsContent"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="xsellContent">Cross-Sell Content</label>
-                        <textarea id="xsellContent" placeholder="Products that work well together..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-xsellContent">
+                            <button type="button" onclick='insertTag("xsellContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("xsellContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("xsellContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("xsellContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("xsellContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="xsellContent" placeholder="Products that work well together..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-xsellContent"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="upsellContent">Upsell Content</label>
-                        <textarea id="upsellContent" placeholder="Upgrade opportunities..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-upsellContent">
+                            <button type="button" onclick='insertTag("upsellContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("upsellContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("upsellContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("upsellContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("upsellContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="upsellContent" placeholder="Upgrade opportunities..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-upsellContent"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="questionsContent">Discovery Questions Content</label>
-                        <textarea id="questionsContent" placeholder="Questions to ask prospects..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-questionsContent">
+                            <button type="button" onclick='insertTag("questionsContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("questionsContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("questionsContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("questionsContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("questionsContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="questionsContent" placeholder="Questions to ask prospects..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-questionsContent"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="storyContent">Customer Stories Content</label>
-                        <textarea id="storyContent" placeholder="Success stories and case studies..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-storyContent">
+                            <button type="button" onclick='insertTag("storyContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("storyContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("storyContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("storyContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("storyContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("storyContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("storyContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("storyContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="storyContent" placeholder="Success stories and case studies..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-storyContent"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="loveContent">Customer Love Reasons</label>
-                        <textarea id="loveContent" placeholder="Why customers love this product..." rows="4"></textarea>
+                        <div class="editor-toolbar" id="toolbar-loveContent">
+                            <button type="button" onclick='insertTag("loveContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("loveContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("loveContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("loveContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("loveContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("loveContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("loveContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("loveContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="loveContent" placeholder="Why customers love this product..." rows="4"></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-loveContent"></div>
                     </div>
                     
                     <div class="form-group">
@@ -1463,6 +1672,260 @@ ${finalDescription}
                 return;
             }
             this.classList.toggle('flip');
+        });
+
+        // ========================================
+        // HTML Editor Enhancement Functions
+        // ========================================
+        
+        const editors = {};
+        
+        // Initialize CodeMirror for all content textareas
+        function initializeEditors() {
+            const textareaIds = [
+                'competitorsContent',
+                'xsellContent',
+                'upsellContent',
+                'questionsContent',
+                'storyContent',
+                'loveContent'
+            ];
+            
+            textareaIds.forEach(id => {
+                const textarea = document.getElementById(id);
+                if (textarea && !editors[id]) {
+                    const editor = CodeMirror.fromTextArea(textarea, {
+                        mode: 'htmlmixed',
+                        lineNumbers: true,
+                        lineWrapping: true,
+                        autoCloseTags: true,
+                        matchTags: { bothTags: true },
+                        theme: 'default',
+                        indentUnit: 4,
+                        tabSize: 4,
+                        indentWithTabs: false
+                    });
+                    
+                    // Sync changes back to textarea and trigger preview update
+                    editor.on('change', () => {
+                        textarea.value = editor.getValue();
+                        updatePreview();
+                    });
+                    
+                    editors[id] = editor;
+                }
+            });
+        }
+        
+        // Get editor instance or fallback to textarea
+        function getEditor(textareaId) {
+            return editors[textareaId] || null;
+        }
+        
+        // Insert tag at cursor position
+        function insertTag(textareaId, tag, cursorOffset) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const doc = editor.getDoc();
+                const cursor = doc.getCursor();
+                doc.replaceRange(tag, cursor);
+                // Move cursor to position inside tag
+                doc.setCursor({
+                    line: cursor.line,
+                    ch: cursor.ch + cursorOffset
+                });
+                editor.focus();
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+                textarea.value = text.substring(0, start) + tag + text.substring(end);
+                textarea.selectionStart = textarea.selectionEnd = start + cursorOffset;
+                textarea.focus();
+                updatePreview();
+            }
+        }
+        
+        // Wrap selection with tags
+        function wrapSelection(textareaId, before, after) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const doc = editor.getDoc();
+                const selection = doc.getSelection();
+                if (selection) {
+                    doc.replaceSelection(before + selection + after);
+                } else {
+                    const cursor = doc.getCursor();
+                    doc.replaceRange(before + after, cursor);
+                    doc.setCursor({
+                        line: cursor.line,
+                        ch: cursor.ch + before.length
+                    });
+                }
+                editor.focus();
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+                const selection = text.substring(start, end);
+                textarea.value = text.substring(0, start) + before + selection + after + text.substring(end);
+                textarea.selectionStart = start + before.length;
+                textarea.selectionEnd = start + before.length + selection.length;
+                textarea.focus();
+                updatePreview();
+            }
+        }
+        
+        // Insert link with prompt
+        function insertLink(textareaId) {
+            const url = prompt('Enter URL:', 'https://');
+            if (url) {
+                const linkTag = `<a href="${url}" target="_blank" rel="noopener"></a>`;
+                const editor = getEditor(textareaId);
+                if (editor) {
+                    const doc = editor.getDoc();
+                    const selection = doc.getSelection();
+                    if (selection) {
+                        doc.replaceSelection(`<a href="${url}" target="_blank" rel="noopener">${selection}</a>`);
+                    } else {
+                        const cursor = doc.getCursor();
+                        doc.replaceRange(linkTag, cursor);
+                        doc.setCursor({
+                            line: cursor.line,
+                            ch: cursor.ch + linkTag.length - 4
+                        });
+                    }
+                    editor.focus();
+                } else {
+                    // Fallback for textarea
+                    const textarea = document.getElementById(textareaId);
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const text = textarea.value;
+                    const selection = text.substring(start, end);
+                    if (selection) {
+                        textarea.value = text.substring(0, start) + `<a href="${url}" target="_blank" rel="noopener">${selection}</a>` + text.substring(end);
+                    } else {
+                        textarea.value = text.substring(0, start) + linkTag + text.substring(end);
+                        textarea.selectionStart = textarea.selectionEnd = start + linkTag.length - 4;
+                    }
+                    textarea.focus();
+                    updatePreview();
+                }
+            }
+        }
+        
+        // Format HTML with beautification
+        function formatHTML(textareaId) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const html = editor.getValue();
+                try {
+                    const formatted = html_beautify(html, {
+                        indent_size: 4,
+                        indent_char: ' ',
+                        max_preserve_newlines: 2,
+                        preserve_newlines: true,
+                        wrap_line_length: 0,
+                        indent_inner_html: true,
+                        unformatted: [],
+                        content_unformatted: ['pre', 'textarea'],
+                        extra_liners: []
+                    });
+                    editor.setValue(formatted);
+                    showValidationMessage(textareaId, 'HTML formatted successfully!', 'success');
+                } catch (e) {
+                    showValidationMessage(textareaId, 'Error formatting HTML: ' + e.message, 'error');
+                }
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                try {
+                    const formatted = html_beautify(textarea.value, {
+                        indent_size: 4,
+                        indent_char: ' ',
+                        max_preserve_newlines: 2,
+                        preserve_newlines: true
+                    });
+                    textarea.value = formatted;
+                    showValidationMessage(textareaId, 'HTML formatted successfully!', 'success');
+                    updatePreview();
+                } catch (e) {
+                    showValidationMessage(textareaId, 'Error formatting HTML: ' + e.message, 'error');
+                }
+            }
+        }
+        
+        // Validate HTML
+        function validateHTML(textareaId) {
+            const editor = getEditor(textareaId);
+            const html = editor ? editor.getValue() : document.getElementById(textareaId).value;
+            
+            if (!html.trim()) {
+                showValidationMessage(textareaId, 'No content to validate', 'error');
+                return;
+            }
+            
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const parserErrors = doc.querySelectorAll('parsererror');
+                
+                if (parserErrors.length > 0) {
+                    showValidationMessage(textareaId, 'HTML has syntax errors', 'error');
+                    return;
+                }
+                
+                // Check for common issues
+                const errors = [];
+                
+                // Check for unclosed tags (basic check)
+                const openTags = html.match(/<(\w+)[^>]*>/g) || [];
+                const closeTags = html.match(/<\/(\w+)>/g) || [];
+                
+                // Check for required attributes
+                const links = doc.querySelectorAll('a');
+                links.forEach((link, i) => {
+                    if (!link.getAttribute('href')) {
+                        errors.push(`Link ${i + 1} missing href attribute`);
+                    }
+                });
+                
+                if (errors.length > 0) {
+                    showValidationMessage(textareaId, errors.join('; '), 'error');
+                } else {
+                    showValidationMessage(textareaId, '✓ HTML is valid!', 'success');
+                }
+            } catch (e) {
+                showValidationMessage(textareaId, 'Validation error: ' + e.message, 'error');
+            }
+        }
+        
+        // Show validation message
+        function showValidationMessage(textareaId, message, type) {
+            const msgElement = document.getElementById('validation-' + textareaId);
+            if (msgElement) {
+                msgElement.textContent = message;
+                msgElement.className = 'validation-message ' + type;
+                msgElement.style.display = 'block';
+                
+                // Auto-hide success messages after 3 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        msgElement.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        }
+        
+        // Initialize editors when page loads
+        window.addEventListener('load', () => {
+            // Small delay to ensure CodeMirror is fully loaded
+            setTimeout(initializeEditors, 100);
         });
 
         // Initialize preview on page load
