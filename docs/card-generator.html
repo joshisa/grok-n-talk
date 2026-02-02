@@ -708,23 +708,6 @@
                         <input type="text" id="bannerAlt" placeholder="Product Name" value="Custom Product">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description Content</label>
-                        <textarea id="description" placeholder="Enter the main description content...">
-<ul>
-    <li>Key feature or benefit 1</li>
-    <li>Key feature or benefit 2</li>
-    <li>Key feature or benefit 3</li>
-</ul></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="callToAction">Call-to-Action Question (optional)</label>
-                        <input type="text" id="callToAction" placeholder="e.g., How are you currently managing...?" value="What questions do you have about this product?">
-                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
-                            This will appear at the end of the description with "→ Gimme More ?'s" link.<br/>
-                            The link will show the <strong>Questions Content</strong> section (configured below in Toggle Content Sections).
-                        </small>
-                    </div>
-                    <div class="form-group">
                         <label for="backBgColor">Background Color</label>
                         <div class="color-input-group">
                             <input type="text" id="backBgColor" value="#003566">
@@ -747,7 +730,10 @@
                         <input type="text" id="eli5PainPoint" placeholder="ELI5 Customer Pain Point" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Customer Pain Point">
                         <input type="text" id="eli5Value" placeholder="ELI5 Customer Value" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Customer Value">
                         <input type="text" id="eli5Punchline" placeholder="ELI5 Product Punchline" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Product Punchline">
-                        <input type="text" id="eli5Question" placeholder="ELI5 Provocative Customer Question with link for more" maxlength="150" value="ELI5 Provocative Customer Question with link for more">
+                        <input type="text" id="eli5Question" placeholder="ELI5 Provocative Customer Question" maxlength="150" value="What questions do you have about this product?">
+                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
+                            The 5th bullet will automatically be emphasized and include "→ Gimme More ?'s" link to show the Questions section.
+                        </small>
                     </div>
                     
                     <div class="form-group">
@@ -1043,9 +1029,14 @@
             const frontBgColor = document.getElementById('frontBgColor').value.trim();
             const bannerUrl = document.getElementById('bannerUrl').value.trim();
             const bannerAlt = document.getElementById('bannerAlt').value.trim();
-            const description = document.getElementById('description').value;
-            const callToAction = document.getElementById('callToAction').value.trim();
             const backBgColor = document.getElementById('backBgColor').value.trim();
+            
+            // Get ELI5 content for description
+            const eli5Assertion = document.getElementById('eli5Assertion').value.trim();
+            const eli5PainPoint = document.getElementById('eli5PainPoint').value.trim();
+            const eli5Value = document.getElementById('eli5Value').value.trim();
+            const eli5Punchline = document.getElementById('eli5Punchline').value.trim();
+            const eli5Question = document.getElementById('eli5Question').value.trim();
             
             // Get toggle button URLs
             const toggleSummary = document.getElementById('toggleSummary').value.trim();
@@ -1113,15 +1104,21 @@
             previewBanner.src = bannerUrl || 'images/grok-n-talk-banner.png';
             previewBanner.alt = bannerAlt;
             
-            // Build description with optional call-to-action
-            let descriptionHtml = description || '<ul><li>No description provided</li></ul>';
-            if (callToAction) {
-                // Insert CTA before closing </ul> tag if it exists
-                if (descriptionHtml.includes('</ul>')) {
-                    descriptionHtml = descriptionHtml.replace('</ul>', `    <li><span class="emphasize">${callToAction}<br/> &#8594; <a href="#" id="gimmeMoreLink">Gimme More &#63;'s</a></span></li>\n</ul>`);
-                } else {
-                    descriptionHtml += `\n<li><span class="emphasize">${callToAction}<br/> &#8594; <a href="#" id="gimmeMoreLink">Gimme More &#63;'s</a></span></li>`;
-                }
+            // Build description from ELI5 bullets
+            let descriptionHtml = '<ul>\n';
+            if (eli5Assertion) descriptionHtml += `    <li>${eli5Assertion}</li>\n`;
+            if (eli5PainPoint) descriptionHtml += `    <li>${eli5PainPoint}</li>\n`;
+            if (eli5Value) descriptionHtml += `    <li>${eli5Value}</li>\n`;
+            if (eli5Punchline) descriptionHtml += `    <li>${eli5Punchline}</li>\n`;
+            // 5th bullet is always emphasized with "Gimme More ?'s" link
+            if (eli5Question) {
+                descriptionHtml += `    <li><span class="emphasize">${eli5Question}<br/> &#8594; <a href="#" id="gimmeMoreLink">Gimme More &#63;'s</a></span></li>\n`;
+            }
+            descriptionHtml += '</ul>';
+            
+            // If no ELI5 content, show placeholder
+            if (!eli5Assertion && !eli5PainPoint && !eli5Value && !eli5Punchline && !eli5Question) {
+                descriptionHtml = '<ul><li>No ELI5 content provided</li></ul>';
             }
             
             try {
@@ -1461,8 +1458,6 @@
             const frontBgColor = document.getElementById('frontBgColor').value.trim() || '#101010';
             const bannerUrl = document.getElementById('bannerUrl').value.trim() || 'images/grok-n-talk-banner.png';
             const bannerAlt = document.getElementById('bannerAlt').value.trim() || 'Product';
-            const description = document.getElementById('description').value;
-            const callToAction = document.getElementById('callToAction').value.trim();
             const backBgColor = document.getElementById('backBgColor').value.trim() || '#003566';
             
             // Get toggle button URLs
@@ -1475,20 +1470,24 @@
             const toggleWatch = document.getElementById('toggleWatch').value.trim();
             const videoUrl = document.getElementById('videoUrl').value.trim();
             
-            // Get content section data
-            // Build summary content from 4 ELI5 fields (CTA will be added separately in the generated HTML)
+            // Get ELI5 content for description and summary
             const eli5Assertion = document.getElementById('eli5Assertion').value.trim();
             const eli5PainPoint = document.getElementById('eli5PainPoint').value.trim();
             const eli5Value = document.getElementById('eli5Value').value.trim();
             const eli5Punchline = document.getElementById('eli5Punchline').value.trim();
+            const eli5Question = document.getElementById('eli5Question').value.trim();
             
+            // Build summary content from all 5 ELI5 fields (5th with emphasis and link)
             let summaryContent = '';
-            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline) {
+            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline || eli5Question) {
                 summaryContent = '<ul>\n';
                 if (eli5Assertion) summaryContent += `    <li>${eli5Assertion}</li>\n`;
                 if (eli5PainPoint) summaryContent += `    <li>${eli5PainPoint}</li>\n`;
                 if (eli5Value) summaryContent += `    <li>${eli5Value}</li>\n`;
                 if (eli5Punchline) summaryContent += `    <li>${eli5Punchline}</li>\n`;
+                if (eli5Question) {
+                    summaryContent += `    <li><span class="emphasize">${eli5Question}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>\n`;
+                }
                 summaryContent += '</ul>';
             }
             
@@ -1547,18 +1546,8 @@
         </div>`;
             }
 
-            // Build description with optional call-to-action
-            let finalDescription = description;
-            if (callToAction) {
-                // Check if description ends with </ul> to add inside list, otherwise add as new paragraph
-                if (description.trim().endsWith('</ul>')) {
-                    finalDescription = description.trim().slice(0, -5) +
-                        `    <li><span class="emphasize">${callToAction}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>\n</ul>`;
-                } else {
-                    finalDescription = description +
-                        `\n<p><span class="emphasize">${callToAction}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></p>`;
-                }
-            }
+            // Build description from ELI5 content (same as summary)
+            let finalDescription = summaryContent || '<ul>\n    <li>No ELI5 content provided</li>\n</ul>';
 
             // Generate content sections HTML
             let contentSectionsHtml = '';
@@ -1764,12 +1753,6 @@ ${finalDescription}
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
             document.getElementById('bannerAlt').value = 'Custom Product';
-            document.getElementById('description').value = `<ul>
-    <li>Key feature or benefit 1</li>
-    <li>Key feature or benefit 2</li>
-    <li>Key feature or benefit 3</li>
-</ul>`;
-            document.getElementById('callToAction').value = 'What questions do you have about this product?';
             document.getElementById('backBgColor').value = '#003566';
             document.getElementById('backBgColorPicker').value = '#003566';
             document.getElementById('toggleSummary').value = 'images/list-eli5.png';
@@ -1779,11 +1762,11 @@ ${finalDescription}
             document.getElementById('toggleStory').value = 'images/list-story.png';
             document.getElementById('toggleLove').value = 'images/list-love.png';
             document.getElementById('toggleWatch').value = 'images/empty-tv.png';
-            document.getElementById('eli5Assertion').value = '';
-            document.getElementById('eli5PainPoint').value = '';
-            document.getElementById('eli5Value').value = '';
-            document.getElementById('eli5Punchline').value = '';
-            document.getElementById('eli5Question').value = '';
+            document.getElementById('eli5Assertion').value = 'ELI5 Assertion / Relatable Analogy';
+            document.getElementById('eli5PainPoint').value = 'ELI5 Customer Pain Point';
+            document.getElementById('eli5Value').value = 'ELI5 Customer Value';
+            document.getElementById('eli5Punchline').value = 'ELI5 Product Punchline';
+            document.getElementById('eli5Question').value = 'What questions do you have about this product?';
             document.getElementById('competitorsContent').value = '';
             document.getElementById('xsellContent').value = '';
             document.getElementById('upsellContent').value = '';
@@ -1817,15 +1800,6 @@ ${finalDescription}
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
             document.getElementById('bannerAlt').value = 'IBM Turbonomic';
             
-            // Description
-            document.getElementById('description').value = `<ul>
-    <li>Applications need resources to function. Stuff like compute, memory, storage, networking.</li>
-    <li>Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste</li>
-    <li>Changing resources automatically to the right amount, at the right time, to feed application hunger can lower overall computer costs and waste</li>
-    <li><a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance continously steady and waste low</li>
-</ul>`;
-            
-            document.getElementById('callToAction').value = 'How are you currently using technology to be better with resource efficiency and waste in your environments? ➔ Gimme More ?\'s';
             document.getElementById('backBgColor').value = '#003566';
             document.getElementById('backBgColorPicker').value = '#003566';
             
@@ -1838,12 +1812,12 @@ ${finalDescription}
             document.getElementById('toggleLove').value = 'images/list-love.png';
             document.getElementById('toggleWatch').value = 'images/turbo-tv.png';
             
-            // ELI5 Summary content (matches description exactly)
+            // ELI5 Content (simple, no jargon)
             document.getElementById('eli5Assertion').value = 'Applications need resources to function. Stuff like compute, memory, storage, networking.';
             document.getElementById('eli5PainPoint').value = 'Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste';
             document.getElementById('eli5Value').value = 'Changing resources automatically to the right amount, at the right time, to feed application hunger can lower overall computer costs and waste';
             document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance continously steady and waste low';
-            document.getElementById('eli5Question').value = ''; // Leave empty - CTA will be used instead
+            document.getElementById('eli5Question').value = 'How are you currently using technology to be better with resource efficiency and waste in your environments?';
             
             // Competitors content
             document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCCmhM8Ggj6QXGFM4m87HMB2gBPB" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
