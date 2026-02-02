@@ -988,6 +988,9 @@
             updatePreview();
         });
 
+        // Track active toggle view to preserve it during updates
+        let activeToggleView = null;
+
         // Update preview on input changes
         const inputs = document.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
@@ -1159,11 +1162,13 @@
                         if (contentSection.style.display === 'block') {
                             contentSection.style.display = 'none';
                             description.style.display = 'block';
+                            activeToggleView = null; // Clear active view when returning to description
                         } else {
                             description.style.display = 'none';
                             contentSection.style.display = 'block';
                             // Add active class to current toggle
                             container.classList.add('active');
+                            activeToggleView = toggle.contentId; // Track active view
                         }
                     };
                 } else {
@@ -1195,9 +1200,11 @@
                     if (tvSection.style.display === 'block') {
                         tvSection.style.display = 'none';
                         description.style.display = 'block';
+                        activeToggleView = null; // Clear active view
                     } else {
                         description.style.display = 'none';
                         tvSection.style.display = 'block';
+                        activeToggleView = 'previewTv'; // Track TV view
                     }
                 };
             } else {
@@ -1341,20 +1348,63 @@
                 previewTv.style.display = 'none';
             }
             
-            // Reset view to show description and hide all content sections
-            // This ensures the preview always shows the description after updates
-            document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Remove active class from all toggles
-            document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
-                toggleDiv.classList.remove('active');
-            });
-            
-            // Ensure description is visible
-            if (previewDescription) {
-                previewDescription.style.display = 'block';
+            // Restore active toggle view if one was set, otherwise show description
+            if (activeToggleView) {
+                // Hide description
+                if (previewDescription) {
+                    previewDescription.style.display = 'none';
+                }
+                
+                // Hide all content sections first
+                document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove active class from all toggles
+                document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                    toggleDiv.classList.remove('active');
+                });
+                
+                // Show the active content section
+                const activeSection = document.getElementById(activeToggleView);
+                if (activeSection) {
+                    activeSection.style.display = 'block';
+                    
+                    // Add active class to corresponding toggle
+                    const toggleMap = {
+                        'previewSummary': 'summary-toggle',
+                        'previewCompetitors': 'compete-toggle',
+                        'previewXsell': 'x-toggle',
+                        'previewUpsell': 'upsell-toggle',
+                        'previewStory': 'story-toggle',
+                        'previewLove': 'call-toggle',
+                        'previewQuestions': null, // Questions don't have a toggle (accessed via Gimme More)
+                        'previewTv': null // TV toggle is handled separately
+                    };
+                    
+                    const toggleClass = toggleMap[activeToggleView];
+                    if (toggleClass) {
+                        const activeToggle = document.querySelector(`#previewBack .${toggleClass}`);
+                        if (activeToggle) {
+                            activeToggle.classList.add('active');
+                        }
+                    }
+                }
+            } else {
+                // No active view - reset to show description and hide all content sections
+                document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove active class from all toggles
+                document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                    toggleDiv.classList.remove('active');
+                });
+                
+                // Ensure description is visible
+                if (previewDescription) {
+                    previewDescription.style.display = 'block';
+                }
             }
         }
 
