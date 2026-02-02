@@ -608,6 +608,17 @@
                     img.alt = toggle.alt;
                     img.title = toggle.title;
                     img.className = 'toggle';
+                    
+                    // Prevent card flip when clicking toggle buttons
+                    img.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Optional: Add visual feedback
+                        img.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            img.style.transform = 'scale(1)';
+                        }, 100);
+                    });
+                    
                     previewToggles.appendChild(img);
                 }
             });
