@@ -399,6 +399,13 @@
 </ul></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="callToAction">Call-to-Action Question (optional)</label>
+                        <input type="text" id="callToAction" placeholder="e.g., How are you currently managing...?" value="What questions do you have about this product?">
+                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
+                            This will appear at the end of the description with "→ Gimme More ?'s" link
+                        </small>
+                    </div>
+                    <div class="form-group">
                         <label for="backBgColor">Background Color</label>
                         <div class="color-input-group">
                             <input type="text" id="backBgColor" value="#003566">
@@ -522,6 +529,7 @@
             const bannerUrl = document.getElementById('bannerUrl').value.trim();
             const bannerAlt = document.getElementById('bannerAlt').value.trim();
             const description = document.getElementById('description').value;
+            const callToAction = document.getElementById('callToAction').value.trim();
             const backBgColor = document.getElementById('backBgColor').value.trim();
             
             // Get toggle button URLs
@@ -585,7 +593,13 @@
             // Update back face
             previewBanner.src = bannerUrl || 'images/grok-n-talk-banner.png';
             previewBanner.alt = bannerAlt;
-            previewDescription.innerHTML = description;
+            
+            // Build description with optional call-to-action
+            let descriptionHtml = description;
+            if (callToAction) {
+                descriptionHtml += `\n<li><span class="emphasize">${callToAction}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>`;
+            }
+            previewDescription.innerHTML = descriptionHtml;
             previewBack.style.backgroundColor = backBgColor;
 
             // Update toggle buttons in preview
@@ -641,6 +655,7 @@
             const bannerUrl = document.getElementById('bannerUrl').value.trim() || 'images/grok-n-talk-banner.png';
             const bannerAlt = document.getElementById('bannerAlt').value.trim() || 'Product';
             const description = document.getElementById('description').value;
+            const callToAction = document.getElementById('callToAction').value.trim();
             const backBgColor = document.getElementById('backBgColor').value.trim() || '#003566';
             
             // Get toggle button URLs
@@ -692,6 +707,19 @@
                 });
             }
 
+            // Build description with optional call-to-action
+            let finalDescription = description;
+            if (callToAction) {
+                // Check if description ends with </ul> to add inside list, otherwise add as new paragraph
+                if (description.trim().endsWith('</ul>')) {
+                    finalDescription = description.trim().slice(0, -5) +
+                        `    <li><span class="emphasize">${callToAction}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>\n</ul>`;
+                } else {
+                    finalDescription = description +
+                        `\n<p><span class="emphasize">${callToAction}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></p>`;
+                }
+            }
+
             // Generate HTML
             const html = `<!-- ${cardClass} Card -->
 <div class="card ${cardClass}">
@@ -702,7 +730,7 @@
     <div class="face back" style="background-color: ${backBgColor};">
         <img src="${bannerUrl}" alt="${bannerAlt}" style="height:10%" />
         <div class="description">
-${description}
+${finalDescription}
         </div>${toggleButtonsHtml}
     </div>
 </div>`;
@@ -758,6 +786,7 @@ ${description}
     <li>Key feature or benefit 2</li>
     <li>Key feature or benefit 3</li>
 </ul>`;
+            document.getElementById('callToAction').value = 'What questions do you have about this product?';
             document.getElementById('backBgColor').value = '#003566';
             document.getElementById('backBgColorPicker').value = '#003566';
             document.getElementById('toggleSummary').value = 'images/list-eli5.png';
