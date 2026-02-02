@@ -743,11 +743,11 @@
                         <small style="display: block; margin-bottom: 10px; color: #9fb3c8; font-size: 12px;">
                             Each bullet should be ~100-150 characters for optimal display
                         </small>
-                        <input type="text" id="eli5Assertion" placeholder="ELI5 Assertion (e.g., Applications need resources...)" maxlength="150" style="margin-bottom: 8px;">
-                        <input type="text" id="eli5PainPoint" placeholder="ELI5 Customer Pain Point (e.g., Hard to find right size...)" maxlength="150" style="margin-bottom: 8px;">
-                        <input type="text" id="eli5Value" placeholder="ELI5 Customer Value (e.g., Automatic resource adjustment...)" maxlength="150" style="margin-bottom: 8px;">
-                        <input type="text" id="eli5Punchline" placeholder="ELI5 Product Punchline Value (e.g., Product watches and tunes...)" maxlength="150" style="margin-bottom: 8px;">
-                        <input type="text" id="eli5Question" placeholder="ELI5 Initial CTA Provocation Question" maxlength="150">
+                        <input type="text" id="eli5Assertion" placeholder="ELI5 Assertion" maxlength="150" style="margin-bottom: 8px;" value="Applications need resources to function. Stuff like compute, memory, storage, networking.">
+                        <input type="text" id="eli5PainPoint" placeholder="ELI5 Customer Pain Point" maxlength="150" style="margin-bottom: 8px;" value="Hard to find the right size and creating waste because application needs change all the time">
+                        <input type="text" id="eli5Value" placeholder="ELI5 Customer Value" maxlength="150" style="margin-bottom: 8px;" value="Automatic resource adjustment to the right amount, at the right time, can lower costs and waste">
+                        <input type="text" id="eli5Punchline" placeholder="ELI5 Product Punchline Value" maxlength="150" style="margin-bottom: 8px;" value="Product watches apps constantly and tunes their resources automatically to keep performance steady">
+                        <input type="text" id="eli5Question" placeholder="ELI5 Initial CTA Provocation Question" maxlength="150" value="How are you currently managing resource efficiency in your environments?">
                     </div>
                     
                     <div class="form-group">
@@ -764,7 +764,11 @@
                             <button type="button" onclick='validateHTML("competitorsContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="competitorsContent" placeholder="List competitors and their key differentiators..." rows="4"></textarea>
+                            <textarea id="competitorsContent" placeholder="List competitors and their key differentiators..." rows="4"><ul>
+    <li><strong>Competitor A:</strong> Feature X, but lacks Y</li>
+    <li><strong>Competitor B:</strong> Good at Z, expensive for scale</li>
+    <li><strong>Our Advantage:</strong> Combines X, Y, and Z at better value</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-competitorsContent"></div>
                     </div>
@@ -783,7 +787,11 @@
                             <button type="button" onclick='validateHTML("xsellContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="xsellContent" placeholder="Products that work well together..." rows="4"></textarea>
+                            <textarea id="xsellContent" placeholder="Products that work well together..." rows="4"><ul>
+    <li><strong>Related Product 1:</strong> Enhances capability A</li>
+    <li><strong>Related Product 2:</strong> Provides complementary feature B</li>
+    <li><strong>Bundle Value:</strong> Better together for complete solution</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-xsellContent"></div>
                     </div>
@@ -802,7 +810,11 @@
                             <button type="button" onclick='validateHTML("upsellContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="upsellContent" placeholder="Upgrade opportunities..." rows="4"></textarea>
+                            <textarea id="upsellContent" placeholder="Upgrade opportunities..." rows="4"><ul>
+    <li><strong>Enterprise Edition:</strong> Advanced analytics and reporting</li>
+    <li><strong>Premium Support:</strong> 24/7 dedicated support team</li>
+    <li><strong>Custom Integration:</strong> Tailored to your specific needs</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-upsellContent"></div>
                     </div>
@@ -821,7 +833,12 @@
                             <button type="button" onclick='validateHTML("questionsContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="questionsContent" placeholder="Questions to ask prospects..." rows="4"></textarea>
+                            <textarea id="questionsContent" placeholder="Questions to ask prospects..." rows="4"><ul>
+    <li>How does this integrate with our existing systems?</li>
+    <li>What's the typical implementation timeline?</li>
+    <li>What kind of ROI can we expect?</li>
+    <li>How does pricing scale with usage?</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-questionsContent"></div>
                     </div>
@@ -840,7 +857,11 @@
                             <button type="button" onclick='validateHTML("storyContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="storyContent" placeholder="Success stories and case studies..." rows="4"></textarea>
+                            <textarea id="storyContent" placeholder="Success stories and case studies..." rows="4"><ul>
+    <li><strong>Company X:</strong> Reduced costs by 40% in 6 months</li>
+    <li><strong>Company Y:</strong> Improved performance by 3x</li>
+    <li><strong>Company Z:</strong> Scaled from 100 to 10,000 users seamlessly</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-storyContent"></div>
                     </div>
@@ -859,7 +880,11 @@
                             <button type="button" onclick='validateHTML("loveContent")' title="Validate HTML">✓ Validate</button>
                         </div>
                         <div class="editor-container">
-                            <textarea id="loveContent" placeholder="Why customers love this product..." rows="4"></textarea>
+                            <textarea id="loveContent" placeholder="Why customers love this product..." rows="4"><ul>
+    <li>"This product transformed how we work" - CTO, Fortune 500 Company</li>
+    <li>"Best investment we made this year" - VP Engineering, Tech Startup</li>
+    <li>"Support team is incredibly responsive" - IT Director, Healthcare</li>
+</ul></textarea>
                         </div>
                         <div class="validation-message" id="validation-loveContent"></div>
                     </div>
