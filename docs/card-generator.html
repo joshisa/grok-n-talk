@@ -247,6 +247,29 @@
 
         .card .back .description {
             padding: 10px;
+            padding-bottom: 60px; /* Make room for toggle buttons */
+        }
+
+        /* Toggle buttons at bottom of card */
+        .card .back .toggle-buttons {
+            position: absolute;
+            bottom: 15px;
+            left: 5px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .card .back .toggle {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border-radius: 4px;
+        }
+
+        .card .back .toggle:hover {
+            transform: scale(1.1);
         }
 
         /* Output Panel */
@@ -384,6 +407,37 @@
                     </div>
                 </div>
 
+                <!-- Toggle Buttons -->
+                <div class="form-section">
+                    <h3>Toggle Buttons (Bottom Icons)</h3>
+                    <p style="font-size: 12px; color: #9fb3c8; margin-top: 0;">Add clickable icons at the bottom of the card back. Leave URL empty to exclude a button.</p>
+                    
+                    <div class="form-group">
+                        <label for="toggleSummary">Summary/ELI5 Icon URL</label>
+                        <input type="url" id="toggleSummary" placeholder="images/list-eli5.png" value="images/list-eli5.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleCompete">Competitors Icon URL</label>
+                        <input type="url" id="toggleCompete" placeholder="images/list-compete.png" value="images/list-compete.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleXsell">Cross-Sell Icon URL</label>
+                        <input type="url" id="toggleXsell" placeholder="images/list-cross-sell.png" value="images/list-cross-sell.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleUpsell">Upsell Icon URL</label>
+                        <input type="url" id="toggleUpsell" placeholder="images/list-upsell.png" value="images/list-upsell.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleStory">Stories Icon URL</label>
+                        <input type="url" id="toggleStory" placeholder="images/list-story.png" value="images/list-story.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleLove">Customer Love Icon URL</label>
+                        <input type="url" id="toggleLove" placeholder="images/list-love.png" value="images/list-love.png">
+                    </div>
+                </div>
+
                 <!-- Action Buttons -->
                 <div class="button-group">
                     <button onclick="generateHTML()">🔨 Generate HTML</button>
@@ -408,6 +462,9 @@
                                     <li>Key feature or benefit 2</li>
                                     <li>Key feature or benefit 3</li>
                                 </ul>
+                            </div>
+                            <div class="toggle-buttons" id="previewToggles">
+                                <!-- Toggle buttons will be dynamically added here -->
                             </div>
                         </div>
                     </div>
@@ -466,6 +523,14 @@
             const bannerAlt = document.getElementById('bannerAlt').value.trim();
             const description = document.getElementById('description').value;
             const backBgColor = document.getElementById('backBgColor').value.trim();
+            
+            // Get toggle button URLs
+            const toggleSummary = document.getElementById('toggleSummary').value.trim();
+            const toggleCompete = document.getElementById('toggleCompete').value.trim();
+            const toggleXsell = document.getElementById('toggleXsell').value.trim();
+            const toggleUpsell = document.getElementById('toggleUpsell').value.trim();
+            const toggleStory = document.getElementById('toggleStory').value.trim();
+            const toggleLove = document.getElementById('toggleLove').value.trim();
 
             // Validate URLs
             const isValidUrl = (url) => {
@@ -522,6 +587,30 @@
             previewBanner.alt = bannerAlt;
             previewDescription.innerHTML = description;
             previewBack.style.backgroundColor = backBgColor;
+
+            // Update toggle buttons in preview
+            const previewToggles = document.getElementById('previewToggles');
+            previewToggles.innerHTML = '';
+            
+            const toggles = [
+                { url: toggleSummary, alt: 'Summary', title: 'Show Summary' },
+                { url: toggleCompete, alt: 'Competitors', title: 'Show Competitors' },
+                { url: toggleXsell, alt: 'Cross-Sell', title: 'Show Cross-Sell' },
+                { url: toggleUpsell, alt: 'Upsell', title: 'Show Upsell' },
+                { url: toggleStory, alt: 'Stories', title: 'Show Stories' },
+                { url: toggleLove, alt: 'Customer Love', title: 'Show Customer Love' }
+            ];
+
+            toggles.forEach(toggle => {
+                if (toggle.url) {
+                    const img = document.createElement('img');
+                    img.src = toggle.url;
+                    img.alt = toggle.alt;
+                    img.title = toggle.title;
+                    img.className = 'toggle';
+                    previewToggles.appendChild(img);
+                }
+            });
         }
 
         function generateHTML() {
@@ -542,6 +631,14 @@
             const bannerAlt = document.getElementById('bannerAlt').value.trim() || 'Product';
             const description = document.getElementById('description').value;
             const backBgColor = document.getElementById('backBgColor').value.trim() || '#003566';
+            
+            // Get toggle button URLs
+            const toggleSummary = document.getElementById('toggleSummary').value.trim();
+            const toggleCompete = document.getElementById('toggleCompete').value.trim();
+            const toggleXsell = document.getElementById('toggleXsell').value.trim();
+            const toggleUpsell = document.getElementById('toggleUpsell').value.trim();
+            const toggleStory = document.getElementById('toggleStory').value.trim();
+            const toggleLove = document.getElementById('toggleLove').value.trim();
 
             // Validate CSS class name
             if (!/^[a-zA-Z][\w-]*$/.test(cardClass)) {
@@ -561,6 +658,29 @@
                 frontStyle += ` background-image: url(${frontBgImage}); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat;`;
             }
 
+            // Generate toggle buttons HTML
+            let toggleButtonsHtml = '';
+            const toggles = [
+                { url: toggleSummary, id: 'summary', alt: 'Show Summary', title: 'Show Summary' },
+                { url: toggleCompete, id: 'compete', alt: 'Show Competitors', title: 'Show Competitors' },
+                { url: toggleXsell, id: 'x-sell', alt: 'Show X-Sell', title: 'Show Cross-Sell' },
+                { url: toggleUpsell, id: 'upsell', alt: 'Show Upsell', title: 'Show Upsell' },
+                { url: toggleStory, id: 'story', alt: 'Show Stories', title: 'Show Stories' },
+                { url: toggleLove, id: 'love', alt: 'Show Love', title: 'Show Customer Love' }
+            ];
+
+            const activeToggles = toggles.filter(t => t.url);
+            
+            if (activeToggles.length > 0) {
+                toggleButtonsHtml = '\n        <!-- Toggle Buttons -->';
+                activeToggles.forEach((toggle, index) => {
+                    const leftPosition = 5 + (index * 50);
+                    toggleButtonsHtml += `\n        <div class="${toggle.id}-toggle" id="${toggle.id}" style="position: absolute; bottom: 15px; left: ${leftPosition}px;">
+            <a href="#"><img class="toggle" src="${toggle.url}" alt="${toggle.alt}" title="${toggle.title}" /></a>
+        </div>`;
+                });
+            }
+
             // Generate HTML
             const html = `<!-- ${cardClass} Card -->
 <div class="card ${cardClass}">
@@ -572,7 +692,7 @@
         <img src="${bannerUrl}" alt="${bannerAlt}" style="height:10%" />
         <div class="description">
 ${description}
-        </div>
+        </div>${toggleButtonsHtml}
     </div>
 </div>`;
 
@@ -629,6 +749,12 @@ ${description}
 </ul>`;
             document.getElementById('backBgColor').value = '#003566';
             document.getElementById('backBgColorPicker').value = '#003566';
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
             document.getElementById('htmlOutput').value = '';
             updatePreview();
         }
