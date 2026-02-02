@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok-N-Talk Card Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e8eef5;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #B3D0F5;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9fb3c8;
+            margin-bottom: 30px;
+        }
+
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .generator-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: #121823;
+            border: 1px solid #223041;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            color: #B3D0F5;
+            font-size: 20px;
+            border-bottom: 2px solid #223041;
+            padding-bottom: 10px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h3 {
+            color: #FFC294;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #9fb3c8;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="color"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            color: #e8eef5;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="color"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3ba0ff;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        button {
+            background: #3ba0ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2e8fd9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button-secondary {
+            background: #223041;
+        }
+
+        .button-secondary:hover {
+            background: #2d3d52;
+        }
+
+        /* Preview Panel Styles */
+        .preview-container {
+            perspective: 1500px;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            text-align: left;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+            font-family: Arial, Sans-Serif;
+            width: 400px;
+            height: 600px;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .card .face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            backface-visibility: hidden;
+            transform: translateZ(0.1px);
+            border-radius: 10px;
+        }
+
+        .card .front {
+            background-color: #101010;
+            color: #ffffff;
+            background-size: 100%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .card .back {
+            transform: rotateY(180deg);
+            font-size: 16px;
+            line-height: 1.3em;
+            background: #003566;
+            color: #FFFFFF;
+            padding: 5px;
+            overflow-y: auto;
+        }
+
+        .card .front .logo {
+            width: 200px;
+            padding: 10px;
+        }
+
+        .card h2 {
+            text-transform: uppercase;
+            font-size: 48px;
+            position: absolute;
+            bottom: 70px;
+            margin: 0;
+            line-height: 0.75em;
+            padding: 10px;
+        }
+
+        .card h2 small {
+            font-size: 28px;
+        }
+
+        .card .back img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card .back .description {
+            padding: 10px;
+        }
+
+        /* Output Panel */
+        .output-panel {
+            background: #121823;
+            border: 1px solid #223041;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .output-panel h2 {
+            color: #B3D0F5;
+            margin-top: 0;
+        }
+
+        #htmlOutput {
+            width: 100%;
+            min-height: 300px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            color: #e8eef5;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            padding: 15px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .success-message {
+            background: #2ecc71;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .flip-hint {
+            text-align: center;
+            color: #9fb3c8;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .color-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        input[type="color"] {
+            width: 60px;
+            height: 38px;
+            padding: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 Grok-N-Talk Card Generator</h1>
+        <p class="subtitle">Create custom flip cards for your Grok-N-Talk collection</p>
+
+        <div class="generator-layout">
+            <!-- Configuration Panel -->
+            <div class="panel">
+                <h2>⚙️ Card Configuration</h2>
+                
+                <!-- Basic Settings -->
+                <div class="form-section">
+                    <h3>Basic Settings</h3>
+                    <div class="form-group">
+                        <label for="cardClass">Card CSS Class Name</label>
+                        <input type="text" id="cardClass" placeholder="e.g., turbo, instana, custom-card" value="custom-card">
+                    </div>
+                </div>
+
+                <!-- Front Face -->
+                <div class="form-section">
+                    <h3>Front Face</h3>
+                    <div class="form-group">
+                        <label for="logoUrl">Logo Image URL</label>
+                        <input type="url" id="logoUrl" placeholder="images/logo.png" value="images/grok-n-talk-logo.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="subtitle">Subtitle (optional)</label>
+                        <input type="text" id="subtitle" placeholder="e.g., IBM" value="IBM">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Main Title</label>
+                        <input type="text" id="title" placeholder="e.g., Product Name" value="Custom Product">
+                    </div>
+                    <div class="form-group">
+                        <label for="frontBgImage">Background Image URL (optional)</label>
+                        <input type="url" id="frontBgImage" placeholder="images/product-front.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="frontBgColor">Background Color</label>
+                        <div class="color-input-group">
+                            <input type="text" id="frontBgColor" value="#101010">
+                            <input type="color" id="frontBgColorPicker" value="#101010">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back Face -->
+                <div class="form-section">
+                    <h3>Back Face</h3>
+                    <div class="form-group">
+                        <label for="bannerUrl">Banner Image URL</label>
+                        <input type="url" id="bannerUrl" placeholder="images/banner.png" value="images/grok-n-talk-banner.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerAlt">Banner Alt Text</label>
+                        <input type="text" id="bannerAlt" placeholder="Product Name" value="Custom Product">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description Content</label>
+                        <textarea id="description" placeholder="Enter the main description content...">
+<ul>
+    <li>Key feature or benefit 1</li>
+    <li>Key feature or benefit 2</li>
+    <li>Key feature or benefit 3</li>
+</ul></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="backBgColor">Background Color</label>
+                        <div class="color-input-group">
+                            <input type="text" id="backBgColor" value="#003566">
+                            <input type="color" id="backBgColorPicker" value="#003566">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button onclick="generateHTML()">🔨 Generate HTML</button>
+                    <button class="button-secondary" onclick="resetForm()">🔄 Reset</button>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="panel">
+                <h2>👁️ Live Preview</h2>
+                <div class="preview-container">
+                    <div class="card" id="previewCard" onclick="this.classList.toggle('flip')">
+                        <div class="face front" id="previewFront">
+                            <img class="logo" id="previewLogo" src="images/grok-n-talk-logo.png" alt="Logo">
+                            <h2 id="previewTitle"><small id="previewSubtitle">IBM</small><br/>Custom Product</h2>
+                        </div>
+                        <div class="face back" id="previewBack">
+                            <img id="previewBanner" src="images/grok-n-talk-banner.png" alt="Custom Product">
+                            <div class="description" id="previewDescription">
+                                <ul>
+                                    <li>Key feature or benefit 1</li>
+                                    <li>Key feature or benefit 2</li>
+                                    <li>Key feature or benefit 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="flip-hint">💡 Click the card to flip it</p>
+            </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="output-panel">
+            <h2>📋 Generated HTML</h2>
+            <div class="button-group">
+                <button onclick="copyToClipboard()">📄 Copy to Clipboard</button>
+            </div>
+            <div id="successMessage" class="success-message">✓ Copied to clipboard!</div>
+            <textarea id="htmlOutput" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        // Sync color inputs
+        document.getElementById('frontBgColorPicker').addEventListener('input', (e) => {
+            document.getElementById('frontBgColor').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('frontBgColor').addEventListener('input', (e) => {
+            document.getElementById('frontBgColorPicker').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('backBgColorPicker').addEventListener('input', (e) => {
+            document.getElementById('backBgColor').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('backBgColor').addEventListener('input', (e) => {
+            document.getElementById('backBgColorPicker').value = e.target.value;
+            updatePreview();
+        });
+
+        // Update preview on input changes
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
+
+        function updatePreview() {
+            const cardClass = document.getElementById('cardClass').value.trim();
+            const logoUrl = document.getElementById('logoUrl').value.trim();
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const title = document.getElementById('title').value.trim();
+            const frontBgImage = document.getElementById('frontBgImage').value.trim();
+            const frontBgColor = document.getElementById('frontBgColor').value.trim();
+            const bannerUrl = document.getElementById('bannerUrl').value.trim();
+            const bannerAlt = document.getElementById('bannerAlt').value.trim();
+            const description = document.getElementById('description').value;
+            const backBgColor = document.getElementById('backBgColor').value.trim();
+
+            // Validate URLs
+            const isValidUrl = (url) => {
+                if (!url) return true; // Empty is valid (optional)
+                return url.startsWith('http://') || url.startsWith('https://') ||
+                       url.startsWith('/') || url.startsWith('./') || url.startsWith('../') ||
+                       !url.includes('://'); // Relative paths
+            };
+
+            // Show validation errors
+            const validateField = (fieldId, isValid, message) => {
+                const field = document.getElementById(fieldId);
+                if (!isValid) {
+                    field.style.borderColor = '#ff6b6b';
+                    field.title = message;
+                } else {
+                    field.style.borderColor = '#223041';
+                    field.title = '';
+                }
+            };
+
+            validateField('logoUrl', isValidUrl(logoUrl), 'Please enter a valid URL or path');
+            validateField('frontBgImage', isValidUrl(frontBgImage), 'Please enter a valid URL or path');
+            validateField('bannerUrl', isValidUrl(bannerUrl), 'Please enter a valid URL or path');
+            validateField('title', title.length > 0, 'Title is required');
+
+            // Update preview card
+            const previewCard = document.getElementById('previewCard');
+            const previewFront = document.getElementById('previewFront');
+            const previewBack = document.getElementById('previewBack');
+            const previewLogo = document.getElementById('previewLogo');
+            const previewSubtitle = document.getElementById('previewSubtitle');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewBanner = document.getElementById('previewBanner');
+            const previewDescription = document.getElementById('previewDescription');
+
+            // Update front face
+            previewLogo.src = logoUrl || 'images/grok-n-talk-logo.png';
+            previewSubtitle.textContent = subtitle;
+            previewSubtitle.style.display = subtitle ? 'inline' : 'none';
+            
+            const titleHtml = subtitle ? `<small id="previewSubtitle">${subtitle}</small><br/>${title}` : title;
+            previewTitle.innerHTML = titleHtml;
+
+            previewFront.style.backgroundColor = frontBgColor;
+            if (frontBgImage) {
+                previewFront.style.backgroundImage = `url(${frontBgImage})`;
+            } else {
+                previewFront.style.backgroundImage = 'none';
+            }
+
+            // Update back face
+            previewBanner.src = bannerUrl || 'images/grok-n-talk-banner.png';
+            previewBanner.alt = bannerAlt;
+            previewDescription.innerHTML = description;
+            previewBack.style.backgroundColor = backBgColor;
+        }
+
+        function generateHTML() {
+            // Validate required fields
+            const title = document.getElementById('title').value.trim();
+            if (!title) {
+                alert('⚠️ Title is required!');
+                document.getElementById('title').focus();
+                return;
+            }
+
+            const cardClass = document.getElementById('cardClass').value.trim() || 'custom-card';
+            const logoUrl = document.getElementById('logoUrl').value.trim() || 'images/grok-n-talk-logo.png';
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const frontBgImage = document.getElementById('frontBgImage').value.trim();
+            const frontBgColor = document.getElementById('frontBgColor').value.trim() || '#101010';
+            const bannerUrl = document.getElementById('bannerUrl').value.trim() || 'images/grok-n-talk-banner.png';
+            const bannerAlt = document.getElementById('bannerAlt').value.trim() || 'Product';
+            const description = document.getElementById('description').value;
+            const backBgColor = document.getElementById('backBgColor').value.trim() || '#003566';
+
+            // Validate CSS class name
+            if (!/^[a-zA-Z][\w-]*$/.test(cardClass)) {
+                alert('⚠️ Card class name must start with a letter and contain only letters, numbers, hyphens, and underscores.');
+                document.getElementById('cardClass').focus();
+                return;
+            }
+
+            // Generate title HTML
+            const titleHtml = subtitle 
+                ? `<h2><small>${subtitle}</small><br/>${title}</h2>`
+                : `<h2>${title}</h2>`;
+
+            // Generate style attribute for front face
+            let frontStyle = `background-color: ${frontBgColor};`;
+            if (frontBgImage) {
+                frontStyle += ` background-image: url(${frontBgImage}); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat;`;
+            }
+
+            // Generate HTML
+            const html = `<!-- ${cardClass} Card -->
+<div class="card ${cardClass}">
+    <div class="face front" style="${frontStyle}">
+        <img class="logo" src="${logoUrl}" alt="Logo" />
+        ${titleHtml}
+    </div>
+    <div class="face back" style="background-color: ${backBgColor};">
+        <img src="${bannerUrl}" alt="${bannerAlt}" style="height:10%" />
+        <div class="description">
+${description}
+        </div>
+    </div>
+</div>`;
+
+            document.getElementById('htmlOutput').value = html;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('htmlOutput');
+            
+            if (!output.value) {
+                alert('⚠️ Please generate HTML first!');
+                return;
+            }
+
+            output.select();
+            
+            // Try modern clipboard API first, fallback to execCommand
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(output.value).then(() => {
+                    showSuccessMessage();
+                }).catch(() => {
+                    // Fallback to execCommand
+                    document.execCommand('copy');
+                    showSuccessMessage();
+                });
+            } else {
+                document.execCommand('copy');
+                showSuccessMessage();
+            }
+        }
+
+        function showSuccessMessage() {
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+
+        function resetForm() {
+            document.getElementById('cardClass').value = 'custom-card';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Custom Product';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'Custom Product';
+            document.getElementById('description').value = `<ul>
+    <li>Key feature or benefit 1</li>
+    <li>Key feature or benefit 2</li>
+    <li>Key feature or benefit 3</li>
+</ul>`;
+            document.getElementById('backBgColor').value = '#003566';
+            document.getElementById('backBgColorPicker').value = '#003566';
+            document.getElementById('htmlOutput').value = '';
+            updatePreview();
+        }
+
+        // Initialize preview on page load
+        updatePreview();
+    </script>
+</body>
+</html>
