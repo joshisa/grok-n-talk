@@ -148,6 +148,7 @@
             background: #0b0f14;
             font-size: 13px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+            color: #e8eef5;
         }
 
         .CodeMirror-scroll {
@@ -174,6 +175,78 @@
 
         .CodeMirror-focused .CodeMirror-selected {
             background: #2d3d52 !important;
+        }
+
+        /* Custom Syntax Highlighting for Dark Theme */
+        .cm-s-default .cm-tag {
+            color: #7dd3fc; /* Light blue for tags */
+        }
+
+        .cm-s-default .cm-attribute {
+            color: #fbbf24; /* Amber for attributes */
+        }
+
+        .cm-s-default .cm-string {
+            color: #86efac; /* Light green for strings */
+        }
+
+        .cm-s-default .cm-meta {
+            color: #c084fc; /* Purple for meta tags */
+        }
+
+        .cm-s-default .cm-qualifier {
+            color: #fbbf24; /* Amber for qualifiers */
+        }
+
+        .cm-s-default .cm-keyword {
+            color: #f472b6; /* Pink for keywords */
+        }
+
+        .cm-s-default .cm-builtin {
+            color: #60a5fa; /* Blue for built-ins */
+        }
+
+        .cm-s-default .cm-link {
+            color: #3ba0ff; /* Bright blue for links */
+            text-decoration: underline;
+        }
+
+        .cm-s-default .cm-error {
+            color: #ef4444; /* Red for errors */
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .cm-s-default .cm-comment {
+            color: #6b7280; /* Gray for comments */
+            font-style: italic;
+        }
+
+        .cm-s-default .cm-number {
+            color: #fb923c; /* Orange for numbers */
+        }
+
+        .cm-s-default .cm-variable {
+            color: #e8eef5; /* Light gray for variables */
+        }
+
+        .cm-s-default .cm-variable-2 {
+            color: #a78bfa; /* Light purple for variable-2 */
+        }
+
+        .cm-s-default .cm-def {
+            color: #fcd34d; /* Yellow for definitions */
+        }
+
+        .cm-s-default .cm-bracket {
+            color: #9fb3c8; /* Medium gray for brackets */
+        }
+
+        .cm-s-default .cm-property {
+            color: #fbbf24; /* Amber for properties */
+        }
+
+        .cm-s-default .cm-operator {
+            color: #f472b6; /* Pink for operators */
         }
 
         /* HTML Editor Toolbar */
