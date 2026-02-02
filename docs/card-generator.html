@@ -1549,6 +1549,10 @@ ${finalDescription}
             document.getElementById('loveContent').value = '';
             document.getElementById('videoUrl').value = '';
             document.getElementById('htmlOutput').value = '';
+            
+            // Sync CodeMirror editors with cleared textarea values
+            syncEditorsFromTextareas();
+            
             updatePreview();
         }
 
@@ -1657,6 +1661,9 @@ ${finalDescription}
             
             // Video URL
             document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/SWWbjv5QXUk?si=83KundRgMMyVO6rB';
+            
+            // Sync CodeMirror editors with textarea values
+            syncEditorsFromTextareas();
             
             updatePreview();
         }
@@ -1920,6 +1927,26 @@ ${finalDescription}
                     }, 3000);
                 }
             }
+        }
+        
+        // Sync CodeMirror editors from textarea values
+        function syncEditorsFromTextareas() {
+            const textareaIds = [
+                'competitorsContent',
+                'xsellContent',
+                'upsellContent',
+                'questionsContent',
+                'storyContent',
+                'loveContent'
+            ];
+            
+            textareaIds.forEach(id => {
+                const editor = getEditor(id);
+                const textarea = document.getElementById(id);
+                if (editor && textarea) {
+                    editor.setValue(textarea.value);
+                }
+            });
         }
         
         // Initialize editors when page loads
