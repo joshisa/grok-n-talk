@@ -1522,6 +1522,12 @@
                     touchHandled = false;
                 })
                 .on('touchend', function(e) {
+                    // Don't flip if touching interactive elements (toggles, links, etc.)
+                    var $target = $(e.target);
+                    if ($target.closest('a, [class$="-toggle"], .toggle').length > 0) {
+                        return; // Let the interactive element handle the touch
+                    }
+                    
                     var diffX = Math.abs(e.changedTouches[0].clientX - touchStartX);
                     var diffY = Math.abs(e.changedTouches[0].clientY - touchStartY);
                     // Only flip if it's a tap (not a swipe)
@@ -1532,6 +1538,12 @@
                     }
                 })
                 .on('click', function(e) {
+                    // Don't flip if clicking interactive elements
+                    var $target = $(e.target);
+                    if ($target.closest('a, [class$="-toggle"], .toggle').length > 0) {
+                        return; // Let the interactive element handle the click
+                    }
+                    
                     // Don't flip if touch was already handled
                     if (!touchHandled) {
                         $(this).toggleClass("flip");
