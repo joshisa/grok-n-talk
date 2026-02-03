@@ -191,7 +191,7 @@
         }
 
         .cm-s-default .cm-meta {
-            color: #c084fc; /* Purple for meta tags */
+            color: #d8b4fe; /* Lighter purple for meta tags (HTML entities, etc.) */
         }
 
         .cm-s-default .cm-qualifier {
@@ -230,7 +230,7 @@
         }
 
         .cm-s-default .cm-variable-2 {
-            color: #a78bfa; /* Light purple for variable-2 */
+            color: #c4b5fd; /* Lighter purple for variable-2 (CSS values, etc.) */
         }
 
         .cm-s-default .cm-def {
@@ -247,6 +247,14 @@
 
         .cm-s-default .cm-operator {
             color: #f472b6; /* Pink for operators */
+        }
+
+        .cm-s-default .cm-atom {
+            color: #d8b4fe; /* Lighter purple for CSS values like no-repeat, auto, etc. */
+        }
+
+        .cm-s-default .cm-string-2 {
+            color: #d8b4fe; /* Lighter purple for special strings */
         }
 
         /* HTML Editor Toolbar */
@@ -1003,7 +1011,9 @@
                 <button type="button" onclick="formatGeneratedHTML()" title="Format HTML">🎨 Format</button>
                 <button type="button" onclick="validateGeneratedHTML()" title="Validate HTML">✓ Validate</button>
                 <div class="separator"></div>
-                <button onclick="copyToClipboard()">📄 Copy to Clipboard</button>
+                <button onclick="copyToClipboard('full')" title="Copy both CSS and HTML">📄 Copy All</button>
+                <button onclick="copyToClipboard('css')" title="Copy only CSS styles">🎨 Copy CSS</button>
+                <button onclick="copyToClipboard('html')" title="Copy only HTML div">📦 Copy HTML</button>
             </div>
             
             <div class="validation-message" id="validation-htmlOutput"></div>
@@ -1545,10 +1555,11 @@
                 ? `<h2><small>${subtitle}</small><br/>${title}</h2>`
                 : `<h2>${title}</h2>`;
 
-            // Generate style attribute for front face
-            let frontStyle = `background-color: ${frontBgColor};`;
-            if (frontBgImage) {
-                frontStyle += ` background-image: url(${frontBgImage}); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat;`;
+            // Don't use inline styles for front face - use CSS classes instead
+            // Only keep background color as inline style if no image is provided
+            let frontStyle = '';
+            if (!frontBgImage) {
+                frontStyle = `background-color: ${frontBgColor};`;
             }
 
             // Generate toggle buttons HTML with fixed positioning
@@ -1587,12 +1598,8 @@
             // Generate content sections HTML
             let contentSectionsHtml = '';
             
-            // Summary/ELI5 section
-            if (summaryContent) {
-                contentSectionsHtml += `\n        <div class="summary" id="${cardClass}-summary">
-${summaryContent}
-        </div>`;
-            }
+            // Note: We don't generate a separate .summary div because the .description div already contains the ELI5 content
+            // The .summary div would be a duplicate and cause rendering issues
             
             // Competitors section
             if (competitorsContent) {
@@ -1677,10 +1684,14 @@ ${loveContent}
 `;
             }
 
-            // Generate HTML
-            const html = `<!-- ${cardClass} Card -->${productImageCSS}
-<div class="card ${cardClass}">
-    <div class="face front" style="${frontStyle}">
+            // Generate HTML - add has-product-image class if front background image is provided
+            const cardClasses = frontBgImage ? `card ${cardClass} has-product-image` : `card ${cardClass}`;
+            const frontStyleAttr = frontStyle ? ` style="${frontStyle}"` : '';
+            
+            // Build HTML div content separately
+            const htmlDiv = `<!-- ${cardClass} Card -->
+<div class="${cardClasses}">
+    <div class="face front"${frontStyleAttr}>
         <img class="logo" src="${logoUrl}" alt="Logo" />
         ${titleHtml}
     </div>
@@ -1692,6 +1703,14 @@ ${finalDescription}
     </div>
 </div>`;
 
+            // Combine CSS and HTML for full output
+            const html = productImageCSS + htmlDiv;
+
+            // Store both parts globally for separate copying
+            window.generatedCSS = productImageCSS;
+            window.generatedHTML = htmlDiv;
+            window.generatedFull = html;
+
             // Update the textarea
             document.getElementById('htmlOutput').value = html;
             
@@ -1701,52 +1720,75 @@ ${finalDescription}
             }
         }
 
-        function copyToClipboard() {
-            // Get value from CodeMirror editor if it exists, otherwise from textarea
-            let htmlContent;
-            if (window.htmlOutputEditor) {
-                htmlContent = window.htmlOutputEditor.getValue();
-            } else {
-                htmlContent = document.getElementById('htmlOutput').value;
+        function copyToClipboard(type = 'full') {
+            let contentToCopy = '';
+            let label = '';
+            
+            // Determine what to copy based on type
+            switch(type) {
+                case 'css':
+                    contentToCopy = window.generatedCSS || '';
+                    label = 'CSS';
+                    if (!contentToCopy) {
+                        alert('⚠️ No CSS to copy! CSS is only generated when a front background image is provided.');
+                        return;
+                    }
+                    break;
+                case 'html':
+                    contentToCopy = window.generatedHTML || '';
+                    label = 'HTML';
+                    break;
+                case 'full':
+                default:
+                    // Get value from CodeMirror editor if it exists, otherwise from textarea
+                    if (window.htmlOutputEditor) {
+                        contentToCopy = window.htmlOutputEditor.getValue();
+                    } else {
+                        contentToCopy = document.getElementById('htmlOutput').value;
+                    }
+                    label = 'content';
+                    break;
             }
             
-            if (!htmlContent) {
-                alert('⚠️ No HTML to copy!');
+            if (!contentToCopy) {
+                alert(`⚠️ No ${label} to copy!`);
                 return;
             }
             
-            // Validate HTML before copying
-            const validation = validateHTMLContent(htmlContent);
-            if (!validation.isValid) {
-                const proceed = confirm(`⚠️ HTML validation found issues:\n\n${validation.errors.join('\n')}\n\nCopy anyway?`);
-                if (!proceed) {
-                    return;
+            // Validate HTML before copying (only for full or html)
+            if (type === 'full' || type === 'html') {
+                const validation = validateHTMLContent(contentToCopy);
+                if (!validation.isValid) {
+                    const proceed = confirm(`⚠️ HTML validation found issues:\n\n${validation.errors.join('\n')}\n\nCopy anyway?`);
+                    if (!proceed) {
+                        return;
+                    }
                 }
             }
 
             // Try modern clipboard API first, fallback to execCommand
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(htmlContent).then(() => {
-                    showSuccessMessage();
+                navigator.clipboard.writeText(contentToCopy).then(() => {
+                    showSuccessMessage(`✓ ${label.toUpperCase()} copied to clipboard!`);
                 }).catch(() => {
                     // Fallback: create temporary textarea
                     const temp = document.createElement('textarea');
-                    temp.value = htmlContent;
+                    temp.value = contentToCopy;
                     document.body.appendChild(temp);
                     temp.select();
                     document.execCommand('copy');
                     document.body.removeChild(temp);
-                    showSuccessMessage();
+                    showSuccessMessage(`✓ ${label.toUpperCase()} copied to clipboard!`);
                 });
             } else {
                 // Fallback: create temporary textarea
                 const temp = document.createElement('textarea');
-                temp.value = htmlContent;
+                temp.value = contentToCopy;
                 document.body.appendChild(temp);
                 temp.select();
                 document.execCommand('copy');
                 document.body.removeChild(temp);
-                showSuccessMessage();
+                showSuccessMessage(`✓ ${label.toUpperCase()} copied to clipboard!`);
             }
         }
         
@@ -1804,8 +1846,9 @@ ${finalDescription}
             }, 5000);
         }
 
-        function showSuccessMessage() {
+        function showSuccessMessage(message = '✓ Copied to clipboard!') {
             const successMsg = document.getElementById('successMessage');
+            successMsg.textContent = message;
             successMsg.style.display = 'block';
             setTimeout(() => {
                 successMsg.style.display = 'none';
