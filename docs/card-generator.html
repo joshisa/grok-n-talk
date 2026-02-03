@@ -409,15 +409,18 @@
         .card .front {
             background-color: #101010;
             color: #ffffff;
-            background-size: 100%;
-            background-position: 50% 50%;
-            background-repeat: no-repeat;
             transition: background 0.3s;
         }
         
-        .card .front:hover {
-            background-size: 200%;
-            background-position: 20% 30%;
+        .card .front.has-product-image {
+            background-size: 100% !important;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .card .front.has-product-image:hover {
+            background-size: 200% !important;
+            background-position: 20% 30% !important;
             transition: background 0.5s;
         }
 
@@ -1121,14 +1124,10 @@
             previewFront.style.backgroundColor = frontBgColor;
             if (frontBgImage) {
                 previewFront.style.backgroundImage = `url(${frontBgImage})`;
-                previewFront.style.backgroundSize = '100%';
-                previewFront.style.backgroundPosition = '50% 50%';
-                previewFront.style.backgroundRepeat = 'no-repeat';
+                previewFront.classList.add('has-product-image');
             } else {
                 previewFront.style.backgroundImage = 'none';
-                previewFront.style.backgroundSize = '';
-                previewFront.style.backgroundPosition = '';
-                previewFront.style.backgroundRepeat = '';
+                previewFront.classList.remove('has-product-image');
             }
 
             // Update back face
