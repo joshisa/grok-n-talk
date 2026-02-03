@@ -1,0 +1,2977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok-N-Talk Card Generator</title>
+    
+    <!-- CodeMirror 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/material.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/closetag.min.js"></script>
+    
+    <!-- JS Beautify for HTML formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.11/beautify-html.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e8eef5;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #B3D0F5;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9fb3c8;
+            margin-bottom: 30px;
+        }
+
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .generator-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: #121823;
+            border: 1px solid #223041;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        /* Make preview panel sticky */
+        .generator-layout > .panel:last-child {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            color: #B3D0F5;
+            font-size: 20px;
+            border-bottom: 2px solid #223041;
+            padding-bottom: 10px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h3 {
+            color: #FFC294;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #9fb3c8;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="color"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            color: #e8eef5;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="color"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3ba0ff;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* CodeMirror Customization */
+        .CodeMirror {
+            height: auto;
+            min-height: 120px;
+            max-height: 400px;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            background: #0b0f14;
+            font-size: 13px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+            color: #e8eef5;
+        }
+
+        .CodeMirror-scroll {
+            min-height: 120px;
+            max-height: 400px;
+        }
+
+        .CodeMirror-gutters {
+            background: #0b0f14;
+            border-right: 1px solid #223041;
+        }
+
+        .CodeMirror-linenumber {
+            color: #5a6b7d;
+        }
+
+        .CodeMirror-cursor {
+            border-left: 2px solid #3ba0ff;
+        }
+
+        .CodeMirror-selected {
+            background: #223041 !important;
+        }
+
+        .CodeMirror-focused .CodeMirror-selected {
+            background: #2d3d52 !important;
+        }
+
+        /* Custom Syntax Highlighting for Dark Theme */
+        .cm-s-default .cm-tag {
+            color: #7dd3fc; /* Light blue for tags */
+        }
+
+        .cm-s-default .cm-attribute {
+            color: #fbbf24; /* Amber for attributes */
+        }
+
+        .cm-s-default .cm-string {
+            color: #86efac; /* Light green for strings */
+        }
+
+        .cm-s-default .cm-meta {
+            color: #c084fc; /* Purple for meta tags */
+        }
+
+        .cm-s-default .cm-qualifier {
+            color: #fbbf24; /* Amber for qualifiers */
+        }
+
+        .cm-s-default .cm-keyword {
+            color: #f472b6; /* Pink for keywords */
+        }
+
+        .cm-s-default .cm-builtin {
+            color: #60a5fa; /* Blue for built-ins */
+        }
+
+        .cm-s-default .cm-link {
+            color: #3ba0ff; /* Bright blue for links */
+            text-decoration: underline;
+        }
+
+        .cm-s-default .cm-error {
+            color: #ef4444; /* Red for errors */
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .cm-s-default .cm-comment {
+            color: #6b7280; /* Gray for comments */
+            font-style: italic;
+        }
+
+        .cm-s-default .cm-number {
+            color: #fb923c; /* Orange for numbers */
+        }
+
+        .cm-s-default .cm-variable {
+            color: #e8eef5; /* Light gray for variables */
+        }
+
+        .cm-s-default .cm-variable-2 {
+            color: #a78bfa; /* Light purple for variable-2 */
+        }
+
+        .cm-s-default .cm-def {
+            color: #fcd34d; /* Yellow for definitions */
+        }
+
+        .cm-s-default .cm-bracket {
+            color: #9fb3c8; /* Medium gray for brackets */
+        }
+
+        .cm-s-default .cm-property {
+            color: #fbbf24; /* Amber for properties */
+        }
+
+        .cm-s-default .cm-operator {
+            color: #f472b6; /* Pink for operators */
+        }
+
+        /* HTML Editor Toolbar */
+        .editor-toolbar {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px 6px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-toolbar button {
+            padding: 6px 10px;
+            font-size: 12px;
+            background: #223041;
+            color: #9fb3c8;
+            border: 1px solid #2d3d52;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .editor-toolbar button:hover {
+            background: #2d3d52;
+            color: #e8eef5;
+            border-color: #3ba0ff;
+        }
+
+        .editor-toolbar button:active {
+            transform: scale(0.95);
+        }
+
+        .editor-toolbar .separator {
+            width: 1px;
+            background: #223041;
+            margin: 0 4px;
+        }
+
+        .editor-container {
+            position: relative;
+        }
+
+        .editor-container .CodeMirror {
+            border-radius: 0 0 6px 6px;
+            border-top: none;
+        }
+
+        /* Validation Messages */
+        .validation-message {
+            margin-top: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .validation-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: block;
+        }
+
+        .validation-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            display: block;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        button {
+            background: #3ba0ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2e8fd9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button-secondary {
+            background: #223041;
+        }
+
+        .button-secondary:hover {
+            background: #2d3d52;
+        }
+
+        /* Preview Panel Styles */
+        .preview-container {
+            perspective: 1500px;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            text-align: left;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+            font-family: Arial, Sans-Serif;
+            width: 400px;
+            height: 600px;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .card .face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            backface-visibility: hidden;
+            transform: translateZ(0.1px);
+            border-radius: 10px;
+        }
+
+        .card .front {
+            background-color: #101010;
+            color: #ffffff;
+            transition: background 0.3s;
+        }
+        
+        .card .front.has-product-image {
+            background-size: 100% !important;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .card .front.has-product-image:hover {
+            background-size: 200% !important;
+            background-position: 20% 30% !important;
+            transition: background 0.5s;
+        }
+
+        .card .back {
+            transform: rotateY(180deg);
+            font-size: 16px;
+            line-height: 1.3em;
+            background: #003566;
+            color: #FFFFFF;
+            padding: 5px;
+            overflow-y: auto;
+        }
+
+        .card .front .logo {
+            width: 200px;
+            padding: 10px;
+        }
+
+        .card h2 {
+            text-transform: uppercase;
+            font-size: 48px;
+            position: absolute;
+            bottom: 70px;
+            margin: 0;
+            line-height: 0.75em;
+            padding: 10px;
+        }
+
+        .card h2 small {
+            font-size: 28px;
+        }
+
+        .card .back img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card .back .description {
+            padding: 5px;
+        }
+
+        .card .back .summary,
+        .card .back .competitors,
+        .card .back .x-sell,
+        .card .back .upsell,
+        .card .back .questions,
+        .card .back .story,
+        .card .back .talk,
+        .card .back .tv {
+            padding: 5px;
+            display: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .card .back a:link,
+        .card .back a:visited {
+            color: #B3D0F5;
+        }
+
+        .card .back a:hover {
+            color: #e8eef5;
+        }
+
+        .emphasize {
+            font-weight: bold;
+            color: #FFC294;
+        }
+
+        /* Link icon styling */
+        .card .back a[href^='http']:after {
+            content: " \1F517 ";
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            left: 5px;
+            padding-right: 5px;
+        }
+
+        .card .back a[href^='http'].offline:after {
+            background-image: url(data:image/png;base64,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);
+            background-size: 20px 20px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            content: "";
+            vertical-align: top;
+            padding-left: 5px;
+            background-repeat: no-repeat;
+            position: relative;
+            left: 5px;
+        }
+
+        /* Toggle button positioning classes */
+        .card .back .summary-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 5px;
+        }
+
+        .card .back .compete-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 55px;
+        }
+
+        .card .back .x-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 105px;
+        }
+
+        .card .back .upsell-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 160px;
+        }
+
+        .card .back .story-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 215px;
+        }
+
+        .card .back .call-toggle {
+            position: fixed;
+            bottom: 15px;
+            left: 270px;
+        }
+
+        .card .back .watch-toggle {
+            position: absolute;
+            bottom: 0px;
+            right: 5px;
+        }
+
+        .card .back .toggle {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border-radius: 4px;
+            border-bottom: 3px solid #000000;
+        }
+
+        .card .back .toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .card .back .summary-toggle.active,
+        .card .back .compete-toggle.active,
+        .card .back .x-toggle.active,
+        .card .back .upsell-toggle.active,
+        .card .back .story-toggle.active,
+        .card .back .call-toggle.active {
+            background-color: #000814;
+        }
+
+        .card .back .logo {
+            width: 80px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card .back .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Output Panel */
+        .output-panel {
+            background: #121823;
+            border: 1px solid #223041;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .output-panel h2 {
+            color: #B3D0F5;
+            margin-top: 0;
+        }
+
+        #htmlOutput {
+            width: 100%;
+            min-height: 300px;
+            background: #0b0f14;
+            border: 1px solid #223041;
+            border-radius: 6px;
+            color: #e8eef5;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            padding: 15px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .success-message {
+            background: #2ecc71;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .flip-hint {
+            text-align: center;
+            color: #9fb3c8;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .color-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        input[type="color"] {
+            width: 60px;
+            height: 38px;
+            padding: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 Grok-N-Talk Card Generator</h1>
+        <p class="subtitle">Create custom flip cards for your Grok-N-Talk collection</p>
+
+        <div class="generator-layout">
+            <!-- Configuration Panel -->
+            <div class="panel">
+                <h2>⚙️ Card Configuration</h2>
+                
+                <!-- Action Buttons -->
+                <div style="margin-bottom: 20px;">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="exampleSelector">Load Production Card Example</label>
+                        <select id="exampleSelector" style="width: 100%; padding: 8px; background: #0b0f14; border: 1px solid #223041; border-radius: 6px; color: #e8eef5; font-size: 14px;">
+                            <option value="">-- Select a card to load --</option>
+                            <option value="turbonomic">IBM Turbonomic</option>
+                            <option value="instana">IBM Instana</option>
+                            <option value="cloudability">Cloudability</option>
+                            <option value="kubecost">Kubecost</option>
+                            <option value="apic">IBM API Connect</option>
+                            <option value="ns1">IBM NS1 Connect</option>
+                            <option value="aspera">IBM Aspera</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button class="button-secondary" onclick="loadSelectedExample()">📋 Load Example</button>
+                        <button class="button-secondary" onclick="resetForm()">🔄 Reset to Defaults</button>
+                    </div>
+                </div>
+                
+                <!-- Basic Settings -->
+                <div class="form-section">
+                    <h3>Basic Settings</h3>
+                    <div class="form-group">
+                        <label for="cardClass">Card CSS Class Name</label>
+                        <input type="text" id="cardClass" placeholder="e.g., turbo, instana, custom-card" value="custom-card">
+                    </div>
+                </div>
+
+                <!-- Front Face -->
+                <div class="form-section">
+                    <h3>Front Face</h3>
+                    <div class="form-group">
+                        <label for="logoUrl">Logo Image URL</label>
+                        <input type="url" id="logoUrl" placeholder="images/logo.png" value="images/grok-n-talk-logo.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="subtitle">Subtitle (optional)</label>
+                        <input type="text" id="subtitle" placeholder="e.g., IBM" value="IBM">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Main Title</label>
+                        <input type="text" id="title" placeholder="e.g., Product Name" value="Custom Product">
+                    </div>
+                    <div class="form-group">
+                        <label for="frontBgImage">Background Image URL (optional)</label>
+                        <input type="url" id="frontBgImage" placeholder="images/product-front.png">
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            💡 Optimal dimensions: 1032×774px (4:3 ratio) or 320×320px (square). PNG with transparency recommended.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="frontBgColor">Background Color</label>
+                        <div class="color-input-group">
+                            <input type="text" id="frontBgColor" value="#101010">
+                            <input type="color" id="frontBgColorPicker" value="#101010">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back Face -->
+                <div class="form-section">
+                    <h3>Back Face</h3>
+                    <div class="form-group">
+                        <label for="bannerUrl">Banner Image URL</label>
+                        <input type="url" id="bannerUrl" placeholder="images/banner.png" value="images/grok-n-talk-banner.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerAlt">Banner Alt Text</label>
+                        <input type="text" id="bannerAlt" placeholder="Product Name" value="Custom Product">
+                    </div>
+                    <div class="form-group">
+                        <label for="backBgColor">Background Color</label>
+                        <div class="color-input-group">
+                            <input type="text" id="backBgColor" value="#003566">
+                            <input type="color" id="backBgColorPicker" value="#003566">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toggle Content Sections -->
+                <div class="form-section">
+                    <h3>Toggle Content Sections</h3>
+                    <p style="font-size: 12px; color: #9fb3c8; margin-top: 0;">Content for each toggle button. Leave empty to exclude that section.</p>
+                    
+                    <div class="form-group">
+                        <label>Summary/ELI5 Content (5 Required Bullets)</label>
+                        <small style="display: block; margin-bottom: 10px; color: #9fb3c8; font-size: 12px;">
+                            Keep it simple! No jargon. ~100-150 characters each. Explain like talking to a 5-year-old.
+                        </small>
+                        <input type="text" id="eli5Assertion" placeholder="ELI5 Assertion / Relatable Analogy" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Assertion / Relatable Analogy">
+                        <input type="text" id="eli5PainPoint" placeholder="ELI5 Customer Pain Point" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Customer Pain Point">
+                        <input type="text" id="eli5Value" placeholder="ELI5 Customer Value" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Customer Value">
+                        <input type="text" id="eli5Punchline" placeholder="ELI5 Product Punchline" maxlength="150" style="margin-bottom: 8px;" value="ELI5 Product Punchline">
+                        <input type="text" id="eli5Question" placeholder="ELI5 Provocative Customer Question" maxlength="150" value="What questions do you have about this product?">
+                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
+                            The 5th bullet will automatically be emphasized and include "→ Gimme More ?'s" link to show the Questions section.
+                        </small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competitorsContent">Competitors Content</label>
+                        <div class="editor-toolbar" id="toolbar-competitorsContent">
+                            <button type="button" onclick='insertTag("competitorsContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("competitorsContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("competitorsContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("competitorsContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("competitorsContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("competitorsContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="competitorsContent" placeholder="List competitors and their key differentiators..." rows="4"><ul>
+    <li><strong>Competitor A:</strong> Feature X, but lacks Y</li>
+    <li><strong>Competitor B:</strong> Good at Z, expensive for scale</li>
+    <li><strong>Our Advantage:</strong> Combines X, Y, and Z at better value</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-competitorsContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="xsellContent">Cross-Sell Content</label>
+                        <div class="editor-toolbar" id="toolbar-xsellContent">
+                            <button type="button" onclick='insertTag("xsellContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("xsellContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("xsellContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("xsellContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("xsellContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("xsellContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="xsellContent" placeholder="Products that work well together..." rows="4"><ul>
+    <li><strong>Related Product 1:</strong> Enhances capability A</li>
+    <li><strong>Related Product 2:</strong> Provides complementary feature B</li>
+    <li><strong>Bundle Value:</strong> Better together for complete solution</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-xsellContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="upsellContent">Upsell Content</label>
+                        <div class="editor-toolbar" id="toolbar-upsellContent">
+                            <button type="button" onclick='insertTag("upsellContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("upsellContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("upsellContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("upsellContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("upsellContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("upsellContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="upsellContent" placeholder="Upgrade opportunities..." rows="4"><ul>
+    <li><strong>Enterprise Edition:</strong> Advanced analytics and reporting</li>
+    <li><strong>Premium Support:</strong> 24/7 dedicated support team</li>
+    <li><strong>Custom Integration:</strong> Tailored to your specific needs</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-upsellContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="questionsContent">Discovery Questions Content</label>
+                        <div class="editor-toolbar" id="toolbar-questionsContent">
+                            <button type="button" onclick='insertTag("questionsContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("questionsContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("questionsContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("questionsContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("questionsContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("questionsContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="questionsContent" placeholder="Questions to ask prospects..." rows="4"><ul>
+    <li>How does this integrate with our existing systems?</li>
+    <li>What's the typical implementation timeline?</li>
+    <li>What kind of ROI can we expect?</li>
+    <li>How does pricing scale with usage?</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-questionsContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyContent">Customer Stories Content</label>
+                        <div class="editor-toolbar" id="toolbar-storyContent">
+                            <button type="button" onclick='insertTag("storyContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("storyContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("storyContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("storyContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("storyContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("storyContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("storyContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("storyContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="storyContent" placeholder="Success stories and case studies..." rows="4"><ul>
+    <li><strong>Company X:</strong> Reduced costs by 40% in 6 months</li>
+    <li><strong>Company Y:</strong> Improved performance by 3x</li>
+    <li><strong>Company Z:</strong> Scaled from 100 to 10,000 users seamlessly</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-storyContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loveContent">Customer Love Reasons</label>
+                        <div class="editor-toolbar" id="toolbar-loveContent">
+                            <button type="button" onclick='insertTag("loveContent", "<ul>\n    <li></li>\n</ul>", 9)' title="Add List">📝 List</button>
+                            <button type="button" onclick='insertTag("loveContent", "<li></li>", 4)' title="Add List Item">• Item</button>
+                            <button type="button" onclick='insertLink("loveContent")' title="Add Link">🔗 Link</button>
+                            <button type="button" onclick='insertTag("loveContent", "<h3 class=\"center\"></h3>", 18)' title="Add Heading">📌 Heading</button>
+                            <button type="button" onclick='wrapSelection("loveContent", "<span class=\"emphasize\">", "</span>")' title="Emphasize">✨ Emphasize</button>
+                            <button type="button" onclick='insertTag("loveContent", "<small></small>", 7)' title="Add Small Text">🔤 Small</button>
+                            <div class="separator"></div>
+                            <button type="button" onclick='formatHTML("loveContent")' title="Format HTML">🎨 Format</button>
+                            <button type="button" onclick='validateHTML("loveContent")' title="Validate HTML">✓ Validate</button>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="loveContent" placeholder="Why customers love this product..." rows="4"><ul>
+    <li>"This product transformed how we work" - CTO, Fortune 500 Company</li>
+    <li>"Best investment we made this year" - VP Engineering, Tech Startup</li>
+    <li>"Support team is incredibly responsive" - IT Director, Healthcare</li>
+</ul></textarea>
+                        </div>
+                        <div class="validation-message" id="validation-loveContent"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="videoUrl">Video Embed URL (YouTube)</label>
+                        <input type="url" id="videoUrl" placeholder="https://www.youtube.com/embed/...">
+                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
+                            Use YouTube embed URL format
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Toggle Button Icons -->
+                <div class="form-section">
+                    <h3>Toggle Button Icons</h3>
+                    <p style="font-size: 12px; color: #9fb3c8; margin-top: 0;">Icon URLs for toggle buttons. Leave empty to use defaults.</p>
+                    
+                    <div class="form-group">
+                        <label for="toggleSummary">Summary/ELI5 Icon URL</label>
+                        <input type="url" id="toggleSummary" placeholder="images/list-eli5.png" value="images/list-eli5.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleCompete">Competitors Icon URL</label>
+                        <input type="url" id="toggleCompete" placeholder="images/list-compete.png" value="images/list-compete.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleXsell">Cross-Sell Icon URL</label>
+                        <input type="url" id="toggleXsell" placeholder="images/list-cross-sell.png" value="images/list-cross-sell.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleUpsell">Upsell Icon URL</label>
+                        <input type="url" id="toggleUpsell" placeholder="images/list-upsell.png" value="images/list-upsell.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleStory">Stories Icon URL</label>
+                        <input type="url" id="toggleStory" placeholder="images/list-story.png" value="images/list-story.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleLove">Customer Love Icon URL</label>
+                        <input type="url" id="toggleLove" placeholder="images/list-love.png" value="images/list-love.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="toggleWatch">Watch Explainer Icon URL</label>
+                        <input type="url" id="toggleWatch" placeholder="images/product-tv.png" value="images/empty-tv.png">
+                        <small style="display: block; margin-top: 5px; color: #9fb3c8; font-size: 12px;">
+                            This icon appears at bottom right (larger, 80px). Always visible when set.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="panel">
+                <h2>👁️ Live Preview</h2>
+                <div class="preview-container">
+                    <div class="card" id="previewCard">
+                        <div class="face front" id="previewFront">
+                            <img class="logo" id="previewLogo" src="images/grok-n-talk-logo.png" alt="Logo">
+                            <h2 id="previewTitle"><small id="previewSubtitle">IBM</small><br/>Custom Product</h2>
+                        </div>
+                        <div class="face back" id="previewBack">
+                            <img id="previewBanner" src="images/grok-n-talk-banner.png" alt="Custom Product">
+                            <div class="description" id="previewDescription">
+                                <ul>
+                                    <li>Key feature or benefit 1</li>
+                                    <li>Key feature or benefit 2</li>
+                                    <li>Key feature or benefit 3</li>
+                                </ul>
+                            </div>
+                            <!-- Content sections (hidden by default) -->
+                            <div class="summary" id="previewSummary" style="display: none;"></div>
+                            <div class="competitors" id="previewCompetitors" style="display: none;"></div>
+                            <div class="x-sell" id="previewXsell" style="display: none;"></div>
+                            <div class="upsell" id="previewUpsell" style="display: none;"></div>
+                            <div class="questions" id="previewQuestions" style="display: none;"></div>
+                            <div class="story" id="previewStory" style="display: none;"></div>
+                            <div class="talk" id="previewLove" style="display: none;"></div>
+                            <div class="tv" id="previewTv" style="display: none;"></div>
+                            <!-- Toggle buttons (individual divs, not wrapped) -->
+                            <div class="summary-toggle" id="previewToggleSummary"></div>
+                            <div class="compete-toggle" id="previewToggleCompete"></div>
+                            <div class="x-toggle" id="previewToggleXsell"></div>
+                            <div class="upsell-toggle" id="previewToggleUpsell"></div>
+                            <div class="story-toggle" id="previewToggleStory"></div>
+                            <div class="call-toggle" id="previewToggleLove"></div>
+                            <div class="watch-toggle" id="previewToggleWatch"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="flip-hint">💡 Click the card to flip it</p>
+            </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="output-panel">
+            <h2>📋 Generated HTML</h2>
+            <p style="font-size: 14px; color: #9fb3c8; margin-top: 0;">Auto-generated from your configuration. Edit below to make final tweaks before copying.</p>
+            
+            <!-- Edit HTML Toolbar -->
+            <div class="editor-toolbar" style="margin-bottom: 10px;">
+                <button type="button" onclick="formatGeneratedHTML()" title="Format HTML">🎨 Format</button>
+                <button type="button" onclick="validateGeneratedHTML()" title="Validate HTML">✓ Validate</button>
+                <div class="separator"></div>
+                <button onclick="copyToClipboard()">📄 Copy to Clipboard</button>
+            </div>
+            
+            <div class="validation-message" id="validation-htmlOutput"></div>
+            <div id="successMessage" class="success-message">✓ Copied to clipboard!</div>
+            
+            <!-- CodeMirror will replace this textarea -->
+            <textarea id="htmlOutput"></textarea>
+        </div>
+    </div>
+
+    <script>
+        // Sync color inputs
+        document.getElementById('frontBgColorPicker').addEventListener('input', (e) => {
+            document.getElementById('frontBgColor').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('frontBgColor').addEventListener('input', (e) => {
+            document.getElementById('frontBgColorPicker').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('backBgColorPicker').addEventListener('input', (e) => {
+            document.getElementById('backBgColor').value = e.target.value;
+            updatePreview();
+        });
+
+        document.getElementById('backBgColor').addEventListener('input', (e) => {
+            document.getElementById('backBgColorPicker').value = e.target.value;
+            updatePreview();
+        });
+
+        // Track active toggle view to preserve it during updates
+        let activeToggleView = null;
+
+        // Update preview AND generate HTML on input changes
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                updatePreview();
+                generateHTML();
+            });
+        });
+
+        function updatePreview() {
+            const cardClass = document.getElementById('cardClass').value.trim();
+            const logoUrl = document.getElementById('logoUrl').value.trim();
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const title = document.getElementById('title').value.trim();
+            const frontBgImage = document.getElementById('frontBgImage').value.trim();
+            const frontBgColor = document.getElementById('frontBgColor').value.trim();
+            const bannerUrl = document.getElementById('bannerUrl').value.trim();
+            const bannerAlt = document.getElementById('bannerAlt').value.trim();
+            const backBgColor = document.getElementById('backBgColor').value.trim();
+            
+            // Get ELI5 content for description
+            const eli5Assertion = document.getElementById('eli5Assertion').value.trim();
+            const eli5PainPoint = document.getElementById('eli5PainPoint').value.trim();
+            const eli5Value = document.getElementById('eli5Value').value.trim();
+            const eli5Punchline = document.getElementById('eli5Punchline').value.trim();
+            const eli5Question = document.getElementById('eli5Question').value.trim();
+            
+            // Get toggle button URLs
+            const toggleSummary = document.getElementById('toggleSummary').value.trim();
+            const toggleCompete = document.getElementById('toggleCompete').value.trim();
+            const toggleXsell = document.getElementById('toggleXsell').value.trim();
+            const toggleUpsell = document.getElementById('toggleUpsell').value.trim();
+            const toggleStory = document.getElementById('toggleStory').value.trim();
+            const toggleLove = document.getElementById('toggleLove').value.trim();
+            const toggleWatch = document.getElementById('toggleWatch').value.trim();
+            
+            // Get content to determine which toggles to show
+            const videoUrl = document.getElementById('videoUrl').value.trim();
+
+            // Validate URLs
+            const isValidUrl = (url) => {
+                if (!url) return true; // Empty is valid (optional)
+                return url.startsWith('http://') || url.startsWith('https://') ||
+                       url.startsWith('/') || url.startsWith('./') || url.startsWith('../') ||
+                       !url.includes('://'); // Relative paths
+            };
+
+            // Show validation errors
+            const validateField = (fieldId, isValid, message) => {
+                const field = document.getElementById(fieldId);
+                if (!isValid) {
+                    field.style.borderColor = '#ff6b6b';
+                    field.title = message;
+                } else {
+                    field.style.borderColor = '#223041';
+                    field.title = '';
+                }
+            };
+
+            validateField('logoUrl', isValidUrl(logoUrl), 'Please enter a valid URL or path');
+            validateField('frontBgImage', isValidUrl(frontBgImage), 'Please enter a valid URL or path');
+            validateField('bannerUrl', isValidUrl(bannerUrl), 'Please enter a valid URL or path');
+            validateField('title', title.length > 0, 'Title is required');
+
+            // Update preview card
+            const previewCard = document.getElementById('previewCard');
+            const previewFront = document.getElementById('previewFront');
+            const previewBack = document.getElementById('previewBack');
+            const previewLogo = document.getElementById('previewLogo');
+            const previewSubtitle = document.getElementById('previewSubtitle');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewBanner = document.getElementById('previewBanner');
+            const previewDescription = document.getElementById('previewDescription');
+
+            // Update front face
+            previewLogo.src = logoUrl || 'images/grok-n-talk-logo.png';
+            previewSubtitle.textContent = subtitle;
+            previewSubtitle.style.display = subtitle ? 'inline' : 'none';
+            
+            const titleHtml = subtitle ? `<small id="previewSubtitle">${subtitle}</small><br/>${title}` : title;
+            previewTitle.innerHTML = titleHtml;
+
+            previewFront.style.backgroundColor = frontBgColor;
+            if (frontBgImage) {
+                previewFront.style.backgroundImage = `url(${frontBgImage})`;
+                previewFront.classList.add('has-product-image');
+            } else {
+                previewFront.style.backgroundImage = 'none';
+                previewFront.classList.remove('has-product-image');
+            }
+
+            // Update back face
+            previewBanner.src = bannerUrl || 'images/grok-n-talk-banner.png';
+            previewBanner.alt = bannerAlt;
+            
+            // Build description from ELI5 bullets
+            let descriptionHtml = '<ul>\n';
+            if (eli5Assertion) descriptionHtml += `    <li>${eli5Assertion}</li>\n`;
+            if (eli5PainPoint) descriptionHtml += `    <li>${eli5PainPoint}</li>\n`;
+            if (eli5Value) descriptionHtml += `    <li>${eli5Value}</li>\n`;
+            if (eli5Punchline) descriptionHtml += `    <li>${eli5Punchline}</li>\n`;
+            // 5th bullet is always emphasized with "Gimme More ?'s" link
+            if (eli5Question) {
+                descriptionHtml += `    <li><span class="emphasize">${eli5Question}<br/> &#8594; <a href="#" id="gimmeMoreLink">Gimme More &#63;'s</a></span></li>\n`;
+            }
+            descriptionHtml += '</ul>';
+            
+            // If no ELI5 content, show placeholder
+            if (!eli5Assertion && !eli5PainPoint && !eli5Value && !eli5Punchline && !eli5Question) {
+                descriptionHtml = '<ul><li>No ELI5 content provided</li></ul>';
+            }
+            
+            try {
+                previewDescription.innerHTML = descriptionHtml;
+            } catch (e) {
+                console.error('Error setting description HTML:', e);
+                previewDescription.innerHTML = '<ul><li>Error displaying description</li></ul>';
+            }
+            
+            // Ensure description is visible
+            previewDescription.style.display = 'block';
+            
+            // Add click handler for "Gimme More ?'s" link
+            const gimmeMoreLink = document.getElementById('gimmeMoreLink');
+            if (gimmeMoreLink) {
+                gimmeMoreLink.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const questionsSection = document.getElementById('previewQuestions');
+                    const description = document.getElementById('previewDescription');
+                    
+                    // Remove active class from all toggle containers
+                    document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                        toggleDiv.classList.remove('active');
+                    });
+                    
+                    // Hide all content sections
+                    document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show questions section
+                    description.style.display = 'none';
+                    questionsSection.style.display = 'block';
+                };
+            }
+            
+            previewBack.style.backgroundColor = backBgColor;
+
+            // Update toggle buttons in preview with click handlers
+            const toggles = [
+                { id: 'previewToggleSummary', contentId: 'previewSummary', url: toggleSummary, alt: 'Summary', title: 'Show Summary' },
+                { id: 'previewToggleCompete', contentId: 'previewCompetitors', url: toggleCompete, alt: 'Competitors', title: 'Show Competitors' },
+                { id: 'previewToggleXsell', contentId: 'previewXsell', url: toggleXsell, alt: 'Cross-Sell', title: 'Show Cross-Sell' },
+                { id: 'previewToggleUpsell', contentId: 'previewUpsell', url: toggleUpsell, alt: 'Upsell', title: 'Show Upsell' },
+                { id: 'previewToggleStory', contentId: 'previewStory', url: toggleStory, alt: 'Stories', title: 'Show Stories' },
+                { id: 'previewToggleLove', contentId: 'previewLove', url: toggleLove, alt: 'Customer Love', title: 'Show Customer Love' }
+            ];
+
+            toggles.forEach(toggle => {
+                const container = document.getElementById(toggle.id);
+                if (toggle.url) {
+                    container.innerHTML = `<a href="#"><img class="toggle" src="${toggle.url}" alt="${toggle.alt}" title="${toggle.title}" /></a>`;
+                    container.style.display = 'block';
+                    
+                    // Add click handler to toggle content visibility
+                    const link = container.querySelector('a');
+                    link.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const contentSection = document.getElementById(toggle.contentId);
+                        const description = document.getElementById('previewDescription');
+                        
+                        // Remove active class from all toggle containers
+                        document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                            toggleDiv.classList.remove('active');
+                        });
+                        
+                        // Hide all content sections
+                        document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // Toggle between description and content section
+                        if (contentSection.style.display === 'block') {
+                            contentSection.style.display = 'none';
+                            description.style.display = 'block';
+                            activeToggleView = null; // Clear active view when returning to description
+                        } else {
+                            description.style.display = 'none';
+                            contentSection.style.display = 'block';
+                            // Add active class to current toggle
+                            container.classList.add('active');
+                            activeToggleView = toggle.contentId; // Track active view
+                        }
+                    };
+                } else {
+                    container.innerHTML = '';
+                    container.style.display = 'none';
+                }
+            });
+            
+            // Always show watch toggle if icon is provided
+            const watchContainer = document.getElementById('previewToggleWatch');
+            if (toggleWatch) {
+                watchContainer.innerHTML = `<a href="#"><img class="logo" src="${toggleWatch}" alt="Watch Explainer" title="Watch Explainer" /></a>`;
+                watchContainer.style.display = 'block';
+                
+                // Add click handler for watch toggle
+                const watchLink = watchContainer.querySelector('a');
+                watchLink.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const tvSection = document.getElementById('previewTv');
+                    const description = document.getElementById('previewDescription');
+                    
+                    // Hide all content sections
+                    document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Toggle between description and TV section
+                    if (tvSection.style.display === 'block') {
+                        tvSection.style.display = 'none';
+                        description.style.display = 'block';
+                        activeToggleView = null; // Clear active view
+                    } else {
+                        description.style.display = 'none';
+                        tvSection.style.display = 'block';
+                        activeToggleView = 'previewTv'; // Track TV view
+                    }
+                };
+            } else {
+                watchContainer.innerHTML = '';
+                watchContainer.style.display = 'none';
+            }
+            
+            // Update content sections in preview
+            // Build summary content from ELI5 (already declared above)
+            let summaryContent = '';
+            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline || eli5Question) {
+                summaryContent = '<ul>\n';
+                if (eli5Assertion) summaryContent += `    <li>${eli5Assertion}</li>\n`;
+                if (eli5PainPoint) summaryContent += `    <li>${eli5PainPoint}</li>\n`;
+                if (eli5Value) summaryContent += `    <li>${eli5Value}</li>\n`;
+                if (eli5Punchline) summaryContent += `    <li>${eli5Punchline}</li>\n`;
+                // 5th bullet is always emphasized with "Gimme More ?'s" link
+                if (eli5Question) {
+                    summaryContent += `    <li><span class="emphasize">${eli5Question}<br/> &#8594; <a href="#" class="summaryGimmeMoreLink">Gimme More &#63;'s</a></span></li>\n`;
+                }
+                summaryContent += '</ul>';
+            }
+            
+            const competitorsContent = document.getElementById('competitorsContent').value.trim();
+            const xsellContent = document.getElementById('xsellContent').value.trim();
+            const upsellContent = document.getElementById('upsellContent').value.trim();
+            const questionsContent = document.getElementById('questionsContent').value.trim();
+            const storyContent = document.getElementById('storyContent').value.trim();
+            const loveContent = document.getElementById('loveContent').value.trim();
+            
+            // Update each content section
+            const previewSummary = document.getElementById('previewSummary');
+            const previewCompetitors = document.getElementById('previewCompetitors');
+            const previewXsell = document.getElementById('previewXsell');
+            const previewUpsell = document.getElementById('previewUpsell');
+            const previewQuestions = document.getElementById('previewQuestions');
+            const previewStory = document.getElementById('previewStory');
+            const previewLove = document.getElementById('previewLove');
+            const previewTv = document.getElementById('previewTv');
+            
+            // Summary/ELI5 section
+            if (summaryContent) {
+                previewSummary.innerHTML = summaryContent;
+                previewSummary.style.display = 'none'; // Hidden by default, shown by toggle
+                
+                // Add click handler for "Gimme More ?'s" link in summary
+                setTimeout(() => {
+                    const summaryGimmeMoreLink = previewSummary.querySelector('.summaryGimmeMoreLink');
+                    if (summaryGimmeMoreLink) {
+                        summaryGimmeMoreLink.onclick = function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const questionsSection = document.getElementById('previewQuestions');
+                            const summarySection = document.getElementById('previewSummary');
+                            
+                            // Remove active class from all toggle containers
+                            document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                                toggleDiv.classList.remove('active');
+                            });
+                            
+                            // Hide all content sections
+                            document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                                section.style.display = 'none';
+                            });
+                            
+                            // Show questions section
+                            questionsSection.style.display = 'block';
+                        };
+                    }
+                }, 0);
+            } else {
+                previewSummary.innerHTML = '';
+                previewSummary.style.display = 'none';
+            }
+            
+            // Competitors section
+            if (competitorsContent) {
+                previewCompetitors.innerHTML = competitorsContent;
+                previewCompetitors.style.display = 'none';
+            } else {
+                previewCompetitors.innerHTML = '';
+                previewCompetitors.style.display = 'none';
+            }
+            
+            // Cross-sell section
+            if (xsellContent) {
+                previewXsell.innerHTML = xsellContent;
+                previewXsell.style.display = 'none';
+            } else {
+                previewXsell.innerHTML = '';
+                previewXsell.style.display = 'none';
+            }
+            
+            // Upsell section
+            if (upsellContent) {
+                previewUpsell.innerHTML = upsellContent;
+                previewUpsell.style.display = 'none';
+            } else {
+                previewUpsell.innerHTML = '';
+                previewUpsell.style.display = 'none';
+            }
+            
+            // Questions section
+            if (questionsContent) {
+                previewQuestions.innerHTML = questionsContent;
+                previewQuestions.style.display = 'none';
+            } else {
+                previewQuestions.innerHTML = '';
+                previewQuestions.style.display = 'none';
+            }
+            
+            // Story section
+            if (storyContent) {
+                previewStory.innerHTML = storyContent;
+                previewStory.style.display = 'none';
+            } else {
+                previewStory.innerHTML = '';
+                previewStory.style.display = 'none';
+            }
+            
+            // Love section
+            if (loveContent) {
+                previewLove.innerHTML = loveContent;
+                previewLove.style.display = 'none';
+            } else {
+                previewLove.innerHTML = '';
+                previewLove.style.display = 'none';
+            }
+            
+            // TV/Video section
+            if (videoUrl) {
+                previewTv.innerHTML = `<iframe width="100%" height="50%" src="${videoUrl}" title="Explainer Video" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                previewTv.style.display = 'none';
+            } else {
+                previewTv.innerHTML = '';
+                previewTv.style.display = 'none';
+            }
+            
+            // Restore active toggle view if one was set, otherwise show description
+            if (activeToggleView) {
+                // Hide description
+                if (previewDescription) {
+                    previewDescription.style.display = 'none';
+                }
+                
+                // Hide all content sections first
+                document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove active class from all toggles
+                document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                    toggleDiv.classList.remove('active');
+                });
+                
+                // Show the active content section
+                const activeSection = document.getElementById(activeToggleView);
+                if (activeSection) {
+                    activeSection.style.display = 'block';
+                    
+                    // Add active class to corresponding toggle
+                    const toggleMap = {
+                        'previewSummary': 'summary-toggle',
+                        'previewCompetitors': 'compete-toggle',
+                        'previewXsell': 'x-toggle',
+                        'previewUpsell': 'upsell-toggle',
+                        'previewStory': 'story-toggle',
+                        'previewLove': 'call-toggle',
+                        'previewQuestions': null, // Questions don't have a toggle (accessed via Gimme More)
+                        'previewTv': null // TV toggle is handled separately
+                    };
+                    
+                    const toggleClass = toggleMap[activeToggleView];
+                    if (toggleClass) {
+                        const activeToggle = document.querySelector(`#previewBack .${toggleClass}`);
+                        if (activeToggle) {
+                            activeToggle.classList.add('active');
+                        }
+                    }
+                }
+            } else {
+                // No active view - reset to show description and hide all content sections
+                document.querySelectorAll('#previewBack .summary, #previewBack .competitors, #previewBack .x-sell, #previewBack .upsell, #previewBack .questions, #previewBack .story, #previewBack .talk, #previewBack .tv').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove active class from all toggles
+                document.querySelectorAll('#previewBack .summary-toggle, #previewBack .compete-toggle, #previewBack .x-toggle, #previewBack .upsell-toggle, #previewBack .story-toggle, #previewBack .call-toggle').forEach(toggleDiv => {
+                    toggleDiv.classList.remove('active');
+                });
+                
+                // Ensure description is visible
+                if (previewDescription) {
+                    previewDescription.style.display = 'block';
+                }
+            }
+        }
+
+        function generateHTML() {
+            // Validate required fields
+            const title = document.getElementById('title').value.trim();
+            if (!title) {
+                alert('⚠️ Title is required!');
+                document.getElementById('title').focus();
+                return;
+            }
+
+            const cardClass = document.getElementById('cardClass').value.trim() || 'custom-card';
+            const logoUrl = document.getElementById('logoUrl').value.trim() || 'images/grok-n-talk-logo.png';
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const frontBgImage = document.getElementById('frontBgImage').value.trim();
+            const frontBgColor = document.getElementById('frontBgColor').value.trim() || '#101010';
+            const bannerUrl = document.getElementById('bannerUrl').value.trim() || 'images/grok-n-talk-banner.png';
+            const bannerAlt = document.getElementById('bannerAlt').value.trim() || 'Product';
+            const backBgColor = document.getElementById('backBgColor').value.trim() || '#003566';
+            
+            // Get toggle button URLs
+            const toggleSummary = document.getElementById('toggleSummary').value.trim();
+            const toggleCompete = document.getElementById('toggleCompete').value.trim();
+            const toggleXsell = document.getElementById('toggleXsell').value.trim();
+            const toggleUpsell = document.getElementById('toggleUpsell').value.trim();
+            const toggleStory = document.getElementById('toggleStory').value.trim();
+            const toggleLove = document.getElementById('toggleLove').value.trim();
+            const toggleWatch = document.getElementById('toggleWatch').value.trim();
+            const videoUrl = document.getElementById('videoUrl').value.trim();
+            
+            // Get ELI5 content for description and summary
+            const eli5Assertion = document.getElementById('eli5Assertion').value.trim();
+            const eli5PainPoint = document.getElementById('eli5PainPoint').value.trim();
+            const eli5Value = document.getElementById('eli5Value').value.trim();
+            const eli5Punchline = document.getElementById('eli5Punchline').value.trim();
+            const eli5Question = document.getElementById('eli5Question').value.trim();
+            
+            // Build summary content from all 5 ELI5 fields (5th with emphasis and link)
+            let summaryContent = '';
+            if (eli5Assertion || eli5PainPoint || eli5Value || eli5Punchline || eli5Question) {
+                summaryContent = '<ul>\n';
+                if (eli5Assertion) summaryContent += `    <li>${eli5Assertion}</li>\n`;
+                if (eli5PainPoint) summaryContent += `    <li>${eli5PainPoint}</li>\n`;
+                if (eli5Value) summaryContent += `    <li>${eli5Value}</li>\n`;
+                if (eli5Punchline) summaryContent += `    <li>${eli5Punchline}</li>\n`;
+                if (eli5Question) {
+                    summaryContent += `    <li><span class="emphasize">${eli5Question}<br/>&#8594; <a href="#">Gimme More &#63;'s</a></span></li>\n`;
+                }
+                summaryContent += '</ul>';
+            }
+            
+            const competitorsContent = document.getElementById('competitorsContent').value.trim();
+            const xsellContent = document.getElementById('xsellContent').value.trim();
+            const upsellContent = document.getElementById('upsellContent').value.trim();
+            const questionsContent = document.getElementById('questionsContent').value.trim();
+            const storyContent = document.getElementById('storyContent').value.trim();
+            const loveContent = document.getElementById('loveContent').value.trim();
+
+            // Validate CSS class name
+            if (!/^[a-zA-Z][\w-]*$/.test(cardClass)) {
+                alert('⚠️ Card class name must start with a letter and contain only letters, numbers, hyphens, and underscores.');
+                document.getElementById('cardClass').focus();
+                return;
+            }
+
+            // Generate title HTML
+            const titleHtml = subtitle 
+                ? `<h2><small>${subtitle}</small><br/>${title}</h2>`
+                : `<h2>${title}</h2>`;
+
+            // Generate style attribute for front face
+            let frontStyle = `background-color: ${frontBgColor};`;
+            if (frontBgImage) {
+                frontStyle += ` background-image: url(${frontBgImage}); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat;`;
+            }
+
+            // Generate toggle buttons HTML with fixed positioning
+            let toggleButtonsHtml = '';
+            const togglePositions = [5, 55, 105, 160, 215, 270];
+            const toggles = [
+                { url: toggleSummary, id: 'summary', className: 'summary-toggle', left: togglePositions[0], alt: 'Show Summary', title: 'Show Summary' },
+                { url: toggleCompete, id: 'compete', className: 'compete-toggle', left: togglePositions[1], alt: 'Show Competitors', title: 'Show Competitors' },
+                { url: toggleXsell, id: 'x-sell', className: 'x-toggle', left: togglePositions[2], alt: 'Show X-Sell', title: 'Show Cross-Sell' },
+                { url: toggleUpsell, id: 'upsell', className: 'upsell-toggle', left: togglePositions[3], alt: 'Show Upsell', title: 'Show Upsell' },
+                { url: toggleStory, id: 'story', className: 'story-toggle', left: togglePositions[4], alt: 'Show Stories', title: 'Show Stories' },
+                { url: toggleLove, id: 'love', className: 'call-toggle', left: togglePositions[5], alt: 'Show Love', title: 'Show Customer Love' }
+            ];
+
+            const activeToggles = toggles.filter(t => t.url);
+            
+            if (activeToggles.length > 0) {
+                toggleButtonsHtml = '\n        <!-- Toggle Buttons -->';
+                activeToggles.forEach((toggle) => {
+                    toggleButtonsHtml += `\n        <div class="${toggle.className}" id="${toggle.id}" style="position: fixed; bottom: 15px; left: ${toggle.left}px;">
+            <a href="#"><img class="toggle" src="${toggle.url}" alt="${toggle.alt}" title="${toggle.title}" /></a>
+        </div>`;
+                });
+            }
+            
+            // Add watch toggle if video URL and icon are provided
+            if (videoUrl && toggleWatch) {
+                toggleButtonsHtml += `\n        <div class="watch-toggle" id="tv-${cardClass}" style="position: absolute; bottom: 0px; right: 5px;">
+            <a href="#"><img class="logo" src="${toggleWatch}" alt="Watch Explainer" title="Watch Explainer" /></a>
+        </div>`;
+            }
+
+            // Build description from ELI5 content (same as summary)
+            let finalDescription = summaryContent || '<ul>\n    <li>No ELI5 content provided</li>\n</ul>';
+
+            // Generate content sections HTML
+            let contentSectionsHtml = '';
+            
+            // Summary/ELI5 section
+            if (summaryContent) {
+                contentSectionsHtml += `\n        <div class="summary" id="${cardClass}-summary">
+${summaryContent}
+        </div>`;
+            }
+            
+            // Competitors section
+            if (competitorsContent) {
+                contentSectionsHtml += `\n        <div class="competitors" id="${cardClass}-competitors">
+${competitorsContent}
+        </div>`;
+            }
+            
+            // Cross-sell section
+            if (xsellContent) {
+                contentSectionsHtml += `\n        <div class="x-sell" id="${cardClass}-xsell">
+${xsellContent}
+        </div>`;
+            }
+            
+            // Upsell section
+            if (upsellContent) {
+                contentSectionsHtml += `\n        <div class="upsell" id="${cardClass}-upsell">
+${upsellContent}
+        </div>`;
+            }
+            
+            // Questions section
+            if (questionsContent) {
+                contentSectionsHtml += `\n        <div class="questions" id="${cardClass}-questions">
+${questionsContent}
+        </div>`;
+            }
+            
+            // Story section
+            if (storyContent) {
+                contentSectionsHtml += `\n        <div class="story" id="${cardClass}-story">
+${storyContent}
+        </div>`;
+            }
+            
+            // Talk/Love section
+            if (loveContent) {
+                contentSectionsHtml += `\n        <div class="talk" id="${cardClass}-love">
+${loveContent}
+        </div>`;
+            }
+            
+            // TV/Video section
+            if (videoUrl) {
+                contentSectionsHtml += `\n        <div class="tv" id="${cardClass}-tv">
+            <iframe width="100%" height="50%" src="${videoUrl}" title="Explainer Video" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>`;
+            }
+
+            // Generate CSS for product image hover effect if image is provided
+            let productImageCSS = '';
+            if (frontBgImage) {
+                productImageCSS = `
+<style>
+    .${cardClass} .front {
+        background-image: url(${frontBgImage});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 50% 50%;
+        transition: background 0.3s;
+    }
+    
+    .${cardClass} .front:hover {
+        background-size: 200%;
+        background-position: 20% 30%;
+        transition: background 0.5s;
+    }
+</style>
+`;
+            }
+
+            // Generate HTML
+            const html = `<!-- ${cardClass} Card -->${productImageCSS}
+<div class="card ${cardClass}">
+    <div class="face front" style="${frontStyle}">
+        <img class="logo" src="${logoUrl}" alt="Logo" />
+        ${titleHtml}
+    </div>
+    <div class="face back" style="background-color: ${backBgColor};">
+        <img src="${bannerUrl}" alt="${bannerAlt}" style="height:10%" />
+        <div class="description">
+${finalDescription}
+        </div>${contentSectionsHtml}${toggleButtonsHtml}
+    </div>
+</div>`;
+
+            // Update the textarea
+            document.getElementById('htmlOutput').value = html;
+            
+            // Update CodeMirror editor if it exists
+            if (window.htmlOutputEditor) {
+                window.htmlOutputEditor.setValue(html);
+            }
+        }
+
+        function copyToClipboard() {
+            // Get value from CodeMirror editor if it exists, otherwise from textarea
+            let htmlContent;
+            if (window.htmlOutputEditor) {
+                htmlContent = window.htmlOutputEditor.getValue();
+            } else {
+                htmlContent = document.getElementById('htmlOutput').value;
+            }
+            
+            if (!htmlContent) {
+                alert('⚠️ No HTML to copy!');
+                return;
+            }
+            
+            // Validate HTML before copying
+            const validation = validateHTMLContent(htmlContent);
+            if (!validation.isValid) {
+                const proceed = confirm(`⚠️ HTML validation found issues:\n\n${validation.errors.join('\n')}\n\nCopy anyway?`);
+                if (!proceed) {
+                    return;
+                }
+            }
+
+            // Try modern clipboard API first, fallback to execCommand
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(htmlContent).then(() => {
+                    showSuccessMessage();
+                }).catch(() => {
+                    // Fallback: create temporary textarea
+                    const temp = document.createElement('textarea');
+                    temp.value = htmlContent;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                    showSuccessMessage();
+                });
+            } else {
+                // Fallback: create temporary textarea
+                const temp = document.createElement('textarea');
+                temp.value = htmlContent;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+                showSuccessMessage();
+            }
+        }
+        
+        function formatGeneratedHTML() {
+            if (!window.htmlOutputEditor) return;
+            
+            const currentValue = window.htmlOutputEditor.getValue();
+            try {
+                const formatted = html_beautify(currentValue, {
+                    indent_size: 4,
+                    indent_char: ' ',
+                    max_preserve_newlines: 2,
+                    preserve_newlines: true,
+                    indent_inner_html: true,
+                    wrap_line_length: 0,
+                    unformatted: ['code', 'pre', 'em', 'strong', 'span'],
+                    content_unformatted: ['pre', 'textarea']
+                });
+                window.htmlOutputEditor.setValue(formatted);
+                
+                // Show success message
+                const validationDiv = document.getElementById('validation-htmlOutput');
+                validationDiv.textContent = '✓ HTML formatted successfully';
+                validationDiv.className = 'validation-message success';
+                validationDiv.style.display = 'block';
+                setTimeout(() => {
+                    validationDiv.style.display = 'none';
+                }, 3000);
+            } catch (e) {
+                const validationDiv = document.getElementById('validation-htmlOutput');
+                validationDiv.textContent = '✗ Error formatting HTML: ' + e.message;
+                validationDiv.className = 'validation-message error';
+                validationDiv.style.display = 'block';
+            }
+        }
+        
+        function validateGeneratedHTML() {
+            if (!window.htmlOutputEditor) return;
+            
+            const htmlContent = window.htmlOutputEditor.getValue();
+            const validation = validateHTMLContent(htmlContent);
+            
+            const validationDiv = document.getElementById('validation-htmlOutput');
+            if (validation.isValid) {
+                validationDiv.textContent = '✓ HTML is valid';
+                validationDiv.className = 'validation-message success';
+            } else {
+                validationDiv.textContent = '✗ ' + validation.errors.join(', ');
+                validationDiv.className = 'validation-message error';
+            }
+            validationDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                validationDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccessMessage() {
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+
+        function resetForm() {
+            document.getElementById('cardClass').value = 'custom-card';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Custom Product';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'Custom Product';
+            document.getElementById('backBgColor').value = '#003566';
+            document.getElementById('backBgColorPicker').value = '#003566';
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/empty-tv.png';
+            document.getElementById('eli5Assertion').value = 'ELI5 Assertion / Relatable Analogy';
+            document.getElementById('eli5PainPoint').value = 'ELI5 Customer Pain Point';
+            document.getElementById('eli5Value').value = 'ELI5 Customer Value';
+            document.getElementById('eli5Punchline').value = 'ELI5 Product Punchline';
+            document.getElementById('eli5Question').value = 'What questions do you have about this product?';
+            document.getElementById('competitorsContent').value = '';
+            document.getElementById('xsellContent').value = '';
+            document.getElementById('upsellContent').value = '';
+            document.getElementById('questionsContent').value = '';
+            document.getElementById('storyContent').value = '';
+            document.getElementById('loveContent').value = '';
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('htmlOutput').value = '';
+            
+            // Sync CodeMirror editors with cleared textarea values
+            syncEditorsFromTextareas();
+            
+            // Clear and regenerate HTML output
+            if (window.htmlOutputEditor) {
+                window.htmlOutputEditor.setValue('');
+            }
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadSelectedExample() {
+            const selector = document.getElementById('exampleSelector');
+            const selectedCard = selector.value;
+            
+            if (!selectedCard) {
+                alert('⚠️ Please select a card from the dropdown first.');
+                return;
+            }
+            
+            // Route to the appropriate loader function
+            switch(selectedCard) {
+                case 'turbonomic':
+                    loadTurbonomicExample();
+                    break;
+                case 'instana':
+                    loadInstanaExample();
+                    break;
+                case 'cloudability':
+                    loadCloudabilityExample();
+                    break;
+                case 'kubecost':
+                    loadKubecostExample();
+                    break;
+                case 'apic':
+                    loadApicExample();
+                    break;
+                case 'ns1':
+                    loadNS1Example();
+                    break;
+                case 'aspera':
+                    loadAsperaExample();
+                    break;
+                default:
+                    alert('⚠️ Unknown card selected.');
+            }
+        }
+        
+        function loadTurbonomicExample() {
+            // Load Turbonomic card data as example
+            document.getElementById('cardClass').value = 'turbo';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Turbonomic';
+            document.getElementById('frontBgImage').value = 'images/turbonomic-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Turbonomic';
+            
+            document.getElementById('backBgColor').value = '#003566';
+            document.getElementById('backBgColorPicker').value = '#003566';
+            
+            // Toggle icons (keep defaults)
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/turbo-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Applications need resources to function. Stuff like compute, memory, storage, networking.';
+            document.getElementById('eli5PainPoint').value = 'Applications eat resources in different ways that change all the time, making it hard to find the right size and creating waste';
+            document.getElementById('eli5Value').value = 'Changing resources automatically to the right amount, at the right time, to feed application hunger can lower overall computer costs and waste';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCJ2bCQ7FPH448fJ6TWjVcmc2MJ3" target="_blank" rel="noopener">Turbonomic</a> watches apps constantly and tunes their resources automatically to keep performance continously steady and waste low';
+            document.getElementById('eli5Question').value = 'How are you currently using technology to be better with resource efficiency and waste in your environments?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCCmhM8Ggj6QXGFM4m87HMB2gBPB" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li class="nospace"><span class="emphasize">Dynatrace</span> - <small>Observability platform</small></li>
+    <li class="nospace"><span class="emphasize">Datadog</span> - <small>Cloud monitoring & observability platform</small></li>
+    <li class="nospace"><span class="emphasize">VMware Aria</span> - <small>Cloud management platform</small></li>
+    <li class="nospace"><span class="emphasize">New Relic</span> - <small>Full stack observability</small></li>
+    <li class="nospace"><span class="emphasize">AppDynamics</span> - <small>Full stack Application Performance Monitoring</small></li>
+    <li class="nospace"><span class="emphasize">Densify</span> - <small>Hybrid cloud & container resource management platform</small></li>
+    <li class="nospace"><span class="emphasize">Intel Granulate</span> - <small>Kubernetes/Container resource management platform</small></li>
+    <li class="nospace"><span class="emphasize">Azure Advisor</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">Azure Cost Analysis</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">Azure Budgets</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">AWS Cost Explorer</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">AWS Cost Optimization Hub</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">AWS Cost Optimizer</span> - <small>Cloud Tool</small></li>
+    <li class="nospace"><span class="emphasize">Google Cloud Recommender</span> - <small>Cloud Tool</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul>
+    <li><span class="emphasize">TURBO BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">CloudPak for Integration</span><br/>Why? &#8594; No Automation without Integration. Customer interest in cost saving measures opens door for hearing about how CP4I can consolidate IT tools and bring efficient approaches to integration.</li>
+    <li><span class="emphasize">TURBO BUYERS</span> <span style="color:red">&#10084;</span> <a href="https://ibm.seismic.com/Link/Content/DCjgmQT4cPXCdGfJRbVQ6cfFgc2V" target="_blank" rel="noopener">Instana</a><br/>Why? &#8594; Without good data and context, teams cannot confidently automate at scale. Instana gives real-time data with all the context. No gaps. No blind spots. 1 second granularity</li>
+    <li><span class="emphasize">TURBO BUYERS</span> <span style="color:red">&#10084;</span> <a href="https://ibm.seismic.com/Link/Content/DCPQJMjWfB9mJ8cFbQj43P43VHQj" target="_blank" rel="noopener">IBM Envizi ESG Suite</a><br/>Why? &#8594; Turbo reduces carbon impact through optimization. Customer interest in optimization opens door for conversations on sustainability and ESG goals. Green IT. Responsible computing, efficient energy and decarbonization</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">MAKE IT A COMBO MEAL</h3>
+<ul>
+    <li><span class="emphasize">TURBO BUYERS</span> <span style="color:red">&#10084;</span> <a href="https://ibm.seismic.com/Link/Content/DCMMfQPq8M9fX87J8gJM73hBgGh8" target="_blank" rel="noopener">Cloudability</a><br/>Why? &#8594; With both, they can upgrade their FinOps game to cover all cloud costs and resources. Perfect for customers looking for BOTH FinOps capabilities and comprehensive hybrid cloud optimization to address broader performance and cost efficiency challenges</li>
+    <li><span class="emphasize">TURBO BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Kubecost</span><br/>Why? &#8594; Insight into costs is a natural combo for customer's focused on optimization. Combine Kubecost's best-in-class Kubernetes costing and impact estimates with Turbo's automated, actionable optimization functionality.</li>
+    <li><span class="emphasize" style="font-size:small">TURBO EXISTING ON-PREM</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5;font-size:small">TURBO HOSTING</span><br/>Why? &#8594; For a fixed price, convert undeployed Turbo licenses to SaaS. Help customers wanting/mandated to move to SaaS. Customer satisfaction now to get future recurring SaaS</li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize nospace">
+    <li>How important is it to continuously assure the performance of your applications?</li>
+    <li>Do you sometimes buy a little extra? Pad your infrastructure?</li>
+    <li>What if software could watch everything in real-time and make decisions?</li>
+</ul>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://www.ibm.com/case-studies/rabobank-ibm-turbonomic" target="_blank" rel="noopener">Rabobank</a><br/><span class="emphasize">VMWare Cost Takeout</span><br/>Sell Turbo to reduce VMware license costs and hardware refresh costs</span></li>
+    <li><span><a href="https://www.ibm.com/case-studies/ibm-big-ai-models-turbonomic" target="_blank" rel="noopener">IBM Big AI Models Team</a><br/><span class="emphasize">GPU Optimization</span><br/>Sell Turbo to maximize GPU performance and avoid waste for AI/ML and graphics heavy workloads</span></li>
+    <li><span><a href="https://community.ibm.com/community/user/aiops/blogs/veeramani-nambi1/2022/12/13/case-study" target="_blank" rel="noopener">BlueIT</a><br/><span class="emphasize">Turbonomic + Instana</span><br/>Using both to keep apps running with good performance while cutting carbon emissions</span></li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Want to automate and optimize application resources dynamically at scale because of changing market demands</li>
+    <li class="nospace">Have "interest in" or "have established" a <span class="emphasize">FinOps</span> practice</li>
+    <li class="nospace">Hate their <span class="emphasize">VMWare licensing cost</span> increases</li>
+    <li class="nospace">Dislike their ever-increasing Cloud spend</li>
+    <li class="nospace">Struggle with maintaining good application performance in a cost-effective way</li>
+    <li class="nospace">Need to buy Automation solutions with a FAST ROI because of tight budgets</li>
+    <li class="nospace">Need to transition from use of Turbonomic on-premise to SaaS cost-effectively</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a></li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/SWWbjv5QXUk?si=83KundRgMMyVO6rB';
+            
+            // Sync CodeMirror editors with textarea values (with small delay to ensure editors are ready)
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        // Placeholder functions for other card examples
+        function loadInstanaExample() {
+            // Load Instana card data as example
+            document.getElementById('cardClass').value = 'instana';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Instana Observability';
+            document.getElementById('frontBgImage').value = 'images/instana-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Instana Observability';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/instana-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Measuring things helps customers make decisions quicker';
+            document.getElementById('eli5PainPoint').value = 'Customers are blind to app issues that happen fast and often, causing bad business outcomes';
+            document.getElementById('eli5Value').value = 'Capturing measurements more often detects errors quicker, better and allows faster fixing';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy';
+            document.getElementById('eli5Question').value = 'Can you tell me about your current monitoring strategy?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DC3C2GmMB8p4g89X79X7Q7bdp6h3" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><span class="emphasize">AppDynamics</span> - <small>Built for legacy java workloads that needs code tweaks to capture info</small></li>
+    <li><span class="emphasize">New Relic</span> - <small>Rebuilt their platform on OpenTelemetry. Attach to community momentum and flexibility. More complicated initial deployment.</small></li>
+    <li><span class="emphasize">DataDog</span> - <small>Infrastructure first approach with lots of options. Pain points with custom dashboard hassle and complex pricing model leading to overage charges often</small></li>
+    <li><span class="emphasize">Dynatrace</span> - <small>Very complete solution. App-centric and highly automated. Expensive to use fully. App instrumentation resource heavy, causing slowdowns or increase in resources for the apps</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/app?ContentId=b8110869-b05e-4074-851f-207045d6d245#/doccenter/f6bc8873-d580-4ee8-a903-c4e0d3a7eee9/doc/%252Fdd0ab3871f-9594-50fd-73b1-7f6c58815c13%252Fdd52629361-90ce-1c4a-1e20-ca879de23430%252Fdddc4c6e24-4b7b-9716-f41c-de20e4748d22%252Fldd5e9299b-e1f8-4f5e-b4b2-d45548f4f293%252Fld81b61684-48c8-4039-a480-97d0773fa5f0%252Fld78411427-144d-4a3a-abb0-dbbd3c27a79f%252Flf37d352a0-328e-483a-bfe8-fd35d501760b/grid/?anchorId=81cbf4cc-56fd-4437-b078-9c249058d878" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Turbonomic</span><br/>Why? &#8594; Without good data and context, teams cannot confidently automate at scale. Instana gives real-time data with all the context. No gaps. No blind spots. 1 second granularity. Turbonomic provides infrastructure mgmnt awareness and gives a historical record of automated actions taken and what performance looked like before and after</li>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Concert</span><br/>Why? &#8594; Allows app owners and SRE teams to make smart decisions about system reliability, security, and performance. It simplifies the effort of identifying and fixing issues. This makes app environments more resilient and secure</li>
+</ul>
+<div class="center"><a href="https://stwb.co/ephuese" target="_blank" rel="noopener">Instana LifeTime Value (LTV) Marketing Kit</a></div>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/app?ContentId=b8110869-b05e-4074-851f-207045d6d245#/doccenter/f6bc8873-d580-4ee8-a903-c4e0d3a7eee9/doc/%252Fdd0ab3871f-9594-50fd-73b1-7f6c58815c13%252Fdd52629361-90ce-1c4a-1e20-ca879de23430%252Fdddc4c6e24-4b7b-9716-f41c-de20e4748d22%252Fldd5e9299b-e1f8-4f5e-b4b2-d45548f4f293%252Fld81b61684-48c8-4039-a480-97d0773fa5f0%252Fld78411427-144d-4a3a-abb0-dbbd3c27a79f%252Flf37d352a0-328e-483a-bfe8-fd35d501760b/grid/?anchorId=81cbf4cc-56fd-4437-b078-9c249058d878" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Kubecost</span><br/>Why? &#8594; Instana Kubernetes cluster metrics are enriched with cost and allocation usage that are provided by Kubecost. Having a complete view of performance and cost together allows Kubernetes admins to make smarter, profitable decisions</li>
+    <li><span style="font-size:small;" class="emphasize">INSTANA ESSENTIALS BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5;font-size:small;">STANDARD PLAN</span><br/>Why? &#8594; Get full <a href="https://www.ibm.com/think/topics/application-performance-management" target="_blank" rel="noopener">Application Performance Management (APM)</a>. Customers with surprise outages & slow-downs or with little to no visibility on dependencies will be delighted by Instana Standard Plan's distributed tracing, incident management and so much more.</li>
+</ul>
+<div class="center"><a href="https://www.ibm.com/products/instana/pricing#rich-text-ce69ebdd1b" target="_blank" rel="noopener">Comparse Essentials and Standard Plan</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize">
+    <li>How do you make sense of your data as it relates to APM?</li>
+    <li>Does your current APM automatically see changes to your infrastructure?</li>
+    <li>How about when new applications are pushed?</li>
+    <li>Can your current monitoring tool keep up with your pipeline? Can it make sense of data across your tech stack?</li>
+    <li>Are you anticipating changes to your environment such as adopting cloud native technologies (containers, microservices) and/or a move to the public cloud? If so, how will this impact your existing monitoring solutions?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DC2mmdqpCCQRB8fH7qTMjJc8GTT3" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephprau" target="_blank" rel="noopener">Instana on AWS Marketing Kit</a> <sup class="new">NEW</sup></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://www.ibm.com/case-studies/carey-international" target="_blank" rel="noopener">Carey International, Inc.</a><br/><span class="emphasize">Modernization Journey</span><br/>Sell Instana to provide Modernization efforts and legacy apps with "X-ray vision" to find performance bottlenecks, unexpected resource usage and operational issues in real-time</span></li>
+    <li><span><a href="https://www.ibm.com/case-studies/conrad-electronic" target="_blank" rel="noopener">Conrad Electronic</a><br/><span class="emphasize">Kubernetes (Container) Observability</span><br/>Sell Instana to provide container observability and act as a core SRE (Service Reliability Engineering) tool for metrics, service objectives and triggering of alerts.</span></li>
+</ul>
+<div class="center">&#8594; <a href="https://www.ibm.com/products/instana/case-studies" target="_blank" rel="noopener">Gimme More Stories</a></div>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol style="font-size: small">
+    <li class="nospace">Need to automate lots of apps or have performance worry</li>
+    <ul>
+        <li class="nospace">Fear loss of revenue</li>
+        <li class="nospace">Fear risk to reputation</li>
+        <li class="nospace">Fear poor customer satisfaction</li>
+    </ul>
+    <li class="nospace">Hate existing <a href="https://www.ibm.com/think/insights/debunking-observability-myths-part-4-observability-is-always-expensive" target="_blank" rel="noopener">observability price increases & overages</a></li>
+    <li class="nospace">Want <a href="https://opentelemetry.io/" target="_blank" rel="noopener">Open Telemetry</a> support</li>
+    <li class="nospace">Fear app outages and the high costs of downtime:
+        <ul>
+            <li class="nospace"><span class="emphasize">tight profit margins</span> (retail, manufacturing, ...)</li>
+            <li class="nospace"><span class="emphasize">sensitivity to reputation</span> (content providers, government services, ...)</li>
+            <li class="nospace"><span class="emphasize">difficulty getting skilled tech resources</span> (early digital transformation, business model pivot, ...)</li>
+        </ul>
+    </li>
+    <li class="nospace">Need on-premise or hybrid deployment</li>
+    <li class="nospace">Want out-of-the-box dashboards to get started quickly</li>
+    <li class="nospace">Want a zOS Mainframe modern observability solution</li>
+    <li class="nospace">Need observability with automation (action remediation) to help rapidly resolve incidents</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a> or use easier procurement</li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/ar1t32wvaiI?si=-Hpc768HQ1e0TrCK';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadCloudabilityExample() {
+            // Load Cloudability card data as example
+            document.getElementById('cardClass').value = 'cloudy';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Cloudability';
+            document.getElementById('frontBgImage').value = 'images/cloudability-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Cloudability';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/cloudability-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Cloud waste is expensive and common, but can be lowered';
+            document.getElementById('eli5PainPoint').value = 'Customers have few data points and low awareness about cloud waste';
+            document.getElementById('eli5Value').value = 'Knowing where cloud waste exists allows control and reduction';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank" rel="noopener">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities';
+            document.getElementById('eli5Question').value = 'How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCPCBgMj27VDbGhGJHc6WbWhFQmd" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li class="nospace">Cloud Service Provider (CSP or Native) Tools</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">AWS, Azure, GCP</span><br/><small>Single-Cloud. Free</small></li>
+    </ul>
+    <li class="nospace">Leaders</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">CloudHealth (CHT), Flexera</span><br/><small>Established eco-system of customers and partners</small></li>
+    </ul>
+    <li class="nospace">Challengers</li>
+    <ul>
+        <li class="nospace"><span class="emphasize"><a href="https://ibm.seismic.com/Link/Content/DCCccB9RRfFch8CDQ264DdV6WQDd" target="_blank" rel="noopener">CloudZero</a>, Finout Vantage,<br/>Vega Cloud, Ternary</span><br/><small>Limited feature-set with claims of cutting-edge. Aggressive pricing</small></li>
+    </ul>
+    <li class="nospace">DevOps Tools</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">Harness.io, Datadog</span><br/><small>Limited feature-set with strong dev relationships and appeal</small></li>
+    </ul>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCHFRWXQQq2VcGCB46H4gDQc463d" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">TURBONOMIC</span><br/>
+        <ul class="nospace">
+            <li class="nospace">Why? &#8594; <span class="emphasize">Resource Optimization</span><br/><a href="https://www.ibm.com/case-studies/providence" target="_blank" rel="noopener">Providence Case Study</a></li>
+            <li class="nospace">Why? &#8594; <span class="emphasize">Automation</span><br/>Working together like Eyes & Hands<br/><span class="emphasize">Cloudability</span> gives sight &<br/><span class="emphasize">Turbonomic</span> turns the knobs<br/><a href="https://www.ibm.com/case-studies/ibm-techzone" target="_blank" rel="noopener">IBM TechZone Case Study</a></li>
+            <li class="nospace">Why? &#8594; <span class="emphasize">Hybrid Optimization</span></br><a href="https://www.ibm.com/case-studies/jb-hunt" target="_blank" rel="noopener">JB Hunt Case Study</a></li>
+        </ul>
+    </li>
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">APPTIO</span><br/>Why? &#8594; Facilitates Costing, Planning, Billing & Benchmarking use-cases</li>
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">KUBECOST</span><br/>Why? &#8594; Provides hybrid container cost visibility & insights. Enables customers to optimize and allocate hybrid container costs across hybrid environments</li>
+</ul>
+<div class="center"><a href="https://stwb.co/ephuese" target="_blank" rel="noopener">Cloudability LifeTime Value (LTV) Marketing Kit</a></div>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCHFRWXQQq2VcGCB46H4gDQc463d" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul style="font-size:small">
+    <li>CLOUDY TRIAL USERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">ESSENTIALS plans</span><br/>Why? &#8594; Perfect starting point for orgs looking to establish FinOps fundamentals such as multi-cloud visibility, spending allocations and resource right-sizing</li>
+    <li>CLOUDY ESSENTIAL BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">STANDARD plans</span><br/>Why? &#8594; Seeing is good, but making an action plan using data is even better. Perfect for more mature customers looking for a comprehensive cloud program cost management, unit economics and cloud planning (workload and financial)</li>
+    <li>CLOUDY STANDARD BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">PREMIUM plans</span><br/>Why? &#8594; Premium says it all. Perfect solution for the most mature FinOps practices looking for a single source of truth (one common data source) across the org, advanced AI-infused optimization capabilities and extended automation</li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize nospace">
+    <li>How well does your organization comprehend cloud spend and demonstrate proficiency in effectively managing variable costs?</li>
+    <li>How are you tracking your cloud costs today? / How many hours is it taking you to track all your cloud spend? / Are you under pressure to cut cloud costs?</li>
+    <li>To what extent can you monitor cloud spend for anomalies and offer recommendations to your business units to ensure optimal support for their requirements while maintaining cost control?</li>
+    <li>How do you manage and chargeback Kubernetes costs?</li>
+    <li>How do you compare AWS, Azure, and GCP pricing and discount programs?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephuesp" target="_blank" rel="noopener">FinOps with IBM Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://www.apptio.com/case-study/unlocking-the-business-value-of-it-transformation-with-coles-and-cloudability/" target="_blank" rel="noopener">Coles Group</a><br/><span class="emphasize">Retail Modernization Journey</span><br/>Sell Cloudability to customers experiencing a transition into cloud from data center. Margin sensitivity means a shift to cloud must have a good financial and transparent cost model. Smart cloud spend can accelerate innovation and speed-to-market</span></li>
+    <li><span><a href="https://www.apptio.com/case-study/financial-services-company-overcomes-cloud-cost-challenges-by-establishing-and-maturing-its-finops-practice/" target="_blank" rel="noopener">Leading Financial Services Provider</a><br/><span class="emphasize">Run-Away Cloud Usage</span><br/>Sell Cloudability to customers experiencing rapid consumption of cloud services and resources. For multi-cloud, global enterprises - managing spend via spreadsheet is impractical. Providing showback, chargeback & forecasting for 12 global businesses & functions becomes overwhelming without Cloudability</span></li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Facing Multi-Cloud cost visibility challenges</li>
+    <li class="nospace">Need to detect usage and spend shifts away from normal (anomalies) and reduce waste</li>
+    <li class="nospace">Want to automate <span class="emphasize">savings program or savings plan</span> coverage</li>
+    <li class="nospace">Want to track and allocate cloud total spend</li>
+    <li class="nospace">Looking for spend accountability</li>
+    <li class="nospace">Want to drive unit economics and analyze client profitability</li>
+    <li class="nospace">Want to buy tools that can provide immediate return on investment (ROI)</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a></li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/0WWklk4j2ZM?si=-nBEiqLHn-owySDA';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadKubecostExample() {
+            // Load Kubecost card data as example
+            document.getElementById('cardClass').value = 'kubecost';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Kubecost';
+            document.getElementById('frontBgImage').value = 'images/kubecost-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Kubecost';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/kubecost-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = '<a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank" rel="noopener">Kubernetes</a> (container) waste is expensive and common, but can be lowered';
+            document.getElementById('eli5PainPoint').value = 'Customers have few data points and low awareness about container spend';
+            document.getElementById('eli5Value').value = 'Knowing where kubernetes waste exists allows control and reduction';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank" rel="noopener">Kubecost</a> (coob-cost) &#128172; provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste';
+            document.getElementById('eli5Question').value = 'Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCcH66cF6M4X2G2Pg3dgVd6JFV48" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><span class="emphasize">Vantage</span> - <small>Cloud Cost Management (CCM) tool with basic Kubernetes coverage. Built on <a href="https://opencost.io/" target="_blank" rel="noopener">OpenCost</a> which is a vendor-neutral open source project</small></li>
+    <li><span class="emphasize">Finout</span> - <small>All-in-one FinOps platform. New to market. Basic Kubernetes coverage</small></li>
+    <li><span class="emphasize">Cast.ai</span> - <small>Known for their automated right-sizing capabilities. Plenty of automation and cost optimization, but no FinOps</small></li>
+    <li><span class="emphasize">Harness.io</span> - <small>Integrated solutions focused mainly on <a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">Continuous Integration/Continuous Delivery (CI/CD)</a> platform for software delivery. Basic Kubernetes coverage, but no FinOps</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCQb2VBQMqVCg8HGBHJV62gqTR9d" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Instana</span><br/>Why? &#8594; <a href="https://community.ibm.com/community/user/blogs/surabhi-surabhi/2025/02/10/instana-kubecost" target="_blank" rel="noopener">Instana Kubernetes cluster metrics are enriched with cost and allocation usage that are provided by Kubecost</a>. Having a complete view of performance and cost together allows Kubernetes admins to make smarter, profitable decisions</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCQb2VBQMqVCg8HGBHJV62gqTR9d" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul class="nospace" style="font-size:small">
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Turbonomic</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full infrastructure stack optimization. Scope: Containers + all infrastructure optimization</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Cloudability</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full cloud cost optimization. Scope: Containers + all cloud program spend</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Cloudability Premium</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full infrastructure stack optimization and full cloud cost optimization. Scope: Containers + All Infrastructure Optimization + All Cloud Program Spend</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://www.ibm.com/new/announcements/finops-for-all-cloud-costs-and-stakeholders" target="_blank" rel="noopener">IBM FinOps Suite</a></span><br/>Why? &#8594; Access to a comprehensive and leading-edge collection of FinOps capabilities unmatched by any other single vendor in the marketplace</li>
+</ul>
+<div class="center"><a href="https://docs.kubecost.com/architecture/opencost-product-comparison" target="_blank" rel="noopener">Compare Plans</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="nospace">
+    <li>Beyond Kubernetes,
+        <ul>
+            <li class="nospace">Do you see a need for optimizing your infrastructure costs?</li>
+            <li class="nospace">Are you interested in automating infrastructure optimization?</li>
+            <li class="nospace">Have you heard about <span class="emphasize">IBM Turbonomic?</span></li>
+        </ul>
+    </li>
+    <li>Beyond Kubernetes,
+        <ul>
+            <li class="nospace">Do you need to manage Cloud Service Provider (CSP) costs or 3rd party cloud costs in general?</li>
+            <li class="nospace">Do you need to bring up right-sizing suggestions to your engineers?</li>
+            <li class="nospace">How about measuring your cloud Total Cost of Ownership (TCO) using unit economics?</li>
+            <li class="nospace">Have you heard about <span class="emphasize">IBM Cloudability</span>?</li>
+        </ul>
+    </li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCGCbdB4bqCjGGQ27hm696M6cqfP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephuesp" target="_blank" rel="noopener">FinOps with IBM Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://blog.kubecost.com/blog/greensteam-case-study/" target="_blank" rel="noopener">GreenSteam</a><br/><span class="emphasize">Green IT & Infrastructure Optimization</span><br/>Achieves total cost visibility for Amazon EKS. Brings together inside and outside-of-cluster spend with accurate spend accountability and allocation of costs through fine-detailed drill down views</span></li>
+    <li><span><a href="https://blog.kubecost.com/blog/kubecost-reduces-camunda-kubernetes-cost/" target="_blank" rel="noopener">Camunda</a><br/><span class="emphasize">Assess User Acquisition Costs (Trials)</span><br/>Gained insights to understand true Kubernetes-related cloud costs when assessing ROI on trial promotions. Resulted in introduction and scaling of free trial programs with confidence.</span></li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Loving fast ROI. <span class="emphasize">30%+ savings</span> is a relatively "conservative" estimate for Kubecost. The more complex the environment, the greater the opportunity to optimize and save money</li>
+    <li class="nospace">Loving waste reduction and money saving when hassling with environments that are multi-cloud, involve <a href="https://www.ibm.com/think/topics/rbac" target="_blank" rel="noopener">Role Based Access Control (RBAC)</a>, involve <a href="https://www.ibm.com/think/topics/single-sign-on" target="_blank" rel="noopener">Single Sign-On (SSO)</a> and involve "big Kubernetes clusters"</li>
+    <li class="nospace">Kubecost Free customers looking to expand beyond their 250 core per cluster limitation</li>
+    <li class="nospace">AWS Fargate on EKS customers looking for cost and waste insights</li>
+    <li class="nospace">Optimizing and monitoring for Kubernetes using <span class="emphasize"><a href="https://community.ibm.com/community/user/cloud/blogs/elvin-galarza/2025/02/24/introducing-nvidia-h200-gpus" target="_blank" rel="noopener">GPUs</a></span></li>
+    <li class="nospace">Need self-hosted or hybrid deployment</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a></li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/HgfUAPH2-Co?si=0_wStQUVmAgSkzsI';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadApicExample() {
+            // Load API Connect card data as example
+            document.getElementById('cardClass').value = 'apic';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'API Connect';
+            document.getElementById('frontBgImage').value = 'images/apic-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM API Connect';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/apic-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank" rel="noopener">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management';
+            document.getElementById('eli5PainPoint').value = 'Companies grow, buy other ones or even get bought. More app software to handle in more places. Makes discovering, securing, testing, updating & observing APIs hard and risky';
+            document.getElementById('eli5Value').value = 'API lifecycle management lowers risk, improves quality & allows ways to create new value';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank" rel="noopener">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live';
+            document.getElementById('eli5Question').value = 'How do you manage application integrations today? How do you discover & manage APIs today?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCh9WVhXmP8268MJhgPDj96QJF6G" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li class="nospace"><span class="emphasize">Apigee</span> - <small>SaaS centric approach</small></li>
+    <li class="nospace"><span class="emphasize">Mulesoft</span> - <small>Combines API Management and Integration. Good at thought leadership</small></li>
+    <li class="nospace"><span class="emphasize">Kong</span> - <small>Developer focused. Dev mindshare and appeal</small></li>
+    <li class="nospace"><span class="emphasize">Azure APIm</span> - <small>Basic API Management for Azure customers</small></li>
+    <li class="nospace"><span class="emphasize">AWS APIm</span> - <small>Basic API Management for AWS customers</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCg2mJmTR6gCJG7MqgMGDC4Fb4Hj" target="_blank" rel="noopener">AppConnect Enterprise</a></span><br/>Why? &#8594; <a href="https://ibm.seismic.com/Link/Content/DCDCFDTTX2dMfGm2C7bcJ4QQjcjB" target="_blank" rel="noopener">API-led Integration</a> is a modern way to integrate applications and data through reusable APIs. This approach fosters innovation and reduces costs. IBM provides a modular approach to right-size value of spend with integration need.</li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DC3H4ChgBf72q8FChBXT34X3PQcd" target="_blank" rel="noopener">CloudPak for Integration</a></span><br/>Why? &#8594; <a href="https://ibm.seismic.com/Link/Content/DCDCFDTTX2dMfGm2C7bcJ4QQjcjB" target="_blank" rel="noopener">API-led Integration</a> </li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DC9g3bhVWfTpCG7HcJg2FJh6Gq6V" target="_blank" rel="noopener">APIC for GraphQL</a></span><br/>Why? &#8594; Newer API formats like GraphQL are growing in popularity. Build, optimize and scale GraphQL APIs quickly and easily. <a href="https://www.ibm.com/think/topics/graphql" target="_blank" rel="noopener">What's GraphQL</a></li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCFV36WCMd3Dh8F27VJQgHCWdfTG" target="_blank" rel="noopener">Noname API Security</a></span><br/>Why? &#8594; IBM has partnered with Noname Security (Akamai) to extend security capabilities and offer advanced API security. Identify insecure APIs, look for misconfigurations and vulnerabilities and detect odd API traffic in real-time</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://welcome.apiconnect.automation.ibm.com/comparison/" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">API CONNECT Essentials Plan </span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="#" target="_blank" rel="noopener">Standard</a></span><br/>Why? &#8594; Need for connectivity to Cloud Private endpoints and longer analytics data retention timeframe</li>
+    <li><span class="emphasize">API CONNECT Standard Plan </span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="#" target="_blank" rel="noopener">Premium</a></span><br/>Why? &#8594; Need for customization of the gateway (Datapower) for policies, scripts, XSLT, ... Need for connectivity to on-premises</li>
+</ul>
+<div class="center"><a href="https://welcome.apiconnect.automation.ibm.com/comparison/" target="_blank" rel="noopener">Compare Plans<br/>Essentials/Standard/Premium/Reserved</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize">
+    <li>How do you manage access and integrate/scale applications with consistency?</li>
+    <li>How do you manage API lifecycles in a secure, scalable way?</li>
+    <li>How do you customize self-service for API consumption for app developers?</li>
+    <li>How do you deliver applications while minimizing impact to budget and timelines?</li>
+    <li>How do you create and secure APIs effectively while accounting for developers with varying levels of skill and expertise?</li>
+    <li>How do you reuse APIs across the enterprise?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephulsz" target="_blank" rel="noopener">IBM API Connect Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul style="font-size:small">
+    <li><span><a href="https://www.ibm.com/case-studies/finologee-sa" target="_blank" rel="noopener">Finologee S.A.</a><br/><span class="emphasize">Streamline Regulatory Tech Components</span><br/>Supporting banks and insurance "Know your Customer" (KYC) requirements, improved new customer conversion by 6x more onboardings over paper-based processes. Achieved significant process time-savings using an open banking solution based on IBM API Connect</span></li>
+    <li><span><a href="https://www.ibm.com/case-studies/ibm-cio-office-api" target="_blank" rel="noopener">IBM CIO</a><br/><span class="emphasize">Productivity Win with Centralized API Management</span><br/>Established platform support two API services: one supports internal APIs for IBM business applications & one provides external IBM APIs for IBM clients & IBM Business Partners. Implementation supports 300-400 Million API calls per month - 24x7. $14B IBM revenue processed each year through APIs managed by API Connect</span></li>
+</ul>
+<div class="center">&#8594; <a href="https://www.ibm.com/products/api-connect/case-studies" target="_blank" rel="noopener">Gimme More Stories</a></div>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol style="font-size:small">
+    <li>Gartner Leader Quadrant for 9 straight years. <span style="color:#00C0A3">Ranked #1</span> in 4 out of 6 use cases in <a href="https://newsroom.ibm.com/blog-ibm-named-a-leader-in-the-2024-gartner-r-magic-quadrant-tm-for-apiI-management" target="_blank" rel="noopener">2024 Gartner Critical Capabilities for API Management</a></li>
+    <li>Growth through merger and acquisition (M&A) makes API SPRAWL and DISCOVERY really <span style="color:red">hard</span>. API Connect helps get control on where and how many APIs. Managing and securing can then become easier with APIC</li>
+    <li>APIs are constantly exposed to good and bad actors. Securing these APIs is critical. With <a href="https://ibm.seismic.com/Link/Content/DCFV36WCMd3Dh8F27VJQgHCWdfTG" target="_blank" rel="noopener">IBM's OEM Noname offering</a>, proactively protect APIs from vulnerabilities, misconfigurations and design flaws across the entire ever-expanding API estate.</li>
+    <li><a href="https://backstage.io/" target="_blank" rel="noopener">Backstage.io</a>, an open-source platform for devs. Its painful to manage APIs across multiple environments (test, staging, qa, perf, ...). Siloed tunnel-vision on APIs is a risk. With <a href="https://community.ibm.com/community/user/integration/blogs/hunter-kouchi/2024/10/02/introducing-our-free-api-connect-plugin-for-backst" target="_blank" rel="noopener">Backstage.io APIC plugin</a>, get a unified view of all APIs and their instances in a single backstage interface</li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/DBZTNzrZC3E?si=h79AVOQZC781VNq0';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadNS1Example() {
+            // Load NS1 Connect card data as example
+            document.getElementById('cardClass').value = 'ns1';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'NS1 Connect';
+            document.getElementById('frontBgImage').value = 'images/ns1-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM NS1 Connect';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/ns1-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Networking acts like a road &#128739; for software apps. It gets filled with traffic, has potholes, speedbumps & restricted lanes or can be under construction &#128679; with detours';
+            document.getElementById('eli5PainPoint').value = 'Good balancing of traffic needs automatic signals &#128678; and traffic cops to help steer around sudden jams, answer for directions and suggest new routes to save time. Traffic problems need to be spotted fast since fixing them is expensive';
+            document.getElementById('eli5Value').value = 'Apps with fast, reliable network responses & few interruptions across clouds give business value consistently & quickly at the best cost';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to give apps fast, reliable network responses with minimal downtime at global scale across multi-cloud. <a style="font-size:small" href="https://www.ibm.com/think/topics/dns" target="_blank" rel="noopener">What\'s DNS?</a>';
+            document.getElementById('eli5Question').value = 'Are you the team that\'s responsible for authoritative (or external) DNS?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="#" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDBPdGTPRg4MGTXBbmFFg8633pB" target="_blank" rel="noopener">Cloudflare Foundation DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC6T9mcVjRQFGG4B6hT62QhHRGTG" target="_blank" rel="noopener">Pulsar Active Traffic Steering</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCQpJj8d9g9W28QMjBB7HWfWbdBV" target="_blank" rel="noopener">AWS Route53</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDTGTH2B73c48qWggHQqPGjB33j" target="_blank" rel="noopener">Oracle Cloud Infrastructure (OCI)</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC7g7BQJMX8h28cGTjh7TFVXQbVB" target="_blank" rel="noopener">Google Cloud DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCgqq97B77g7mG7RDVfbV3V8GQjG" target="_blank" rel="noopener">Akamai</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC24HW6dMcJDc8CTPmmmMg2m2Fg3" target="_blank" rel="noopener">Azure DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCH6ccCB7hcpF8mWPbpM2RgbVjcj" target="_blank" rel="noopener">UltraDNS (Neustar Security Services)</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDV7WbCdbJmgGcJDhHFJRdmh9hG" target="_blank" rel="noopener">Registrar Solutions (GoDaddy, NameCheap, Network Solutions, ...)</a></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Aspera</span><br/>Why? &#8594; Media and Entertainment customers care a great deal about their content. Robust DELIVERY & ACCESS of customer content makes NS1 attractive. Fast, efficient, secure MOVEMENT & TRANSFER of this same cherished customer content is what makes Aspera a great follow-on conversation</li>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a style="font-size:small" href="https://ibm.seismic.com/Link/Content/DCfqGFGjHQG3c8fJfqJXBfHpm6f3" target="_blank" rel="noopener">Rapid Infrastructure Automation<br/>(RIA aka <s style="color:red;">RNA</s>)</a> <a href="https://ibm.seismic.com/Link/Content/DCdQ2D3qG93gb8HP3cd9RqX9DfcG" target="_blank" rel="noopener">RIA FAQ</a></span><br/>Why? &#8594; RIA removes toil. As a workflow automation platform, RIA can create, modify and delete DNS services and process across the full stack in minutes. Results in efficient operations. RIA has <a href="https://automation-library.ibm.com/workflows" target="_blank" rel="noopener">out-of-the-box (OOB) workflows</a> specifically for NS1 to accelerate customer time-to-value and makes for a great follow-on conversation</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">MAKE IT A COMBO MEAL</h3>
+<ul>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://community.ibm.com/community/user/aiops/blogs/charlie-sprankling/2024/02/14/instana-ns1-integration" target="_blank" rel="noopener">Instana</a></span><br/>Why? &#8594; Using the fast 1-sec observation of Instana, NS1 customers can control and safely steer away from app outages giving their apps a better chance at 100% availability. This need becomes even more critical when replicating apps across multiple clouds or hybrid environments. Instana alerts and alarms can trigger a failover event in NS1.</li>
+   <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://community.ibm.com/community/user/aiops/viewdocument/sevone-automated-network-observabil-1" target="_blank" rel="noopener">SevOne Automated Network Observability (SANO) Predictive Integration</a></span><br/>Why? &#8594; Collect real user data with NS1 & then analyze the data with SevOne to predict future behavior. Data is compared to the baseline data. If a performance issue exists, then NS1 traffic steering is used to guide traffic to the best end point for optimal performance. Improve application performance with <a href="https://community.ibm.com/community/user/aiops/viewdocument/sevone-automated-network-observabil" target="_blank" rel="noopener">SANO & NS1 Load Balancing Integration</a></li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize nospace" style="font-size:small">
+    <span style="color:white;">Are we talking to the right folks?</span>
+    <li class="nospace">Are there other stakeholders we should be talking to: security / networking delivery / app teams?</li>
+    <span style="color:white;">Is there a need?</span>
+    <li class="nospace">How would you characterize the current state of your DNS? Does it perform the way you expect?</li>
+    <li class="nospace">What business objectives are impacted by DNS?</li>
+    <span style="color:white;">Basic Requirements</span>
+    <li class="nospace">What are you using for authoritative (external) DNS today?</li>
+    <li class="nospace">Do you have a secondary DNS or failover system?</li>
+    <li class="nospace">Does the network or security team analyze DNS data in any way?</li>
+    <span style="color:white;">Understand Scale</span>
+    <li class="nospace">What's your average monthly DNS query count?</li>
+    <li class="nospace">Is that query count fairly predictable? Has it been rising or falling? Are there seasonal variations?</li>
+    <li class="nospace">How many DNS records do you maintain?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCFgCgMWB6f7WGQV2p3RW7X7JfHB" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Qualification Flow</a></div>
+<div class="center"><a href="https://stwb.co/ephuesu" target="_blank" rel="noopener">IBM NS1 Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><a href="https://www.ibm.com/case-studies/basis-technologies" target="_blank" rel="noopener">Serving 100s of billions DNS queries a day</a><span class="emphasize"><br/>Basis Technologies</span><br/>Low latency needs as a high-scale, real-time bidding platform. To properly steer traffic based on its location (geolocation), Basis uses NS1 to meet its needs. 30% decrease (faster) in network time for BILLIONS of queries every day</li>
+    <li><a href="https://medium.com/@risto.trajanov_/what-went-wrong-with-netflixs-big-fight-technical-overview-ad967e73a486" target="_blank" rel="noopener">What went wrong with Netflix's big fight?</a><span class="emphasize"><br/>Jake Paul vs Mike Tyson on Netflix</span><br/>NS1 Connect would have helped
+        <ul>
+            <li>Insufficient live streaming setup - lack of optimization</li>
+            <li>Network congestion - too many eyeballs and clogged traffic made things slow</li>
+        </ul>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Make <span class="emphasize">maximum revenue from apps and websites</span> by improving resilience and increasing uptime of workloads that drive the business</li>
+    <li class="nospace">Keep <span class="emphasize">customer satisfaction high, keep churn down</span> by giving an excellent end user experience for apps and website enjoying NS1 traffic supervision</li>
+    <li class="nospace">Gain confidence with app and website resiliency through <span class="emphasize">access of network data</span> provided by NS1</li>
+</ol>`;
+            
+            // Video URL - NS1 uses a local video file
+            document.getElementById('videoUrl').value = 'media/ns1-overview.m4v';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        function loadAsperaExample() {
+            // Load Aspera card data as example
+            document.getElementById('cardClass').value = 'aspera';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Aspera';
+            document.getElementById('frontBgImage').value = 'images/aspera-front.png';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Aspera';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/aspera-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Many organizations need to move massive amounts of data, like videos, medical images, or analytics files, often across long distances. It\'s a reality of modern digital workflows.';
+            document.getElementById('eli5PainPoint').value = 'Traditional file transfer methods like FTP or HTTP often fail to keep up because they are slow and struggle with large files or unstable networks.';
+            document.getElementById('eli5Value').value = 'On top of that, transferring data securely is critical, especially when it involves sensitive or regulated content.';
+            document.getElementById('eli5Punchline').value = 'IBM Aspera addresses all these challenges by using its patented FASP protocol, which allows for extremely fast, reliable, and secure data transfers, regardless of file size or network conditions.';
+            document.getElementById('eli5Question').value = 'How are you currently transferring large files/data internally or with partners?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DC28pDPjmXb6784H9j9pJqjc3bH8" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li>Signiant</li>
+    <li>FileCatalyst</li>
+    <li>AWS S3 Transfer Acceleration</li>
+    <li>Google Cloud Storage Transfer Service</li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul>
+    <li>Math can be funny sometimes</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">MAKE IT A COMBO MEAL</h3>
+<ul>
+    <li>granola bar</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="small emphasize">
+    <li>Are you experiencing delays or reliability issues with file transfers handling large or sensitive data?</li>
+    <li>How important is it to move large files quickly & securely with remote offices or partners?</li>
+    <li>Are you finding challenges in managing / automating file transfers @scale across multiple teams/locations?</li>
+    <li>How do you ensure sensitive data is secure during transfer across networks & to external partners?</li>
+    <li>How often is large data moved regionally / globally?</li>
+    <li>Are your teams spending significant time waiting for file transfers to complete?</li>
+    <li>Do you use 3rd party services for file transfer? Happy?</li>
+    <li>Are you seeing any bottlenecks in workflows from slow file transfers?</li>
+    <li>How do you handle situations where file transfer failures / interruptions occur?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCC9gQpChhfgj8QQRQHHb2mQRVmG" target="_blank" rel="noopener">Seismic 1-Pager</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li>Good: Happy Story</li>
+    <li>Cautionary: Bad Impact Example</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol class="nospace" style="font-size:small">
+  <li><span class="emphasize">Super fast file transfers</span> – Moves large files fast, no matter the distance, unlike slow FTP or old transfer tools.</li>
+  <li><span class="emphasize">Saves bandwidth costs</span> – Uses less bandwidth than traditional methods, so you don't need to pay for expensive network upgrades.</li>
+  <li><span class="emphasize">End-to-end security</span> – Keeps your data safe during transfers, unlike solutions that don't encrypt everything.</li>
+  <li><span class="emphasize">Scales easily</span> – Handles everything from small to massive data transfers, unlike tools that slow down with more data.</li>
+  <li><span class="emphasize">Works in bad network conditions</span> – Doesn't fail when the network is slow or unstable, unlike FTP or HTTP transfers.</li>
+  <li><span class="emphasize">Easy to integrate</span> – Works with your existing systems, so you don't need to completely rework your infrastructure.</li>
+  <li><span class="emphasize">No third-party dependencies</span> – You have full control over transfers, unlike cloud-only services like AWS S3 Transfer Acceleration.</li>
+  </ol>`;
+            
+            // Video URL - Aspera uses a remote video file
+            document.getElementById('videoUrl').value = 'https://d7umqicpi7263.cloudfront.net/promotionalMedia/b230aa0c5fd2b7de21e05a0e416cb86d';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
+        }
+
+        // Setup preview card flip handler
+        document.getElementById('previewCard').addEventListener('click', function(e) {
+            // Don't flip if clicking on a link, button, or toggle
+            if (e.target.tagName === 'A' ||
+                e.target.tagName === 'BUTTON' ||
+                e.target.tagName === 'IMG' ||
+                e.target.closest('a') ||
+                e.target.closest('.toggle-buttons')) {
+                return;
+            }
+            this.classList.toggle('flip');
+        });
+
+        // ========================================
+        // HTML Editor Enhancement Functions
+        // ========================================
+        
+        const editors = {};
+        
+        // Initialize CodeMirror for all content textareas
+        function initializeEditors() {
+            const textareaIds = [
+                'competitorsContent',
+                'xsellContent',
+                'upsellContent',
+                'questionsContent',
+                'storyContent',
+                'loveContent'
+            ];
+            
+            textareaIds.forEach(id => {
+                const textarea = document.getElementById(id);
+                if (textarea && !editors[id]) {
+                    const editor = CodeMirror.fromTextArea(textarea, {
+                        mode: 'htmlmixed',
+                        lineNumbers: true,
+                        lineWrapping: true,
+                        autoCloseTags: true,
+                        theme: 'default',
+                        indentUnit: 4,
+                        tabSize: 4,
+                        indentWithTabs: false
+                    });
+                    
+                    // Sync changes back to textarea and trigger preview update
+                    editor.on('change', () => {
+                        textarea.value = editor.getValue();
+                        updatePreview();
+                    });
+                    
+                    editors[id] = editor;
+                }
+            });
+        }
+        
+        // Get editor instance or fallback to textarea
+        function getEditor(textareaId) {
+            return editors[textareaId] || null;
+        }
+        
+        // Insert tag at cursor position
+        function insertTag(textareaId, tag, cursorOffset) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const doc = editor.getDoc();
+                const cursor = doc.getCursor();
+                doc.replaceRange(tag, cursor);
+                // Move cursor to position inside tag
+                doc.setCursor({
+                    line: cursor.line,
+                    ch: cursor.ch + cursorOffset
+                });
+                editor.focus();
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+                textarea.value = text.substring(0, start) + tag + text.substring(end);
+                textarea.selectionStart = textarea.selectionEnd = start + cursorOffset;
+                textarea.focus();
+                updatePreview();
+            }
+        }
+        
+        // Wrap selection with tags
+        function wrapSelection(textareaId, before, after) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const doc = editor.getDoc();
+                const selection = doc.getSelection();
+                if (selection) {
+                    doc.replaceSelection(before + selection + after);
+                } else {
+                    const cursor = doc.getCursor();
+                    doc.replaceRange(before + after, cursor);
+                    doc.setCursor({
+                        line: cursor.line,
+                        ch: cursor.ch + before.length
+                    });
+                }
+                editor.focus();
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+                const selection = text.substring(start, end);
+                textarea.value = text.substring(0, start) + before + selection + after + text.substring(end);
+                textarea.selectionStart = start + before.length;
+                textarea.selectionEnd = start + before.length + selection.length;
+                textarea.focus();
+                updatePreview();
+            }
+        }
+        
+        // Insert link with prompt
+        function insertLink(textareaId) {
+            const url = prompt('Enter URL:', 'https://');
+            if (url) {
+                const linkTag = `<a href="${url}" target="_blank" rel="noopener"></a>`;
+                const editor = getEditor(textareaId);
+                if (editor) {
+                    const doc = editor.getDoc();
+                    const selection = doc.getSelection();
+                    if (selection) {
+                        doc.replaceSelection(`<a href="${url}" target="_blank" rel="noopener">${selection}</a>`);
+                    } else {
+                        const cursor = doc.getCursor();
+                        doc.replaceRange(linkTag, cursor);
+                        doc.setCursor({
+                            line: cursor.line,
+                            ch: cursor.ch + linkTag.length - 4
+                        });
+                    }
+                    editor.focus();
+                } else {
+                    // Fallback for textarea
+                    const textarea = document.getElementById(textareaId);
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const text = textarea.value;
+                    const selection = text.substring(start, end);
+                    if (selection) {
+                        textarea.value = text.substring(0, start) + `<a href="${url}" target="_blank" rel="noopener">${selection}</a>` + text.substring(end);
+                    } else {
+                        textarea.value = text.substring(0, start) + linkTag + text.substring(end);
+                        textarea.selectionStart = textarea.selectionEnd = start + linkTag.length - 4;
+                    }
+                    textarea.focus();
+                    updatePreview();
+                }
+            }
+        }
+        
+        // Format HTML with beautification
+        function formatHTML(textareaId) {
+            const editor = getEditor(textareaId);
+            if (editor) {
+                const html = editor.getValue();
+                try {
+                    const formatted = html_beautify(html, {
+                        indent_size: 4,
+                        indent_char: ' ',
+                        max_preserve_newlines: 2,
+                        preserve_newlines: true,
+                        wrap_line_length: 0,
+                        indent_inner_html: true,
+                        unformatted: [],
+                        content_unformatted: ['pre', 'textarea'],
+                        extra_liners: []
+                    });
+                    editor.setValue(formatted);
+                    showValidationMessage(textareaId, 'HTML formatted successfully!', 'success');
+                } catch (e) {
+                    showValidationMessage(textareaId, 'Error formatting HTML: ' + e.message, 'error');
+                }
+            } else {
+                // Fallback for textarea
+                const textarea = document.getElementById(textareaId);
+                try {
+                    const formatted = html_beautify(textarea.value, {
+                        indent_size: 4,
+                        indent_char: ' ',
+                        max_preserve_newlines: 2,
+                        preserve_newlines: true
+                    });
+                    textarea.value = formatted;
+                    showValidationMessage(textareaId, 'HTML formatted successfully!', 'success');
+                    updatePreview();
+                } catch (e) {
+                    showValidationMessage(textareaId, 'Error formatting HTML: ' + e.message, 'error');
+                }
+            }
+        }
+        
+        // Validate HTML content (returns validation object)
+        function validateHTMLContent(html) {
+            const errors = [];
+            
+            if (!html || !html.trim()) {
+                return { isValid: false, errors: ['No content to validate'] };
+            }
+            
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const parserErrors = doc.querySelectorAll('parsererror');
+                
+                if (parserErrors.length > 0) {
+                    errors.push('HTML has syntax errors');
+                }
+                
+                // Check for required attributes
+                const links = doc.querySelectorAll('a');
+                links.forEach((link, i) => {
+                    if (!link.getAttribute('href')) {
+                        errors.push(`Link ${i + 1} missing href attribute`);
+                    }
+                });
+                
+                // Check for unclosed tags (basic check)
+                const tagPattern = /<(\w+)[^>]*>/g;
+                const closePattern = /<\/(\w+)>/g;
+                const openTags = [];
+                let match;
+                
+                while ((match = tagPattern.exec(html)) !== null) {
+                    const tag = match[1].toLowerCase();
+                    // Skip self-closing tags
+                    if (!['img', 'br', 'hr', 'input', 'meta', 'link'].includes(tag)) {
+                        openTags.push(tag);
+                    }
+                }
+                
+                const closeTags = [];
+                while ((match = closePattern.exec(html)) !== null) {
+                    closeTags.push(match[1].toLowerCase());
+                }
+                
+                // Simple check: count should match for most tags
+                if (openTags.length !== closeTags.length) {
+                    errors.push('Possible unclosed tags detected');
+                }
+                
+                return {
+                    isValid: errors.length === 0,
+                    errors: errors
+                };
+            } catch (e) {
+                return {
+                    isValid: false,
+                    errors: ['Validation error: ' + e.message]
+                };
+            }
+        }
+        
+        // Validate HTML (UI wrapper)
+        function validateHTML(textareaId) {
+            const editor = getEditor(textareaId);
+            const html = editor ? editor.getValue() : document.getElementById(textareaId).value;
+            
+            const validation = validateHTMLContent(html);
+            
+            if (validation.isValid) {
+                showValidationMessage(textareaId, '✓ HTML is valid!', 'success');
+            } else {
+                showValidationMessage(textareaId, validation.errors.join('; '), 'error');
+            }
+        }
+        
+        // Show validation message
+        function showValidationMessage(textareaId, message, type) {
+            const msgElement = document.getElementById('validation-' + textareaId);
+            if (msgElement) {
+                msgElement.textContent = message;
+                msgElement.className = 'validation-message ' + type;
+                msgElement.style.display = 'block';
+                
+                // Auto-hide success messages after 3 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        msgElement.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        }
+        
+        // Sync CodeMirror editors from textarea values
+        function syncEditorsFromTextareas() {
+            const textareaIds = [
+                'competitorsContent',
+                'xsellContent',
+                'upsellContent',
+                'questionsContent',
+                'storyContent',
+                'loveContent'
+            ];
+            
+            textareaIds.forEach(id => {
+                const editor = getEditor(id);
+                const textarea = document.getElementById(id);
+                if (editor && textarea) {
+                    console.log(`Syncing ${id}: ${textarea.value.substring(0, 50)}...`);
+                    editor.setValue(textarea.value);
+                } else {
+                    console.warn(`Cannot sync ${id}: editor=${!!editor}, textarea=${!!textarea}`);
+                }
+            });
+        }
+        
+        // Initialize editors when page loads
+        window.addEventListener('load', () => {
+            // Small delay to ensure CodeMirror is fully loaded
+            setTimeout(() => {
+                initializeEditors();
+                
+                // Initialize CodeMirror for HTML output
+                const htmlOutputTextarea = document.getElementById('htmlOutput');
+                if (htmlOutputTextarea) {
+                    window.htmlOutputEditor = CodeMirror.fromTextArea(htmlOutputTextarea, {
+                        mode: 'htmlmixed',
+                        lineNumbers: true,
+                        lineWrapping: true,
+                        theme: 'default',
+                        indentUnit: 4,
+                        tabSize: 4,
+                        indentWithTabs: false,
+                        readOnly: false  // Allow editing
+                    });
+                    
+                    // Sync changes back to textarea
+                    window.htmlOutputEditor.on('change', () => {
+                        htmlOutputTextarea.value = window.htmlOutputEditor.getValue();
+                    });
+                }
+                
+                // Generate initial HTML
+                generateHTML();
+            }, 100);
+        });
+
+        // Initialize preview on page load
+        updatePreview();
+    </script>
+</body>
+</html>
