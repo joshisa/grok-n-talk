@@ -1400,7 +1400,17 @@
             
             // TV/Video section
             if (videoUrl) {
-                previewTv.innerHTML = `<iframe width="100%" height="50%" src="${videoUrl}" title="Explainer Video" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                // Check if it's a local video file (not an iframe embed)
+                const isLocalVideo = /\.(mp4|m4v|webm|ogg)$/i.test(videoUrl);
+                
+                if (isLocalVideo) {
+                    // Use video tag with preload="metadata" and #t=0.1 to prevent autoplay
+                    const videoSrc = videoUrl.includes('#') ? videoUrl : `${videoUrl}#t=0.1`;
+                    previewTv.innerHTML = `<video id="${cardClass}-video" width="100%" height="50%" src="${videoSrc}" type="video/mp4" title="Explainer Video" controls="controls" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" preload="metadata" allowfullscreen></video>`;
+                } else {
+                    // Use iframe for external videos (YouTube, etc.)
+                    previewTv.innerHTML = `<iframe width="100%" height="50%" src="${videoUrl}" title="Explainer Video" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                }
                 previewTv.style.display = 'none';
             } else {
                 previewTv.innerHTML = '';
@@ -1628,9 +1638,21 @@ ${loveContent}
             
             // TV/Video section
             if (videoUrl) {
-                contentSectionsHtml += `\n        <div class="tv" id="${cardClass}-tv">
+                // Check if it's a local video file (not an iframe embed)
+                const isLocalVideo = /\.(mp4|m4v|webm|ogg)$/i.test(videoUrl);
+                
+                if (isLocalVideo) {
+                    // Use video tag with preload="metadata" and #t=0.1 to prevent autoplay
+                    const videoSrc = videoUrl.includes('#') ? videoUrl : `${videoUrl}#t=0.1`;
+                    contentSectionsHtml += `\n        <div class="tv" id="${cardClass}-tv">
+            <video id="${cardClass}-video" width="100%" height="50%" src="${videoSrc}" type="video/mp4" title="Explainer Video" controls="controls" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" preload="metadata" allowfullscreen></video>
+        </div>`;
+                } else {
+                    // Use iframe for external videos (YouTube, etc.)
+                    contentSectionsHtml += `\n        <div class="tv" id="${cardClass}-tv">
             <iframe width="100%" height="50%" src="${videoUrl}" title="Explainer Video" webkitallowfullscreen frameborder="0" style="position:absolute; top:25%; left: 0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>`;
+                }
             }
 
             // Generate CSS for product image hover effect if image is provided
