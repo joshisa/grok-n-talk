@@ -1513,21 +1513,30 @@
             
             // Card flip with touch support
             var touchStartX = 0, touchStartY = 0;
+            var touchHandled = false;
+            
             $('.card')
                 .on('touchstart', function(e) {
                     touchStartX = e.touches[0].clientX;
                     touchStartY = e.touches[0].clientY;
+                    touchHandled = false;
                 })
                 .on('touchend', function(e) {
                     var diffX = Math.abs(e.changedTouches[0].clientX - touchStartX);
                     var diffY = Math.abs(e.changedTouches[0].clientY - touchStartY);
                     // Only flip if it's a tap (not a swipe)
                     if (diffX < 10 && diffY < 10) {
+                        e.preventDefault(); // Prevent click event from firing
+                        touchHandled = true;
                         $(this).toggleClass("flip");
                     }
                 })
                 .on('click', function(e) {
-                    $(this).toggleClass("flip");
+                    // Don't flip if touch was already handled
+                    if (!touchHandled) {
+                        $(this).toggleClass("flip");
+                    }
+                    touchHandled = false; // Reset for next interaction
                 })
                 .on('keypress', function(e) {
                     // Keyboard accessibility: Enter or Space to flip
