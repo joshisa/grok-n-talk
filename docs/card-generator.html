@@ -1943,27 +1943,650 @@ ${finalDescription}
 
         // Placeholder functions for other card examples
         function loadInstanaExample() {
-            alert('🚧 Instana card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load Instana card data as example
+            document.getElementById('cardClass').value = 'instana';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Instana Observability';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Instana Observability';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/instana-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Measuring things helps customers make decisions quicker';
+            document.getElementById('eli5PainPoint').value = 'Customers are blind to app issues that happen fast and often, causing bad business outcomes';
+            document.getElementById('eli5Value').value = 'Capturing measurements more often detects errors quicker, better and allows faster fixing';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DC3FqhbFPPcCV87XqWD8hgR7JffP" target="_blank" rel="noopener">Instana Observability</a> helps customers keep app downtime small, fix bad performance quickly, make more money and keep users happy';
+            document.getElementById('eli5Question').value = 'Can you tell me about your current monitoring strategy?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DC3C2GmMB8p4g89X79X7Q7bdp6h3" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><span class="emphasize">AppDynamics</span> - <small>Built for legacy java workloads that needs code tweaks to capture info</small></li>
+    <li><span class="emphasize">New Relic</span> - <small>Rebuilt their platform on OpenTelemetry. Attach to community momentum and flexibility. More complicated initial deployment.</small></li>
+    <li><span class="emphasize">DataDog</span> - <small>Infrastructure first approach with lots of options. Pain points with custom dashboard hassle and complex pricing model leading to overage charges often</small></li>
+    <li><span class="emphasize">Dynatrace</span> - <small>Very complete solution. App-centric and highly automated. Expensive to use fully. App instrumentation resource heavy, causing slowdowns or increase in resources for the apps</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/app?ContentId=b8110869-b05e-4074-851f-207045d6d245#/doccenter/f6bc8873-d580-4ee8-a903-c4e0d3a7eee9/doc/%252Fdd0ab3871f-9594-50fd-73b1-7f6c58815c13%252Fdd52629361-90ce-1c4a-1e20-ca879de23430%252Fdddc4c6e24-4b7b-9716-f41c-de20e4748d22%252Fldd5e9299b-e1f8-4f5e-b4b2-d45548f4f293%252Fld81b61684-48c8-4039-a480-97d0773fa5f0%252Fld78411427-144d-4a3a-abb0-dbbd3c27a79f%252Flf37d352a0-328e-483a-bfe8-fd35d501760b/grid/?anchorId=81cbf4cc-56fd-4437-b078-9c249058d878" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Turbonomic</span><br/>Why? &#8594; Without good data and context, teams cannot confidently automate at scale. Instana gives real-time data with all the context. No gaps. No blind spots. 1 second granularity. Turbonomic provides infrastructure mgmnt awareness and gives a historical record of automated actions taken and what performance looked like before and after</li>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Concert</span><br/>Why? &#8594; Allows app owners and SRE teams to make smart decisions about system reliability, security, and performance. It simplifies the effort of identifying and fixing issues. This makes app environments more resilient and secure</li>
+</ul>
+<div class="center"><a href="https://stwb.co/ephuese" target="_blank" rel="noopener">Instana LifeTime Value (LTV) Marketing Kit</a></div>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/app?ContentId=b8110869-b05e-4074-851f-207045d6d245#/doccenter/f6bc8873-d580-4ee8-a903-c4e0d3a7eee9/doc/%252Fdd0ab3871f-9594-50fd-73b1-7f6c58815c13%252Fdd52629361-90ce-1c4a-1e20-ca879de23430%252Fdddc4c6e24-4b7b-9716-f41c-de20e4748d22%252Fldd5e9299b-e1f8-4f5e-b4b2-d45548f4f293%252Fld81b61684-48c8-4039-a480-97d0773fa5f0%252Fld78411427-144d-4a3a-abb0-dbbd3c27a79f%252Flf37d352a0-328e-483a-bfe8-fd35d501760b/grid/?anchorId=81cbf4cc-56fd-4437-b078-9c249058d878" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul>
+    <li><span class="emphasize">INSTANA BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Kubecost</span><br/>Why? &#8594; Instana Kubernetes cluster metrics are enriched with cost and allocation usage that are provided by Kubecost. Having a complete view of performance and cost together allows Kubernetes admins to make smarter, profitable decisions</li>
+    <li><span style="font-size:small;" class="emphasize">INSTANA ESSENTIALS BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5;font-size:small;">STANDARD PLAN</span><br/>Why? &#8594; Get full <a href="https://www.ibm.com/think/topics/application-performance-management" target="_blank" rel="noopener">Application Performance Management (APM)</a>. Customers with surprise outages & slow-downs or with little to no visibility on dependencies will be delighted by Instana Standard Plan's distributed tracing, incident management and so much more.</li>
+</ul>
+<div class="center"><a href="https://www.ibm.com/products/instana/pricing#rich-text-ce69ebdd1b" target="_blank" rel="noopener">Comparse Essentials and Standard Plan</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize">
+    <li>How do you make sense of your data as it relates to APM?</li>
+    <li>Does your current APM automatically see changes to your infrastructure?</li>
+    <li>How about when new applications are pushed?</li>
+    <li>Can your current monitoring tool keep up with your pipeline? Can it make sense of data across your tech stack?</li>
+    <li>Are you anticipating changes to your environment such as adopting cloud native technologies (containers, microservices) and/or a move to the public cloud? If so, how will this impact your existing monitoring solutions?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DC2mmdqpCCQRB8fH7qTMjJc8GTT3" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephprau" target="_blank" rel="noopener">Instana on AWS Marketing Kit</a> <sup class="new">NEW</sup></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://www.ibm.com/case-studies/carey-international" target="_blank" rel="noopener">Carey International, Inc.</a><br/><span class="emphasize">Modernization Journey</span><br/>Sell Instana to provide Modernization efforts and legacy apps with "X-ray vision" to find performance bottlenecks, unexpected resource usage and operational issues in real-time</span></li>
+    <li><span><a href="https://www.ibm.com/case-studies/conrad-electronic" target="_blank" rel="noopener">Conrad Electronic</a><br/><span class="emphasize">Kubernetes (Container) Observability</span><br/>Sell Instana to provide container observability and act as a core SRE (Service Reliability Engineering) tool for metrics, service objectives and triggering of alerts.</span></li>
+</ul>
+<div class="center">&#8594; <a href="https://www.ibm.com/products/instana/case-studies" target="_blank" rel="noopener">Gimme More Stories</a></div>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol style="font-size: small">
+    <li class="nospace">Need to automate lots of apps or have performance worry</li>
+    <ul>
+        <li class="nospace">Fear loss of revenue</li>
+        <li class="nospace">Fear risk to reputation</li>
+        <li class="nospace">Fear poor customer satisfaction</li>
+    </ul>
+    <li class="nospace">Hate existing <a href="https://www.ibm.com/think/insights/debunking-observability-myths-part-4-observability-is-always-expensive" target="_blank" rel="noopener">observability price increases & overages</a></li>
+    <li class="nospace">Want <a href="https://opentelemetry.io/" target="_blank" rel="noopener">Open Telemetry</a> support</li>
+    <li class="nospace">Fear app outages and the high costs of downtime:
+        <ul>
+            <li class="nospace"><span class="emphasize">tight profit margins</span> (retail, manufacturing, ...)</li>
+            <li class="nospace"><span class="emphasize">sensitivity to reputation</span> (content providers, government services, ...)</li>
+            <li class="nospace"><span class="emphasize">difficulty getting skilled tech resources</span> (early digital transformation, business model pivot, ...)</li>
+        </ul>
+    </li>
+    <li class="nospace">Need on-premise or hybrid deployment</li>
+    <li class="nospace">Want out-of-the-box dashboards to get started quickly</li>
+    <li class="nospace">Want a zOS Mainframe modern observability solution</li>
+    <li class="nospace">Need observability with automation (action remediation) to help rapidly resolve incidents</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a> or use easier procurement</li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/ar1t32wvaiI?si=-Hpc768HQ1e0TrCK';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         function loadCloudabilityExample() {
-            alert('🚧 Cloudability card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load Cloudability card data as example
+            document.getElementById('cardClass').value = 'cloudy';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Cloudability';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Cloudability';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/cloudability-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Cloud waste is expensive and common, but can be lowered';
+            document.getElementById('eli5PainPoint').value = 'Customers have few data points and low awareness about cloud waste';
+            document.getElementById('eli5Value').value = 'Knowing where cloud waste exists allows control and reduction';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCdb3pffTFXj9GTCBbM6JTc7Gqfd" target="_blank" rel="noopener">Cloudability</a> shows cloud value against cloud spend to help with decisions and definition of priorities';
+            document.getElementById('eli5Question').value = 'How are you tracking your cloud costs today? How many hours is it taking you to track all your cloud spend? Are you under pressure to cut cloud costs?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCPCBgMj27VDbGhGJHc6WbWhFQmd" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li class="nospace">Cloud Service Provider (CSP or Native) Tools</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">AWS, Azure, GCP</span><br/><small>Single-Cloud. Free</small></li>
+    </ul>
+    <li class="nospace">Leaders</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">CloudHealth (CHT), Flexera</span><br/><small>Established eco-system of customers and partners</small></li>
+    </ul>
+    <li class="nospace">Challengers</li>
+    <ul>
+        <li class="nospace"><span class="emphasize"><a href="https://ibm.seismic.com/Link/Content/DCCccB9RRfFch8CDQ264DdV6WQDd" target="_blank" rel="noopener">CloudZero</a>, Finout Vantage,<br/>Vega Cloud, Ternary</span><br/><small>Limited feature-set with claims of cutting-edge. Aggressive pricing</small></li>
+    </ul>
+    <li class="nospace">DevOps Tools</li>
+    <ul>
+        <li class="nospace"><span class="emphasize">Harness.io, Datadog</span><br/><small>Limited feature-set with strong dev relationships and appeal</small></li>
+    </ul>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCHFRWXQQq2VcGCB46H4gDQc463d" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">TURBONOMIC</span><br/>
+        <ul class="nospace">
+            <li class="nospace">Why? &#8594; <span class="emphasize">Resource Optimization</span><br/><a href="https://www.ibm.com/case-studies/providence" target="_blank" rel="noopener">Providence Case Study</a></li>
+            <li class="nospace">Why? &#8594; <span class="emphasize">Automation</span><br/>Working together like Eyes & Hands<br/><span class="emphasize">Cloudability</span> gives sight &<br/><span class="emphasize">Turbonomic</span> turns the knobs<br/><a href="https://www.ibm.com/case-studies/ibm-techzone" target="_blank" rel="noopener">IBM TechZone Case Study</a></li>
+            <li class="nospace">Why? &#8594; <span class="emphasize">Hybrid Optimization</span></br><a href="https://www.ibm.com/case-studies/jb-hunt" target="_blank" rel="noopener">JB Hunt Case Study</a></li>
+        </ul>
+    </li>
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">APPTIO</span><br/>Why? &#8594; Facilitates Costing, Planning, Billing & Benchmarking use-cases</li>
+    <li><span class="emphasize">CLOUDABILITY BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">KUBECOST</span><br/>Why? &#8594; Provides hybrid container cost visibility & insights. Enables customers to optimize and allocate hybrid container costs across hybrid environments</li>
+</ul>
+<div class="center"><a href="https://stwb.co/ephuese" target="_blank" rel="noopener">Cloudability LifeTime Value (LTV) Marketing Kit</a></div>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCHFRWXQQq2VcGCB46H4gDQc463d" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul style="font-size:small">
+    <li>CLOUDY TRIAL USERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">ESSENTIALS plans</span><br/>Why? &#8594; Perfect starting point for orgs looking to establish FinOps fundamentals such as multi-cloud visibility, spending allocations and resource right-sizing</li>
+    <li>CLOUDY ESSENTIAL BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">STANDARD plans</span><br/>Why? &#8594; Seeing is good, but making an action plan using data is even better. Perfect for more mature customers looking for a comprehensive cloud program cost management, unit economics and cloud planning (workload and financial)</li>
+    <li>CLOUDY STANDARD BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">PREMIUM plans</span><br/>Why? &#8594; Premium says it all. Perfect solution for the most mature FinOps practices looking for a single source of truth (one common data source) across the org, advanced AI-infused optimization capabilities and extended automation</li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize nospace">
+    <li>How well does your organization comprehend cloud spend and demonstrate proficiency in effectively managing variable costs?</li>
+    <li>How are you tracking your cloud costs today? / How many hours is it taking you to track all your cloud spend? / Are you under pressure to cut cloud costs?</li>
+    <li>To what extent can you monitor cloud spend for anomalies and offer recommendations to your business units to ensure optimal support for their requirements while maintaining cost control?</li>
+    <li>How do you manage and chargeback Kubernetes costs?</li>
+    <li>How do you compare AWS, Azure, and GCP pricing and discount programs?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCD9R9GDdj4FMGmG23GjTWbVfgfP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephuesp" target="_blank" rel="noopener">FinOps with IBM Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://www.apptio.com/case-study/unlocking-the-business-value-of-it-transformation-with-coles-and-cloudability/" target="_blank" rel="noopener">Coles Group</a><br/><span class="emphasize">Retail Modernization Journey</span><br/>Sell Cloudability to customers experiencing a transition into cloud from data center. Margin sensitivity means a shift to cloud must have a good financial and transparent cost model. Smart cloud spend can accelerate innovation and speed-to-market</span></li>
+    <li><span><a href="https://www.apptio.com/case-study/financial-services-company-overcomes-cloud-cost-challenges-by-establishing-and-maturing-its-finops-practice/" target="_blank" rel="noopener">Leading Financial Services Provider</a><br/><span class="emphasize">Run-Away Cloud Usage</span><br/>Sell Cloudability to customers experiencing rapid consumption of cloud services and resources. For multi-cloud, global enterprises - managing spend via spreadsheet is impractical. Providing showback, chargeback & forecasting for 12 global businesses & functions becomes overwhelming without Cloudability</span></li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Facing Multi-Cloud cost visibility challenges</li>
+    <li class="nospace">Need to detect usage and spend shifts away from normal (anomalies) and reduce waste</li>
+    <li class="nospace">Want to automate <span class="emphasize">savings program or savings plan</span> coverage</li>
+    <li class="nospace">Want to track and allocate cloud total spend</li>
+    <li class="nospace">Looking for spend accountability</li>
+    <li class="nospace">Want to drive unit economics and analyze client profitability</li>
+    <li class="nospace">Want to buy tools that can provide immediate return on investment (ROI)</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a></li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/0WWklk4j2ZM?si=-nBEiqLHn-owySDA';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         function loadKubecostExample() {
-            alert('🚧 Kubecost card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load Kubecost card data as example
+            document.getElementById('cardClass').value = 'kubecost';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Kubecost';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Kubecost';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/kubecost-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = '<a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes" target="_blank" rel="noopener">Kubernetes</a> (container) waste is expensive and common, but can be lowered';
+            document.getElementById('eli5PainPoint').value = 'Customers have few data points and low awareness about container spend';
+            document.getElementById('eli5Value').value = 'Knowing where kubernetes waste exists allows control and reduction';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCpQbmpbgqBJC8qVmDRBJ4cHJHHP" target="_blank" rel="noopener">Kubecost</a> (coob-cost) &#128172; provides real-time container cost visibility and insights on any Kubernetes platform to help with lowering cost and waste';
+            document.getElementById('eli5Question').value = 'Do you run Kubernetes workloads today? How are you tracking your Kubernetes costs today? How many hours is it taking you to track all your Kubernetes spend? Are you under pressure to cut container costs?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCcH66cF6M4X2G2Pg3dgVd6JFV48" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><span class="emphasize">Vantage</span> - <small>Cloud Cost Management (CCM) tool with basic Kubernetes coverage. Built on <a href="https://opencost.io/" target="_blank" rel="noopener">OpenCost</a> which is a vendor-neutral open source project</small></li>
+    <li><span class="emphasize">Finout</span> - <small>All-in-one FinOps platform. New to market. Basic Kubernetes coverage</small></li>
+    <li><span class="emphasize">Cast.ai</span> - <small>Known for their automated right-sizing capabilities. Plenty of automation and cost optimization, but no FinOps</small></li>
+    <li><span class="emphasize">Harness.io</span> - <small>Integrated solutions focused mainly on <a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">Continuous Integration/Continuous Delivery (CI/CD)</a> platform for software delivery. Basic Kubernetes coverage, but no FinOps</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCQb2VBQMqVCg8HGBHJV62gqTR9d" target="_blank" rel="noopener">ONE + ONE = THREE</a></h3>
+<ul>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Instana</span><br/>Why? &#8594; <a href="https://community.ibm.com/community/user/blogs/surabhi-surabhi/2025/02/10/instana-kubecost" target="_blank" rel="noopener">Instana Kubernetes cluster metrics are enriched with cost and allocation usage that are provided by Kubecost</a>. Having a complete view of performance and cost together allows Kubernetes admins to make smarter, profitable decisions</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCQb2VBQMqVCg8HGBHJV62gqTR9d" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul class="nospace" style="font-size:small">
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Turbonomic</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full infrastructure stack optimization. Scope: Containers + all infrastructure optimization</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Cloudability</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full cloud cost optimization. Scope: Containers + all cloud program spend</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">IBM Cloudability Premium</span><br/>Why? &#8594; Expand from Kubernetes cost optimization to full infrastructure stack optimization and full cloud cost optimization. Scope: Containers + All Infrastructure Optimization + All Cloud Program Spend</li>
+    <li><span class="emphasize">KUBECOST BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://www.ibm.com/new/announcements/finops-for-all-cloud-costs-and-stakeholders" target="_blank" rel="noopener">IBM FinOps Suite</a></span><br/>Why? &#8594; Access to a comprehensive and leading-edge collection of FinOps capabilities unmatched by any other single vendor in the marketplace</li>
+</ul>
+<div class="center"><a href="https://docs.kubecost.com/architecture/opencost-product-comparison" target="_blank" rel="noopener">Compare Plans</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="nospace">
+    <li>Beyond Kubernetes,
+        <ul>
+            <li class="nospace">Do you see a need for optimizing your infrastructure costs?</li>
+            <li class="nospace">Are you interested in automating infrastructure optimization?</li>
+            <li class="nospace">Have you heard about <span class="emphasize">IBM Turbonomic?</span></li>
+        </ul>
+    </li>
+    <li>Beyond Kubernetes,
+        <ul>
+            <li class="nospace">Do you need to manage Cloud Service Provider (CSP) costs or 3rd party cloud costs in general?</li>
+            <li class="nospace">Do you need to bring up right-sizing suggestions to your engineers?</li>
+            <li class="nospace">How about measuring your cloud Total Cost of Ownership (TCO) using unit economics?</li>
+            <li class="nospace">Have you heard about <span class="emphasize">IBM Cloudability</span>?</li>
+        </ul>
+    </li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCGCbdB4bqCjGGQ27hm696M6cqfP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephuesp" target="_blank" rel="noopener">FinOps with IBM Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><span><a href="https://blog.kubecost.com/blog/greensteam-case-study/" target="_blank" rel="noopener">GreenSteam</a><br/><span class="emphasize">Green IT & Infrastructure Optimization</span><br/>Achieves total cost visibility for Amazon EKS. Brings together inside and outside-of-cluster spend with accurate spend accountability and allocation of costs through fine-detailed drill down views</span></li>
+    <li><span><a href="https://blog.kubecost.com/blog/kubecost-reduces-camunda-kubernetes-cost/" target="_blank" rel="noopener">Camunda</a><br/><span class="emphasize">Assess User Acquisition Costs (Trials)</span><br/>Gained insights to understand true Kubernetes-related cloud costs when assessing ROI on trial promotions. Resulted in introduction and scaling of free trial programs with confidence.</span></li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Loving fast ROI. <span class="emphasize">30%+ savings</span> is a relatively "conservative" estimate for Kubecost. The more complex the environment, the greater the opportunity to optimize and save money</li>
+    <li class="nospace">Loving waste reduction and money saving when hassling with environments that are multi-cloud, involve <a href="https://www.ibm.com/think/topics/rbac" target="_blank" rel="noopener">Role Based Access Control (RBAC)</a>, involve <a href="https://www.ibm.com/think/topics/single-sign-on" target="_blank" rel="noopener">Single Sign-On (SSO)</a> and involve "big Kubernetes clusters"</li>
+    <li class="nospace">Kubecost Free customers looking to expand beyond their 250 core per cluster limitation</li>
+    <li class="nospace">AWS Fargate on EKS customers looking for cost and waste insights</li>
+    <li class="nospace">Optimizing and monitoring for Kubernetes using <span class="emphasize"><a href="https://community.ibm.com/community/user/cloud/blogs/elvin-galarza/2025/02/24/introducing-nvidia-h200-gpus" target="_blank" rel="noopener">GPUs</a></span></li>
+    <li class="nospace">Need self-hosted or hybrid deployment</li>
+    <li class="nospace">Need to buy via the AWS Marketplace to leverage their <a href="https://beetok.ied.dal.app.cirrus.ibm.com/#/play/UnderstandingAndLeveragingHyperscalerCommittedSpendToProgressSalesOpportunities-joshisa@us.ibm.com" target="_blank" rel="noopener">committed spend money</a></li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/HgfUAPH2-Co?si=0_wStQUVmAgSkzsI';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         function loadApicExample() {
-            alert('🚧 API Connect card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load API Connect card data as example
+            document.getElementById('cardClass').value = 'apic';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'API Connect';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM API Connect';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/apic-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Software is eating the world. <a href="https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces" target="_blank" rel="noopener">APIs</a> are how software apps talk with each other. APIs have a lifecycle from creation to use to shutdown that needs management';
+            document.getElementById('eli5PainPoint').value = 'Companies grow, buy other ones or even get bought. More app software to handle in more places. Makes discovering, securing, testing, updating & observing APIs hard and risky';
+            document.getElementById('eli5Value').value = 'API lifecycle management lowers risk, improves quality & allows ways to create new value';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DCq968bc9p2qhGCJQ24JHWPGMC83" target="_blank" rel="noopener">IBM API Connect</a> helps customers develop, manage, secure and socialize all of their APIs, wherever they live';
+            document.getElementById('eli5Question').value = 'How do you manage application integrations today? How do you discover & manage APIs today?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DCh9WVhXmP8268MJhgPDj96QJF6G" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li class="nospace"><span class="emphasize">Apigee</span> - <small>SaaS centric approach</small></li>
+    <li class="nospace"><span class="emphasize">Mulesoft</span> - <small>Combines API Management and Integration. Good at thought leadership</small></li>
+    <li class="nospace"><span class="emphasize">Kong</span> - <small>Developer focused. Dev mindshare and appeal</small></li>
+    <li class="nospace"><span class="emphasize">Azure APIm</span> - <small>Basic API Management for Azure customers</small></li>
+    <li class="nospace"><span class="emphasize">AWS APIm</span> - <small>Basic API Management for AWS customers</small></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCg2mJmTR6gCJG7MqgMGDC4Fb4Hj" target="_blank" rel="noopener">AppConnect Enterprise</a></span><br/>Why? &#8594; <a href="https://ibm.seismic.com/Link/Content/DCDCFDTTX2dMfGm2C7bcJ4QQjcjB" target="_blank" rel="noopener">API-led Integration</a> is a modern way to integrate applications and data through reusable APIs. This approach fosters innovation and reduces costs. IBM provides a modular approach to right-size value of spend with integration need.</li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DC3H4ChgBf72q8FChBXT34X3PQcd" target="_blank" rel="noopener">CloudPak for Integration</a></span><br/>Why? &#8594; <a href="https://ibm.seismic.com/Link/Content/DCDCFDTTX2dMfGm2C7bcJ4QQjcjB" target="_blank" rel="noopener">API-led Integration</a> </li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DC9g3bhVWfTpCG7HcJg2FJh6Gq6V" target="_blank" rel="noopener">APIC for GraphQL</a></span><br/>Why? &#8594; Newer API formats like GraphQL are growing in popularity. Build, optimize and scale GraphQL APIs quickly and easily. <a href="https://www.ibm.com/think/topics/graphql" target="_blank" rel="noopener">What's GraphQL</a></li>
+    <li><span class="emphasize">API CONNECT BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://ibm.seismic.com/Link/Content/DCFV36WCMd3Dh8F27VJQgHCWdfTG" target="_blank" rel="noopener">Noname API Security</a></span><br/>Why? &#8594; IBM has partnered with Noname Security (Akamai) to extend security capabilities and offer advanced API security. Identify insecure APIs, look for misconfigurations and vulnerabilities and detect odd API traffic in real-time</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5"><a href="https://welcome.apiconnect.automation.ibm.com/comparison/" target="_blank" rel="noopener">MAKE IT A COMBO MEAL</a></h3>
+<ul style="font-size:small">
+    <li><span class="emphasize">API CONNECT Essentials Plan </span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="#" target="_blank" rel="noopener">Standard</a></span><br/>Why? &#8594; Need for connectivity to Cloud Private endpoints and longer analytics data retention timeframe</li>
+    <li><span class="emphasize">API CONNECT Standard Plan </span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="#" target="_blank" rel="noopener">Premium</a></span><br/>Why? &#8594; Need for customization of the gateway (Datapower) for policies, scripts, XSLT, ... Need for connectivity to on-premises</li>
+</ul>
+<div class="center"><a href="https://welcome.apiconnect.automation.ibm.com/comparison/" target="_blank" rel="noopener">Compare Plans<br/>Essentials/Standard/Premium/Reserved</a></div>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize">
+    <li>How do you manage access and integrate/scale applications with consistency?</li>
+    <li>How do you manage API lifecycles in a secure, scalable way?</li>
+    <li>How do you customize self-service for API consumption for app developers?</li>
+    <li>How do you deliver applications while minimizing impact to budget and timelines?</li>
+    <li>How do you create and secure APIs effectively while accounting for developers with varying levels of skill and expertise?</li>
+    <li>How do you reuse APIs across the enterprise?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCPJMQ377ggBcGWBqWfqg28GB3dP" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://stwb.co/ephulsz" target="_blank" rel="noopener">IBM API Connect Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul style="font-size:small">
+    <li><span><a href="https://www.ibm.com/case-studies/finologee-sa" target="_blank" rel="noopener">Finologee S.A.</a><br/><span class="emphasize">Streamline Regulatory Tech Components</span><br/>Supporting banks and insurance "Know your Customer" (KYC) requirements, improved new customer conversion by 6x more onboardings over paper-based processes. Achieved significant process time-savings using an open banking solution based on IBM API Connect</span></li>
+    <li><span><a href="https://www.ibm.com/case-studies/ibm-cio-office-api" target="_blank" rel="noopener">IBM CIO</a><br/><span class="emphasize">Productivity Win with Centralized API Management</span><br/>Established platform support two API services: one supports internal APIs for IBM business applications & one provides external IBM APIs for IBM clients & IBM Business Partners. Implementation supports 300-400 Million API calls per month - 24x7. $14B IBM revenue processed each year through APIs managed by API Connect</span></li>
+</ul>
+<div class="center">&#8594; <a href="https://www.ibm.com/products/api-connect/case-studies" target="_blank" rel="noopener">Gimme More Stories</a></div>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol style="font-size:small">
+    <li>Gartner Leader Quadrant for 9 straight years. <span style="color:#00C0A3">Ranked #1</span> in 4 out of 6 use cases in <a href="https://newsroom.ibm.com/blog-ibm-named-a-leader-in-the-2024-gartner-r-magic-quadrant-tm-for-apiI-management" target="_blank" rel="noopener">2024 Gartner Critical Capabilities for API Management</a></li>
+    <li>Growth through merger and acquisition (M&A) makes API SPRAWL and DISCOVERY really <span style="color:red">hard</span>. API Connect helps get control on where and how many APIs. Managing and securing can then become easier with APIC</li>
+    <li>APIs are constantly exposed to good and bad actors. Securing these APIs is critical. With <a href="https://ibm.seismic.com/Link/Content/DCFV36WCMd3Dh8F27VJQgHCWdfTG" target="_blank" rel="noopener">IBM's OEM Noname offering</a>, proactively protect APIs from vulnerabilities, misconfigurations and design flaws across the entire ever-expanding API estate.</li>
+    <li><a href="https://backstage.io/" target="_blank" rel="noopener">Backstage.io</a>, an open-source platform for devs. Its painful to manage APIs across multiple environments (test, staging, qa, perf, ...). Siloed tunnel-vision on APIs is a risk. With <a href="https://community.ibm.com/community/user/integration/blogs/hunter-kouchi/2024/10/02/introducing-our-free-api-connect-plugin-for-backst" target="_blank" rel="noopener">Backstage.io APIC plugin</a>, get a unified view of all APIs and their instances in a single backstage interface</li>
+</ol>`;
+            
+            // Video URL
+            document.getElementById('videoUrl').value = 'https://www.youtube.com/embed/DBZTNzrZC3E?si=h79AVOQZC781VNq0';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         function loadNS1Example() {
-            alert('🚧 NS1 Connect card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load NS1 Connect card data as example
+            document.getElementById('cardClass').value = 'ns1';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'NS1 Connect';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM NS1 Connect';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/ns1-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Networking acts like a road &#128739; for software apps. It gets filled with traffic, has potholes, speedbumps & restricted lanes or can be under construction &#128679; with detours';
+            document.getElementById('eli5PainPoint').value = 'Good balancing of traffic needs automatic signals &#128678; and traffic cops to help steer around sudden jams, answer for directions and suggest new routes to save time. Traffic problems need to be spotted fast since fixing them is expensive';
+            document.getElementById('eli5Value').value = 'Apps with fast, reliable network responses & few interruptions across clouds give business value consistently & quickly at the best cost';
+            document.getElementById('eli5Punchline').value = '<a href="https://ibm.seismic.com/Link/Content/DC4fJfVbVMXPW87RBWB8VgF6RVVj" target="_blank" rel="noopener">IBM NS1 Connect</a> automates & optimizes network traffic to give apps fast, reliable network responses with minimal downtime at global scale across multi-cloud. <a style="font-size:small" href="https://www.ibm.com/think/topics/dns" target="_blank" rel="noopener">What\'s DNS?</a>';
+            document.getElementById('eli5Question').value = 'Are you the team that\'s responsible for authoritative (or external) DNS?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="#" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDBPdGTPRg4MGTXBbmFFg8633pB" target="_blank" rel="noopener">Cloudflare Foundation DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC6T9mcVjRQFGG4B6hT62QhHRGTG" target="_blank" rel="noopener">Pulsar Active Traffic Steering</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCQpJj8d9g9W28QMjBB7HWfWbdBV" target="_blank" rel="noopener">AWS Route53</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDTGTH2B73c48qWggHQqPGjB33j" target="_blank" rel="noopener">Oracle Cloud Infrastructure (OCI)</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC7g7BQJMX8h28cGTjh7TFVXQbVB" target="_blank" rel="noopener">Google Cloud DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCgqq97B77g7mG7RDVfbV3V8GQjG" target="_blank" rel="noopener">Akamai</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DC24HW6dMcJDc8CTPmmmMg2m2Fg3" target="_blank" rel="noopener">Azure DNS</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCH6ccCB7hcpF8mWPbpM2RgbVjcj" target="_blank" rel="noopener">UltraDNS (Neustar Security Services)</a></li>
+    <li><a href="https://ibm.seismic.com/Link/Content/DCDV7WbCdbJmgGcJDhHFJRdmh9hG" target="_blank" rel="noopener">Registrar Solutions (GoDaddy, NameCheap, Network Solutions, ...)</a></li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5">Aspera</span><br/>Why? &#8594; Media and Entertainment customers care a great deal about their content. Robust DELIVERY & ACCESS of customer content makes NS1 attractive. Fast, efficient, secure MOVEMENT & TRANSFER of this same cherished customer content is what makes Aspera a great follow-on conversation</li>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a style="font-size:small" href="https://ibm.seismic.com/Link/Content/DCfqGFGjHQG3c8fJfqJXBfHpm6f3" target="_blank" rel="noopener">Rapid Infrastructure Automation<br/>(RIA aka <s style="color:red;">RNA</s>)</a> <a href="https://ibm.seismic.com/Link/Content/DCdQ2D3qG93gb8HP3cd9RqX9DfcG" target="_blank" rel="noopener">RIA FAQ</a></span><br/>Why? &#8594; RIA removes toil. As a workflow automation platform, RIA can create, modify and delete DNS services and process across the full stack in minutes. Results in efficient operations. RIA has <a href="https://automation-library.ibm.com/workflows" target="_blank" rel="noopener">out-of-the-box (OOB) workflows</a> specifically for NS1 to accelerate customer time-to-value and makes for a great follow-on conversation</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">MAKE IT A COMBO MEAL</h3>
+<ul>
+    <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://community.ibm.com/community/user/aiops/blogs/charlie-sprankling/2024/02/14/instana-ns1-integration" target="_blank" rel="noopener">Instana</a></span><br/>Why? &#8594; Using the fast 1-sec observation of Instana, NS1 customers can control and safely steer away from app outages giving their apps a better chance at 100% availability. This need becomes even more critical when replicating apps across multiple clouds or hybrid environments. Instana alerts and alarms can trigger a failover event in NS1.</li>
+   <li><span class="emphasize">NS1 BUYERS</span> <span style="color:red">&#10084;</span> <span style="color:#B3D0F5"><a href="https://community.ibm.com/community/user/aiops/viewdocument/sevone-automated-network-observabil-1" target="_blank" rel="noopener">SevOne Automated Network Observability (SANO) Predictive Integration</a></span><br/>Why? &#8594; Collect real user data with NS1 & then analyze the data with SevOne to predict future behavior. Data is compared to the baseline data. If a performance issue exists, then NS1 traffic steering is used to guide traffic to the best end point for optimal performance. Improve application performance with <a href="https://community.ibm.com/community/user/aiops/viewdocument/sevone-automated-network-observabil" target="_blank" rel="noopener">SANO & NS1 Load Balancing Integration</a></li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="emphasize nospace" style="font-size:small">
+    <span style="color:white;">Are we talking to the right folks?</span>
+    <li class="nospace">Are there other stakeholders we should be talking to: security / networking delivery / app teams?</li>
+    <span style="color:white;">Is there a need?</span>
+    <li class="nospace">How would you characterize the current state of your DNS? Does it perform the way you expect?</li>
+    <li class="nospace">What business objectives are impacted by DNS?</li>
+    <span style="color:white;">Basic Requirements</span>
+    <li class="nospace">What are you using for authoritative (external) DNS today?</li>
+    <li class="nospace">Do you have a secondary DNS or failover system?</li>
+    <li class="nospace">Does the network or security team analyze DNS data in any way?</li>
+    <span style="color:white;">Understand Scale</span>
+    <li class="nospace">What's your average monthly DNS query count?</li>
+    <li class="nospace">Is that query count fairly predictable? Has it been rising or falling? Are there seasonal variations?</li>
+    <li class="nospace">How many DNS records do you maintain?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCFgCgMWB6f7WGQV2p3RW7X7JfHB" target="_blank" rel="noopener">Seismic 1-Pager</a></div>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCG36Q7Q49Cm68cJ76RDWPgM6bpV" target="_blank" rel="noopener">Qualification Flow</a></div>
+<div class="center"><a href="https://stwb.co/ephuesu" target="_blank" rel="noopener">IBM NS1 Partner Marketing Kit</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li><a href="https://www.ibm.com/case-studies/basis-technologies" target="_blank" rel="noopener">Serving 100s of billions DNS queries a day</a><span class="emphasize"><br/>Basis Technologies</span><br/>Low latency needs as a high-scale, real-time bidding platform. To properly steer traffic based on its location (geolocation), Basis uses NS1 to meet its needs. 30% decrease (faster) in network time for BILLIONS of queries every day</li>
+    <li><a href="https://medium.com/@risto.trajanov_/what-went-wrong-with-netflixs-big-fight-technical-overview-ad967e73a486" target="_blank" rel="noopener">What went wrong with Netflix's big fight?</a><span class="emphasize"><br/>Jake Paul vs Mike Tyson on Netflix</span><br/>NS1 Connect would have helped
+        <ul>
+            <li>Insufficient live streaming setup - lack of optimization</li>
+            <li>Network congestion - too many eyeballs and clogged traffic made things slow</li>
+        </ul>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol>
+    <li class="nospace">Make <span class="emphasize">maximum revenue from apps and websites</span> by improving resilience and increasing uptime of workloads that drive the business</li>
+    <li class="nospace">Keep <span class="emphasize">customer satisfaction high, keep churn down</span> by giving an excellent end user experience for apps and website enjoying NS1 traffic supervision</li>
+    <li class="nospace">Gain confidence with app and website resiliency through <span class="emphasize">access of network data</span> provided by NS1</li>
+</ol>`;
+            
+            // Video URL - NS1 uses a local video file
+            document.getElementById('videoUrl').value = 'media/ns1-overview.m4v';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         function loadAsperaExample() {
-            alert('🚧 Aspera card example is coming soon!\n\nFor now, only the Turbonomic example is available.\n\nWe\'ll be adding more production card examples incrementally.');
+            // Load Aspera card data as example
+            document.getElementById('cardClass').value = 'aspera';
+            document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
+            document.getElementById('subtitle').value = 'IBM';
+            document.getElementById('title').value = 'Aspera';
+            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgColor').value = '#101010';
+            document.getElementById('frontBgColorPicker').value = '#101010';
+            document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
+            document.getElementById('bannerAlt').value = 'IBM Aspera';
+            
+            document.getElementById('backBgColor').value = '#000814';
+            document.getElementById('backBgColorPicker').value = '#000814';
+            
+            // Toggle icons
+            document.getElementById('toggleSummary').value = 'images/list-eli5.png';
+            document.getElementById('toggleCompete').value = 'images/list-compete.png';
+            document.getElementById('toggleXsell').value = 'images/list-cross-sell.png';
+            document.getElementById('toggleUpsell').value = 'images/list-upsell.png';
+            document.getElementById('toggleStory').value = 'images/list-story.png';
+            document.getElementById('toggleLove').value = 'images/list-love.png';
+            document.getElementById('toggleWatch').value = 'images/aspera-tv.png';
+            
+            // ELI5 Content (simple, no jargon)
+            document.getElementById('eli5Assertion').value = 'Many organizations need to move massive amounts of data, like videos, medical images, or analytics files, often across long distances. It\'s a reality of modern digital workflows.';
+            document.getElementById('eli5PainPoint').value = 'Traditional file transfer methods like FTP or HTTP often fail to keep up because they are slow and struggle with large files or unstable networks.';
+            document.getElementById('eli5Value').value = 'On top of that, transferring data securely is critical, especially when it involves sensitive or regulated content.';
+            document.getElementById('eli5Punchline').value = 'IBM Aspera addresses all these challenges by using its patented FASP protocol, which allows for extremely fast, reliable, and secure data transfers, regardless of file size or network conditions.';
+            document.getElementById('eli5Question').value = 'How are you currently transferring large files/data internally or with partners?';
+            
+            // Competitors content
+            document.getElementById('competitorsContent').value = `<h3 class="center"><a href="https://ibm.seismic.com/Link/Content/DC28pDPjmXb6784H9j9pJqjc3bH8" target="_blank" rel="noopener">WATCH OUT -- LISTEN FOR</a></h3>
+<ul>
+    <li>Signiant</li>
+    <li>FileCatalyst</li>
+    <li>AWS S3 Transfer Acceleration</li>
+    <li>Google Cloud Storage Transfer Service</li>
+</ul>`;
+            
+            // Cross-sell content
+            document.getElementById('xsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">ONE + ONE = THREE</h3>
+<ul>
+    <li>Math can be funny sometimes</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Upsell content
+            document.getElementById('upsellContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">MAKE IT A COMBO MEAL</h3>
+<ul>
+    <li>granola bar</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Questions content
+            document.getElementById('questionsContent').value = `<ul class="small emphasize">
+    <li>Are you experiencing delays or reliability issues with file transfers handling large or sensitive data?</li>
+    <li>How important is it to move large files quickly & securely with remote offices or partners?</li>
+    <li>Are you finding challenges in managing / automating file transfers @scale across multiple teams/locations?</li>
+    <li>How do you ensure sensitive data is secure during transfer across networks & to external partners?</li>
+    <li>How often is large data moved regionally / globally?</li>
+    <li>Are your teams spending significant time waiting for file transfers to complete?</li>
+    <li>Do you use 3rd party services for file transfer? Happy?</li>
+    <li>Are you seeing any bottlenecks in workflows from slow file transfers?</li>
+    <li>How do you handle situations where file transfer failures / interruptions occur?</li>
+</ul>
+<div class="center"><a href="https://ibm.seismic.com/Link/Content/DCC9gQpChhfgj8QQRQHHb2mQRVmG" target="_blank" rel="noopener">Seismic 1-Pager</a></div>`;
+            
+            // Story content
+            document.getElementById('storyContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">A GOOD STORY NEEDS<br/>ONLY A GOOD STORYTELLER<br/><small>~Richard Bausch~</small></h3>
+<ul>
+    <li>Good: Happy Story</li>
+    <li>Cautionary: Bad Impact Example</li>
+    <li>&#128679; UNDER CONSTRUCTION &#128679;</li>
+</ul>`;
+            
+            // Customer love content
+            document.getElementById('loveContent').value = `<h3 class="center" style="font-weight:bold;color:#B3D0F5">CUSTOMER LOVE <span style="color:red">&#10084;</span><br/>LET ME COUNT THE WAYS</h3>
+<ol class="nospace" style="font-size:small">
+  <li><span class="emphasize">Super fast file transfers</span> – Moves large files fast, no matter the distance, unlike slow FTP or old transfer tools.</li>
+  <li><span class="emphasize">Saves bandwidth costs</span> – Uses less bandwidth than traditional methods, so you don't need to pay for expensive network upgrades.</li>
+  <li><span class="emphasize">End-to-end security</span> – Keeps your data safe during transfers, unlike solutions that don't encrypt everything.</li>
+  <li><span class="emphasize">Scales easily</span> – Handles everything from small to massive data transfers, unlike tools that slow down with more data.</li>
+  <li><span class="emphasize">Works in bad network conditions</span> – Doesn't fail when the network is slow or unstable, unlike FTP or HTTP transfers.</li>
+  <li><span class="emphasize">Easy to integrate</span> – Works with your existing systems, so you don't need to completely rework your infrastructure.</li>
+  <li><span class="emphasize">No third-party dependencies</span> – You have full control over transfers, unlike cloud-only services like AWS S3 Transfer Acceleration.</li>
+  </ol>`;
+            
+            // Video URL - Aspera uses a remote video file
+            document.getElementById('videoUrl').value = 'https://d7umqicpi7263.cloudfront.net/promotionalMedia/b230aa0c5fd2b7de21e05a0e416cb86d';
+            
+            // Sync CodeMirror editors with textarea values
+            setTimeout(() => {
+                syncEditorsFromTextareas();
+            }, 200);
+            
+            updatePreview();
+            generateHTML();
         }
 
         // Setup preview card flip handler
