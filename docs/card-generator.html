@@ -412,6 +412,13 @@
             background-size: 100%;
             background-position: 50% 50%;
             background-repeat: no-repeat;
+            transition: background 0.3s;
+        }
+        
+        .card .front:hover {
+            background-size: 200%;
+            background-position: 20% 30%;
+            transition: background 0.5s;
         }
 
         .card .back {
@@ -701,6 +708,9 @@
                     <div class="form-group">
                         <label for="frontBgImage">Background Image URL (optional)</label>
                         <input type="url" id="frontBgImage" placeholder="images/product-front.png">
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            💡 Optimal dimensions: 1032×774px (4:3 ratio) or 320×320px (square). PNG with transparency recommended.
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="frontBgColor">Background Color</label>
@@ -1111,8 +1121,14 @@
             previewFront.style.backgroundColor = frontBgColor;
             if (frontBgImage) {
                 previewFront.style.backgroundImage = `url(${frontBgImage})`;
+                previewFront.style.backgroundSize = '100%';
+                previewFront.style.backgroundPosition = '50% 50%';
+                previewFront.style.backgroundRepeat = 'no-repeat';
             } else {
                 previewFront.style.backgroundImage = 'none';
+                previewFront.style.backgroundSize = '';
+                previewFront.style.backgroundPosition = '';
+                previewFront.style.backgroundRepeat = '';
             }
 
             // Update back face
@@ -1618,8 +1634,30 @@ ${loveContent}
         </div>`;
             }
 
+            // Generate CSS for product image hover effect if image is provided
+            let productImageCSS = '';
+            if (frontBgImage) {
+                productImageCSS = `
+<style>
+    .${cardClass} .front {
+        background-image: url(${frontBgImage});
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 50% 50%;
+        transition: background 0.3s;
+    }
+    
+    .${cardClass} .front:hover {
+        background-size: 200%;
+        background-position: 20% 30%;
+        transition: background 0.5s;
+    }
+</style>
+`;
+            }
+
             // Generate HTML
-            const html = `<!-- ${cardClass} Card -->
+            const html = `<!-- ${cardClass} Card -->${productImageCSS}
 <div class="card ${cardClass}">
     <div class="face front" style="${frontStyle}">
         <img class="logo" src="${logoUrl}" alt="Logo" />
@@ -1841,7 +1879,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'Turbonomic';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/turbonomic-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -1948,7 +1986,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'Instana Observability';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/instana-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -2060,7 +2098,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'Cloudability';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/cloudability-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -2178,7 +2216,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'Kubecost';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/kubecost-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -2286,7 +2324,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'API Connect';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/apic-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -2385,7 +2423,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'NS1 Connect';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/ns1-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
@@ -2495,7 +2533,7 @@ ${finalDescription}
             document.getElementById('logoUrl').value = 'images/grok-n-talk-logo.png';
             document.getElementById('subtitle').value = 'IBM';
             document.getElementById('title').value = 'Aspera';
-            document.getElementById('frontBgImage').value = '';
+            document.getElementById('frontBgImage').value = 'images/aspera-front.png';
             document.getElementById('frontBgColor').value = '#101010';
             document.getElementById('frontBgColorPicker').value = '#101010';
             document.getElementById('bannerUrl').value = 'images/grok-n-talk-banner.png';
